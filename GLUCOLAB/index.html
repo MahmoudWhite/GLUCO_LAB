@@ -1,0 +1,644 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<title>GLUCOLAB — LibreView + Pump Analyzer</title>
+<style>
+:root{--ink:#102139;--muted:#66758a;--line:#dfe8f0;--blue:#3668e8;--orange:#f39a12;--orange-deep:#d78000;--orange-soft:#fff3df;--navy:#112a54;--teal:#128a8c;--bg:#f4f7fb;--white:#fff;--soft:#eff5ff;--red:#ce4d58;--shadow:0 16px 42px rgba(21,43,80,.055)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.48}
+button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:wait;opacity:.7}a{color:var(--blue)}.shell{max-width:1380px;margin:0 auto;padding:0 35px 68px}
+.nav{height:86px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e8edf4}.brand{display:flex;align-items:center;gap:12px;font-size:24px;font-weight:800;letter-spacing:-.7px}.logo{width:40px;height:40px;background:linear-gradient(145deg,#f0a20a,#f6cb3c);border-radius:13px;display:grid;place-items:center;color:white;font-size:21px;box-shadow:0 6px 15px #3668e827}.brand small{font-size:12px;display:block;font-weight:500;letter-spacing:.1px;color:var(--muted);margin-top:-3px}.navpill{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;border-radius:40px;padding:9px 14px;font-size:12px;color:#48607c;font-weight:650}.dot{width:7px;height:7px;background:#32ae91;border-radius:50%}
+.top{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:36px 0 28px}.eyebrow{text-transform:uppercase;letter-spacing:2.5px;color:var(--orange-deep);font-size:11px;font-weight:800;margin-bottom:9px}.top h1{font-size:clamp(31px,3.4vw,47px);line-height:1.15;letter-spacing:-1.7px;margin:0 0 10px;font-weight:800}.top p{max-width:670px;color:var(--muted);font-size:15px;margin:0}.step-pill{border:1px solid #f2d7a5;background:#fff4df;color:#a5670a;border-radius:100px;padding:10px 16px;font-size:12px;font-weight:800;white-space:nowrap}
+.workspace{display:grid;grid-template-columns:355px minmax(0,1fr);gap:23px;align-items:start}.panel{background:var(--white);border:1px solid #e3eaf3;border-radius:18px;box-shadow:var(--shadow)}.sidebar{padding:24px}.sectionhead{font-size:12px;text-transform:uppercase;letter-spacing:1.7px;font-weight:800;color:#74839a;margin:0 0 17px}.upload-card{border:1.5px dashed #e7d8b7;background:#fffdf8;border-radius:14px;padding:17px;margin-bottom:14px;transition:border-color .2s,background .2s}.upload-card:hover,.upload-card:focus-within{border-color:var(--orange);background:#fff9ef}.upload-card .row-title{display:flex;align-items:center;gap:11px}.upload-icon{height:42px;width:42px;border-radius:12px;background:var(--orange-soft);display:grid;place-items:center;color:var(--orange-deep);font-size:20px;font-weight:750;border:1px solid #f1d19a;box-shadow:inset 0 1px 0 rgba(255,255,255,.8)}.upload-icon.pump{color:#7a5a12;background:#fff7e6;border-color:#f1d19a}.upload-card strong{font-size:14px}.upload-card p{font-size:12px;color:var(--muted);margin:8px 0 14px;line-height:1.6}.file-row{display:flex;align-items:center;gap:9px;min-width:0}.file-button{display:inline-block;background:#fff;border:1px solid #edd8ae;color:#a36508;border-radius:9px;padding:8px 12px;font-size:12px;font-weight:800;white-space:nowrap;cursor:pointer}.file-button:hover{background:#fff4df}.file-name{font-size:11px;color:#61738c;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.file-name.ready{color:#167e69;font-weight:700}.file-input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+.sep{border:0;border-top:1px solid #eaf0f6;margin:23px 0}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{min-width:0}.field label{display:block;font-size:11px;color:#5e6f85;font-weight:750;margin-bottom:7px}.field input{width:100%;border:1px solid #dbe3ef;background:#fff;border-radius:9px;padding:11px 9px;color:#203550;font-size:12px;min-width:0}.field input:focus{outline:2px solid #c1d5ff;outline-offset:1px}.hint{font-size:11px;color:#73849a;line-height:1.6;margin:11px 0 0}.checkrow{display:flex;align-items:center;gap:9px;font-size:11px;color:#587088;margin-top:11px}.checkrow input{accent-color:var(--blue);margin:0}.analyze{width:100%;border:0;border-radius:12px;padding:15px;background:linear-gradient(115deg,#ec980a,#f7b21a);color:#fff;font-weight:800;font-size:14px;margin-top:23px;box-shadow:0 9px 22px rgba(243,154,18,.28)}.analyze:hover{filter:brightness(1.04)}.error{background:#fff1f1;color:#aa2734;border:1px solid #f7c8cd;padding:12px 14px;border-radius:10px;font-size:12px;margin-top:12px;white-space:pre-line}.info{display:flex;align-items:flex-start;gap:10px;background:#f3f7fd;border:1px solid #e2ebf6;border-radius:10px;padding:12px;margin-top:19px;color:#63778e;font-size:11px;line-height:1.65}.info b{color:#3e5372}.small-icon{font-size:16px}
+.right{min-width:0}.welcome{padding:39px;min-height:420px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:radial-gradient(circle at 70% 22%,#eef7ff 0,#fff 47%);overflow:hidden}.welcome-art{width:100%;max-width:500px;height:170px;margin:0 0 18px}.welcome h2{font-size:22px;letter-spacing:-.5px;margin:0 0 9px}.welcome p{font-size:13px;color:var(--muted);max-width:440px;margin:0}.welcome .tags{display:flex;gap:8px;margin-top:24px;flex-wrap:wrap;justify-content:center}.tag{border:1px solid #e0e9f4;border-radius:99px;background:#f9fbfe;padding:8px 12px;font-size:11px;color:#53708c;font-weight:700}
+#results{display:none}.result-title{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:16px}.result-title h2{font-size:20px;letter-spacing:-.5px;margin:0 0 3px}.result-title p{font-size:12px;color:var(--muted);margin:0}.results-tools{display:flex;gap:8px;flex-wrap:wrap}.outline{border:1px solid #ecd9b4;background:white;border-radius:9px;padding:10px 13px;color:#9b620a;font-size:11px;font-weight:750}.outline:hover{background:#fff7ea}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-bottom:14px}.stat{padding:19px 20px;min-width:0}.stat .k{color:#718096;font-size:11px;font-weight:700;margin-bottom:12px}.stat .v{font-size:clamp(21px,2.1vw,30px);font-weight:850;letter-spacing:-.6px;line-height:1.17}.stat .sub{font-size:11px;color:#77889d;margin-top:8px;min-height:16px}.stat.blue .v{color:#346be9}.stat.red .v{color:#c34d61}.stat.teal .v{color:#068e87}.stat.amber .v{color:var(--orange-deep)}
+.block{padding:23px;margin-top:15px;min-width:0}.blocktitle{display:flex;justify-content:space-between;align-items:start;gap:15px;margin-bottom:16px}.blocktitle h3{font-size:15px;letter-spacing:-.1px;margin:0 0 4px}.blocktitle p{margin:0;font-size:11px;color:#8290a1}.mini{font-size:10px;color:#69809a;white-space:nowrap;background:#f1f5fa;border-radius:7px;padding:5px 8px}.trend{width:100%;height:260px;display:block}.split{display:grid;grid-template-columns:1fr 1fr;gap:15px}.bar-list{display:flex;flex-direction:column;gap:8px;max-height:315px;overflow:auto;padding-right:5px}.bar-line{display:grid;grid-template-columns:45px 1fr 58px;align-items:center;gap:9px;font-size:11px;color:#526782;min-height:16px}.bar-track{height:9px;background:#eef3f9;border-radius:99px;overflow:hidden}.bar-fill{height:100%;min-width:0;border-radius:99px;background:linear-gradient(90deg,#4b7bea,#83b6f8)}.bar-fill.hypo{background:linear-gradient(90deg,#f3a1a8,#d75465)}.bar-val{text-align:right;color:#314761;font-weight:700;font-variant-numeric:tabular-nums}.tablewrap{overflow:auto;max-height:375px;border:1px solid #edf1f6;border-radius:10px}table{width:100%;border-collapse:collapse;font-size:12px;white-space:nowrap}th{text-align:left;background:#f7f9fd;color:#718096;letter-spacing:.1px;font-size:11px;position:sticky;top:0;z-index:1}th,td{padding:11px 14px;border-bottom:1px solid #edf1f6}tr:last-child td{border-bottom:0}td{font-variant-numeric:tabular-nums;color:#40536d}td b{color:#152d4d}tr:hover td{background:#f9fbfe}.terminal{background:#13243e;color:#d5e4fb;border-radius:12px;padding:19px 22px;max-height:480px;overflow:auto;font-size:11px;line-height:1.65;white-space:pre;font-family:ui-monospace,SFMono-Regular,Consolas,Monaco,monospace;tab-size:2}.askrow{display:flex;gap:9px;margin-top:13px}.askrow input{flex:1;width:0;padding:12px 13px;border-radius:10px;border:1px solid #dbe3ef;font-size:12px}.askrow button{background:#183d78;color:#fff;border:0;border-radius:9px;padding:0 19px;font-size:12px;font-weight:800}.answer{margin-top:13px;font-size:12px;color:#2d577c;background:#eff7ff;border-left:3px solid #5b94ee;padding:11px 13px;min-height:41px}.footer{font-size:11px;text-align:center;color:#8491a2;padding:28px 0 0}
+@media(max-width:1100px){.workspace{grid-template-columns:320px minmax(0,1fr)}.shell{padding-left:22px;padding-right:22px}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:820px){.workspace{grid-template-columns:1fr}.sidebar{display:grid;grid-template-columns:1fr 1fr;gap:0 19px}.sidebar>.sectionhead:first-child,.sidebar>.sep,.sidebar>.info,.sidebar>.analyze,.sidebar>.error{grid-column:1/-1}.sidebar>.upload-card{min-width:0}.sidebar>.sectionhead:not(:first-child),.sidebar>.formgrid,.sidebar>.hint,.sidebar>.checkrow{grid-column:1/-1}.nav{height:72px}.top{padding-top:26px}.step-pill{display:none}}@media(max-width:560px){.shell{padding:0 13px 45px}.top h1{font-size:32px}.top p{font-size:13px}.navpill{font-size:0;padding:9px}.navpill .dot{width:9px;height:9px}.sidebar{display:block;padding:19px}.welcome{padding:25px;min-height:345px}.cards{gap:9px}.stat{padding:13px}.stat .v{font-size:21px}.split{grid-template-columns:1fr}.block{padding:17px}.result-title{display:block}.results-tools{margin-top:12px}.terminal{font-size:9px}.askrow{flex-direction:column}.askrow input{width:100%}.askrow button{padding:11px}}
+@media print{body{background:#fff}.nav,.top,.sidebar,.results-tools,.askrow,.welcome,.outline,#questionHelp,.footer{display:none!important}.workspace{display:block}.right{width:100%}.panel{box-shadow:none;break-inside:avoid}.terminal{max-height:none;color:#000;background:#fff;white-space:pre-wrap}.bar-list,.tablewrap{max-height:none;overflow:visible}#results{display:block!important}.shell{padding:0}}
+.pattern-alert{padding:14px 16px;border:1px solid #f0d7ad;background:#fff9ee;color:#775521;font-size:12px;line-height:1.6;border-radius:10px}
+.pattern-period{color:#59718f;font-size:12px;font-weight:700;margin-bottom:11px}
+.pattern-metrics{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}.pattern-metrics span{border:1px solid #dfe8f3;border-radius:9px;padding:9px 12px;background:#f9fbff;font-size:12px;color:#4d6180}
+.pattern-details{margin-top:20px}.pattern-details>strong{display:block;font-size:12px;margin-bottom:9px}.pattern-details .tablewrap{max-height:220px}
+.pattern-footnote{font-size:11px;color:#64758d;line-height:1.7;margin:14px 0 0}
+.signal-up{color:#b25600;font-weight:800}.signal-down{color:#c33e5c;font-weight:800}.signal-conflict{color:#8532ac;font-weight:800}.table-sub{font-size:10px;color:#7b8ba0;margin-top:4px;max-width:300px;white-space:normal}
+@media print{.pattern-details .tablewrap{max-height:none}}
+.candidate-block{margin:15px 0 20px;padding:15px;border:1px solid #dce6f6;border-radius:12px;background:#fbfdff}.candidate-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px}.candidate-heading strong{font-size:13px;color:#1c3764}.candidate-heading p{font-size:11px;margin:4px 0 0;color:#647993}.candidate-block .tablewrap{max-height:none}.candidate-block table{max-width:610px}.candidate-block td:first-child{font-weight:750}.candidate-block td:nth-child(2){font-weight:800;color:#184e83}.comparison-title{font-size:13px;letter-spacing:0;margin:16px 0 10px;color:#304968}
+@media(max-width:560px){.candidate-heading{flex-direction:column}.candidate-heading .outline{align-self:start}}
+
+[hidden]{display:none!important}
+.device-picker{margin:46px auto 10px;max-width:890px;padding:24px 5px 30px;text-align:center}
+.device-picker .eyebrow{margin-bottom:12px}.device-picker h1{font-size:clamp(28px,4.1vw,43px);letter-spacing:-1.4px;line-height:1.2;margin:0 auto 13px}.device-picker p{font-size:14px;color:var(--muted);margin:0 auto 27px;max-width:590px}
+.device-options{display:grid;grid-template-columns:1fr 1fr;gap:18px;text-align:left}.device-card{border:1px solid #dce6f1;background:#fff;border-radius:20px;padding:27px;min-height:230px;text-align:left;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:flex-start;gap:13px;transition:transform .17s,border-color .17s,box-shadow .17s}.device-card:hover,.device-card:focus-visible{border-color:#efb146;transform:translateY(-3px);box-shadow:0 18px 40px rgba(201,128,5,.14)}.device-card .device-icon{border-radius:16px;background:var(--orange-soft);width:62px;height:62px;display:grid;place-items:center;color:var(--orange-deep);border:1px solid #f1d19a;box-shadow:inset 0 1px 0 rgba(255,255,255,.75)}.device-card .device-icon.single{background:#fff6e7;color:var(--orange-deep)}.device-card b{font-size:19px;color:#172d4e}.device-card span{font-size:12px;color:#60748d}.device-card em{margin-top:auto;font-style:normal;color:var(--orange-deep);font-weight:800;font-size:12px}.icon-svg{display:block;width:34px;height:34px}.icon-svg.libre{width:36px;height:36px}.icon-svg.combo{width:40px;height:40px}.upload-icon .icon-svg{width:28px;height:28px}.upload-icon.libre-icon .icon-svg{width:31px;height:31px}.combo-wrap .icon-svg{width:30px;height:30px}.device-card .device-icon .combo-wrap .icon-svg.libre{width:28px;height:28px}.icon-raster{display:block;width:34px;height:34px;object-fit:contain;border-radius:10px}.upload-icon .icon-raster{width:30px;height:30px;border-radius:9px}.device-card .device-icon .icon-raster{width:38px;height:38px;border-radius:12px}.combo-wrap{position:relative;display:block;width:40px;height:40px}.combo-wrap .combo-main{position:absolute;left:0;top:0}.combo-wrap .combo-badge{position:absolute;right:-5px;bottom:-6px;background:transparent;border:none;box-shadow:none;display:block;line-height:0;padding:0}/* Libre symbol is a vector shape in every location, never an img tag. */
+.libre-symbol{display:block;overflow:visible;width:38px;height:38px;flex-shrink:0}
+.device-icon.single .libre-symbol{width:42px;height:42px}
+.upload-icon.libre-icon .libre-symbol{width:30px;height:30px}
+.combo-wrap .combo-badge .libre-symbol{width:21px;height:21px}.upload-card{border:1.5px dashed #e7d8b7;background:#fffdf8;border-radius:14px;padding:17px;margin-bottom:14px;transition:border-color .2s,background .2s}.upload-card:hover,.upload-card:focus-within{border-color:var(--orange);background:#fff9ef}.upload-icon{height:42px;width:42px;border-radius:12px;background:var(--orange-soft);display:grid;place-items:center;color:var(--orange-deep);border:1px solid #f1d19a;box-shadow:inset 0 1px 0 rgba(255,255,255,.8)}.upload-icon.pump{color:#7a5a12;background:#fff7e6;border-color:#f1d19a}.file-button{display:inline-block;background:#fff;border:1px solid #edd8ae;color:#a36508;border-radius:9px;padding:8px 12px;font-size:12px;font-weight:800;white-space:nowrap;cursor:pointer}.file-button:hover{background:#fff4df}
+.change-mode{padding:7px 10px;margin-left:5px}.meal-timeline{background:linear-gradient(140deg,#fff,#f9fcff)}.timeline-sub{margin:0 0 18px;font-size:12px;color:#63748b}.timeline-scroll{overflow-x:auto;padding:10px 5px 6px}.daytrack{position:relative;margin-top:25px;min-width:560px;max-width:100%;height:86px}.daytrack-line{position:absolute;top:29px;left:0;right:0;height:28px;background:#edf3f9;border-radius:9px;display:flex;overflow:hidden;border:1px solid #dfe7ef}.hourcell{height:100%;flex:1;border-right:1px solid rgba(255,255,255,.7)}.hourcell:last-child{border-right:0}.hourcell.lower-alert{background:#d4f1e7}.hourcell.above-range{background:#ffe7c9}.hourcell.low-pattern{background:#ffcfdb}.hourcell.insufficient{background:#edf2f7}
+.meal-highlight{position:absolute;top:19px;height:47px;border:2px solid #305ddd;outline:3px solid rgba(255,255,255,.86);border-radius:9px;box-shadow:0 3px 9px #2454ae30;pointer-events:none}.meal-highlight span{position:absolute;left:50%;transform:translateX(-50%);bottom:100%;font-size:11px;color:#31539b;font-weight:800;white-space:nowrap;padding-bottom:4px}.axis{position:absolute;top:68px;color:#718099;font-size:10px;transform:translateX(-50%)}.axis.end{transform:translateX(-100%)}.axis.first{transform:none}
+.timeline-legend{display:flex;gap:17px;flex-wrap:wrap;font-size:11px;color:#65778a;margin-top:7px;margin-bottom:16px}.timeline-legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:middle}.meal-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.meal-card{border:1px solid #e0e8f2;background:#fff;border-radius:13px;padding:16px;min-width:0}.meal-card .topline{display:flex;justify-content:space-between;gap:7px;font-size:12px;color:#73849b;font-weight:700}.meal-card strong{display:block;font-size:20px;color:#203d6a;margin:9px 0}.meal-card p{font-size:12px;margin:6px 0 0;color:#5c728a;line-height:1.55}.meal-card .status{font-size:10px;font-weight:800;border-radius:99px;padding:4px 7px;background:#e8f6f1;color:#107568;white-space:nowrap}.meal-card .status.review{background:#fff1e2;color:#a5671d}.meal-card .status.insufficient{background:#f0f3f7;color:#687a90}.timeline-notice{margin-top:18px;padding:12px 15px;background:#f2f7ff;border-radius:10px;color:#54708c;font-size:12px;line-height:1.6;border:1px solid #e0eaf7}.meal-card small{display:block;color:#8290a3;margin-top:8px;font-size:11px}
+.explain-btn{background:#edf3ff;color:#2858bb;border:1px solid #ceddf7;padding:11px 16px;border-radius:9px;font-weight:800;font-size:12px}.explain-btn:hover{background:#e0ecff}.explain-dialog{width:min(930px,calc(100vw - 30px));max-height:min(88vh,950px);border:1px solid #dbe4ef;border-radius:18px;box-shadow:0 22px 90px #0c21385c;padding:0;color:var(--ink);background:#fff}.explain-dialog::backdrop{background:rgba(13,29,53,.60);backdrop-filter:blur(4px)}.dialog-head{position:sticky;top:0;background:#fff;z-index:3;display:flex;justify-content:space-between;gap:15px;align-items:start;padding:22px 26px 16px;border-bottom:1px solid #e8edf4}.dialog-head h2{font-size:21px;line-height:1.2;margin:0 0 5px}.dialog-head p{font-size:12px;color:#70829b;margin:0}.dialog-close{background:#f1f5fa;border:0;border-radius:9px;width:37px;height:37px;flex-shrink:0;font-size:24px;color:#4c6380;line-height:1}.dialog-content{padding:24px 26px 28px;overflow:auto}.explain-intro{color:#48647e;font-size:13px;line-height:1.75;margin:0 0 20px}.explain-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:20px}.explain-summary div{background:#f4f8fe;border-radius:10px;padding:12px;color:#5e7390;font-size:12px}.explain-summary strong{display:block;font-size:22px;color:#183b6b}.explain-cards{display:grid;gap:10px}.explain-card{border:1px solid #e2eaf4;border-radius:12px;padding:15px;display:grid;grid-template-columns:156px 1fr;gap:14px;align-items:start;background:#fff}.explain-card .range{font-weight:850;font-size:15px;color:#1a3a63}.explain-card p{font-size:12px;color:#5d728a;margin:4px 0}.explain-card .action{font-weight:800;font-size:12px;margin-bottom:6px}.explain-card .action.high{color:#a56616}.explain-card .action.low{color:#b94a63}.explain-card .action.conflict{color:#743ca2}.explain-evidence{margin-top:26px}.explain-evidence h3{font-size:16px;margin:0 0 6px}.explain-evidence p{color:#657b94;font-size:12px;margin:0 0 12px}.evidence-grid{display:grid;gap:10px}.evidence-row{display:grid;grid-template-columns:65px minmax(0,1fr) 124px;gap:12px;align-items:start;padding:13px 14px;border-radius:10px;border:1px solid #e5ebf3;background:#fcfdff}.evidence-row .when{font-weight:850;color:#1c426a;font-size:13px}.evidence-row .details{font-size:12px;color:#526b85;line-height:1.6;overflow-wrap:anywhere}.evidence-row .state{font-size:11px;font-weight:800;text-align:right;color:#60728b}.explain-note{font-size:12px;color:#647793;margin-top:20px;padding:12px;background:#f6f9fc;border-radius:10px}
+@media(max-width:900px){.meal-cards{grid-template-columns:1fr}.daytrack{min-width:520px}}
+@media(max-width:620px){.device-options{grid-template-columns:1fr}.device-card{min-height:190px}.device-picker{margin:22px auto}.dialog-content{padding:17px}.dialog-head{padding:16px}.explain-card{grid-template-columns:1fr;gap:3px}.evidence-row{grid-template-columns:60px 1fr}.evidence-row .state{grid-column:2;text-align:left}.explain-summary{grid-template-columns:1fr 1fr}.daytrack{min-width:520px}}
+@media print{.device-picker,.explain-dialog,.change-mode{display:none!important}}
+
+.attention-hours{font-size:12px;margin:6px 0 17px;padding:13px 14px;border:1px solid #e4eaf4;border-radius:10px;background:#fafcff;color:#536d88}.attention-hours b{color:#224b79}.attention-hours .alert-tag{display:inline-block;font-size:11px;padding:6px 10px;background:#fff1e6;border-radius:8px;color:#915b25;margin:7px 7px 0 0}.attention-hours .alert-tag.low{background:#fff0f3;color:#aa4860}
+
+/* AGP plot + 24h total rows */
+.trend{height:370px}
+.agp-legend{display:flex;gap:15px;flex-wrap:wrap;align-items:center;margin:4px 0 8px;font-size:11px;color:#59718b}
+.agp-swatch{display:inline-block;vertical-align:-2px;width:16px;height:10px;border-radius:3px;margin-right:5px}
+.agp-swatch.median{background:#315f4b;height:3px;vertical-align:3px}
+.agp-swatch.inner{background:#80b89a}.agp-swatch.outer{background:#d0e9d9}.agp-swatch.orange{background:#f5bd56}
+.agp-note{color:#8290a2;font-size:11px;line-height:1.6;margin:0}
+.total-row td{border-top:2px solid #d6e3f0!important;background:#eef5ff;color:#183c6a;font-size:12px;font-weight:800;white-space:normal;padding-top:14px!important;padding-bottom:14px!important}
+.total-row .total-value{color:#174e90;font-size:15px;white-space:nowrap}
+.total-row .total-value.illustrated{color:#235b72}
+.total-note{font-weight:500;display:block;color:#6b7e94;font-size:10px;margin-top:4px;max-width:500px;line-height:1.5}
+@media(max-width:610px){.trend{height:330px}.agp-legend{gap:10px}.total-row td{font-size:11px}}
+
+/* Six descriptive glucose-color bands. The same colors work in either device mode. */
+.bar-fill.bg-very-low{background:linear-gradient(90deg,#a71f4e,#c92e5a)}
+.bar-fill.bg-low{background:linear-gradient(90deg,#e96a78,#f596a0)}
+.bar-fill.bg-lower-target{background:linear-gradient(90deg,#078fa9,#3eb6c5)}
+.bar-fill.bg-upper-target{background:linear-gradient(90deg,#17966d,#4fbb8a)}
+.bar-fill.bg-high{background:linear-gradient(90deg,#e49416,#f5b33e)}
+.bar-fill.bg-very-high{background:linear-gradient(90deg,#cc532c,#ed7640)}
+.glucose-legend{display:flex;flex-wrap:wrap;gap:7px 11px;margin-top:16px;padding-top:13px;border-top:1px solid #edf1f6}
+.glucose-legend .item{font-size:10px;color:#576d85;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.glucose-legend .swatch{display:inline-block;flex:0 0 10px;width:10px;height:10px;border-radius:3px}
+.glucose-legend .swatch.bg-very-low{background:#b52a55}.glucose-legend .swatch.bg-low{background:#ed7887}
+.glucose-legend .swatch.bg-lower-target{background:#169daf}.glucose-legend .swatch.bg-upper-target{background:#25a477}
+.glucose-legend .swatch.bg-high{background:#eda32c}.glucose-legend .swatch.bg-very-high{background:#dc6032}
+/* Arrow sits INSIDE the visible panel/header, rather than floating as its own card. */
+.workspace{position:relative;transition:grid-template-columns .22s ease,gap .22s ease}
+.workspace.sidebar-collapsed{grid-template-columns:minmax(0,1fr);gap:0;padding-left:0}
+.workspace.sidebar-collapsed .sidebar{display:none!important}
+.workspace .right{min-width:0;width:100%}
+.sidebar-toggle{
+  position:absolute;z-index:5;
+  left:calc(355px - 54px);top:15px;
+  width:36px;height:36px;padding:0;
+  border:0;border-radius:9px;
+  background:transparent;color:#a56d0c;
+  display:grid;place-items:center;
+  box-shadow:none;font-weight:800;font-size:25px;line-height:1;
+  transition:left .22s ease,background-color .15s ease,color .15s ease
+}
+.sidebar-toggle:hover,.sidebar-toggle:focus-visible{background:#f4b018;color:#4c3300}
+.sidebar-toggle:focus-visible{outline:2px solid #9b620a;outline-offset:1px}
+.workspace.sidebar-collapsed .sidebar-toggle{left:0;top:0;border-radius:9px}
+/* The results heading shares the arrow's row when uploads are collapsed. */
+.workspace.sidebar-collapsed .result-title{padding-left:44px;min-height:38px}
+@media(max-width:1100px){.sidebar-toggle{left:calc(320px - 54px)}}
+@media(max-width:820px){.sidebar-toggle{left:calc(100% - 54px);top:15px}.workspace.sidebar-collapsed .sidebar-toggle{left:0;top:0}}
+@media(max-width:560px){.sidebar-toggle{left:calc(100% - 50px);top:11px;width:34px;height:34px}.workspace.sidebar-collapsed .sidebar-toggle{left:0;top:0}.workspace.sidebar-collapsed .result-title{padding-left:42px}}
+@media print{.sidebar-toggle{display:none!important}}
+
+
+/* Upload help links and aligned top-right actions */
+.nav{height:auto;min-height:86px;padding:11px 0;align-items:center}
+.nav-actions{display:flex;flex-direction:column;align-items:flex-end;gap:7px;flex-shrink:0}
+.nav-actions .change-mode{margin:0;min-height:31px;padding:6px 12px;font-size:11px;align-self:flex-end}
+.nav-actions .navpill{max-width:100%}
+.upload-help{display:flex;justify-content:flex-end;align-items:center;margin-top:10px}
+.method-link{color:#ad6900;font-size:11px;font-weight:750;text-decoration:underline;text-underline-offset:3px;display:inline-flex;align-items:center;padding:2px 0}
+.method-link:hover,.method-link:focus-visible{color:#f09d0c;text-decoration-thickness:2px}
+.method-link:focus-visible{outline:2px solid #e4a52b;outline-offset:3px;border-radius:2px}
+.footer strong{font-weight:800;white-space:nowrap;color:#586b81}
+@media(max-width:560px){.nav{min-height:72px;height:auto;padding:10px 0;align-items:center;gap:10px}.nav-actions{gap:5px}.nav-actions .change-mode{font-size:10px;padding:5px 7px}.nav-actions .navpill{font-size:0;padding:9px}.nav-actions .navpill .dot{width:9px;height:9px}}
+
+/* Standalone file-download guides: independent of additional backend routes. */
+.footer .footer-line{display:block;line-height:1.7}
+body.method-view .shell{display:none!important}
+.method-guide-page{max-width:820px;margin:0 auto;padding:34px 18px 60px;color:#142b45;font-family:inherit}
+.method-guide-page[hidden],.method-guide-page [hidden]{display:none!important}
+.method-brand{font-weight:900;font-size:17px;letter-spacing:1.2px;margin:0 0 22px}
+.method-paper{padding:32px 37px;background:white;border:1px solid #e2eaf3;border-radius:21px;box-shadow:0 15px 35px rgba(30,50,70,.04);line-height:1.65}
+.method-paper .back{color:#a96700;font-size:13px;font-weight:650;text-decoration:underline;text-underline-offset:3px}
+.method-paper h1{font-size:clamp(26px,4.5vw,40px);letter-spacing:-1px;line-height:1.18;margin:7px 0}
+.method-paper .lead{color:#66788e;font-size:14px;margin:0 0 23px}
+.method-paper ol{padding-left:24px;margin:0 0 24px}
+.method-paper li{font-size:15px;margin-bottom:13px;padding-left:4px}
+.method-paper li::marker{font-weight:850;color:#ec9b10}
+.method-paper .tip{border:1px solid #f2d9a3;background:#fff9ee;border-radius:12px;padding:14px 16px;font-size:13px;color:#665333}
+.method-paper .source{font-size:12px;color:#66788e;margin-top:27px;padding-top:17px;border-top:1px solid #e7eaf0;word-break:break-word}
+.method-paper a{color:#a45d00}
+.method-paper a:hover{color:#db8700}
+.method-footer{text-align:center;color:#7a889c;font-size:11px;margin-top:25px}
+@media(max-width:540px){.method-paper{padding:24px 18px}.method-guide-page{padding:20px 12px 45px}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <nav class="nav">
+    <div class="brand"><div class="logo" aria-hidden="true">✳</div><div>GLUCOLAB<small>Data analysis workspace</small></div></div>
+    <div class="nav-actions">
+      <div class="navpill" id="connectionStatus"><span class="dot" id="serverDot"></span><span id="serverStatus">Checking Python server…</span></div>
+      <button type="button" class="outline change-mode" id="changeMode" hidden>Change devices</button>
+    </div>
+  </nav>
+  <section class="device-picker" id="devicePicker" aria-label="Choose your devices">
+    <div class="eyebrow">WELCOME TO GLUCOLAB</div>
+    <h1>Which devices do you use?</h1>
+    <p>Choose your setup. GLUCOLAB will show only the file uploads and analyses relevant to your devices.</p>
+    <div class="device-options">
+      <button type="button" class="device-card" id="chooseBoth"><span class="device-icon"><span class="combo-wrap" aria-hidden="true"><img class="icon-raster combo-main" src="data:image/png;base64,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" alt=""><span class="combo-badge"><svg class="libre-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="116 74 233 235" aria-hidden="true" focusable="false">
+<path fill="#ffcf00" fill-rule="evenodd" d="M156 82 C185 101 215 138 216 165 C217 182 214 195 210 205 C233 176 268 155 292 157 C312 156 329 162 341 166 L313 223 C301 247 274 251 240 233 C260 246 264 266 253 285 C241 303 218 303 202 293 C190 284 188 269 188 252 C180 265 167 272 154 270 C134 268 121 251 122 230 C123 211 143 195 171 201 C141 189 127 176 127 155 C128 135 145 103 156 82 Z M224 245 C214 245 205 254 205 264 C205 274 213 282 223 283 C233 283 242 275 242 264 C242 253 234 245 224 245 Z"/>
+</svg></span></span></span><b>Insulin pump + Libre</b><span>Keep your glucose dashboard, basal-rate comparisons, and simulated pattern review.</span><em>Continue with two files →</em></button>
+      <button type="button" class="device-card" id="chooseLibre"><span class="device-icon single"><svg class="libre-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="116 74 233 235" aria-hidden="true" focusable="false">
+<path fill="#ffcf00" fill-rule="evenodd" d="M156 82 C185 101 215 138 216 165 C217 182 214 195 210 205 C233 176 268 155 292 157 C312 156 329 162 341 166 L313 223 C301 247 274 251 240 233 C260 246 264 266 253 285 C241 303 218 303 202 293 C190 284 188 269 188 252 C180 265 167 272 154 270 C134 268 121 251 122 230 C123 211 143 195 171 201 C141 189 127 176 127 155 C128 135 145 103 156 82 Z M224 245 C214 245 205 254 205 264 C205 274 213 282 223 283 C233 283 242 275 242 264 C242 253 234 245 224 245 Z"/>
+</svg></span><b>Libre only</b><span>Explore recent glucose readings and a three-meal daily timeline, without pump data.</span><em>Continue with one file →</em></button>
+    </div>
+  </section>
+  <header class="top" id="mainHeader" hidden>
+    <div><div class="eyebrow">Your diabetes data, organized</div><h1 id="mainHeading">Glucose patterns &amp; basal review</h1><p id="mainDescription">Import your CSV exports and review recent glucose and pump patterns. Automatically analyzes the latest 14 days from your newest LibreView reading.</p></div>
+    <div><span class="step-pill" id="modePill">Two files · One dashboard</span></div>
+  </header>
+  <main class="workspace" id="workspace" hidden>
+    <button type="button" id="sidebarToggle" class="sidebar-toggle" aria-controls="uploadSidebar" aria-expanded="true" aria-label="Hide file upload panel" title="Hide file upload panel"><span class="chevron" aria-hidden="true">‹</span></button>
+    <section class="panel sidebar" id="uploadSidebar" aria-label="Analysis setup">
+      <h2 class="sectionhead">01 / Upload your files</h2>
+      <div class="upload-card"><div class="row-title"><div class="upload-icon libre-icon" aria-hidden="true"><svg class="libre-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="116 74 233 235" aria-hidden="true" focusable="false">
+<path fill="#ffcf00" fill-rule="evenodd" d="M156 82 C185 101 215 138 216 165 C217 182 214 195 210 205 C233 176 268 155 292 157 C312 156 329 162 341 166 L313 223 C301 247 274 251 240 233 C260 246 264 266 253 285 C241 303 218 303 202 293 C190 284 188 269 188 252 C180 265 167 272 154 270 C134 268 121 251 122 230 C123 211 143 195 171 201 C141 189 127 176 127 155 C128 135 145 103 156 82 Z M224 245 C214 245 205 254 205 264 C205 274 213 282 223 283 C233 283 242 275 242 264 C242 253 234 245 224 245 Z"/>
+</svg></div><strong>LibreView glucose data</strong></div><p>Select a LibreView historical glucose File.</p><div class="file-row"><label class="file-button" for="libreFile">Choose file</label><input class="file-input" type="file" id="libreFile" accept=".csv,text/csv" aria-label="Select LibreView CSV" required><span id="libreName" class="file-name">No file selected</span></div><div class="upload-help"><a class="method-link" href="/?guide=libre" aria-label="Show method for downloading LibreView data">Show Method</a></div></div>
+      <div class="upload-card" id="pumpUpload"><div class="row-title"><div class="upload-icon pump pump-icon" aria-hidden="true"><img class="icon-raster" src="data:image/png;base64,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" alt=""></div><strong>Medtronic pump data</strong></div><p>Select a MiniMed File.</p><div class="file-row"><label class="file-button" for="pumpFile">Choose file</label><input class="file-input" type="file" id="pumpFile" accept=".csv,text/csv" aria-label="Select Medtronic CSV" required><span id="pumpName" class="file-name">No file selected</span></div><div class="upload-help"><a class="method-link" href="/?guide=pump" aria-label="Show method for downloading Medtronic CareLink data">Show Method</a></div></div>
+      <button type="button" id="analyzeButton" class="analyze">Analyze both files &nbsp; →</button>
+      <div id="error" class="error" role="alert" hidden></div>
+      <div class="info"><span class="small-icon" aria-hidden="true">ⓘ</span><div><b>Private by default.</b> Uploads are temporarily spooled to disk as needed on your local Python server; there is no fixed application file-size cap and nothing is stored in a database. Use the server only on a trusted computer or network.</div></div>
+    </section>
+    <section class="right" aria-live="polite">
+      <div class="panel welcome" id="welcome">
+        <svg class="welcome-art" viewBox="0 0 500 170" aria-hidden="true" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="line" x1="0" x2="1"><stop stop-color="#8db4ef"/><stop offset="1" stop-color="#3e73ec"/></linearGradient></defs><rect x="14" y="10" rx="16" width="472" height="151" fill="#f5f9ff"/><path d="M30 125H471M30 92H471M30 59H471" stroke="#deebf6" stroke-dasharray="4 6"/><path d="M30 95 L64 91 L98 105 L136 65 L173 78 L210 73 L248 107 L290 85 L326 52 L362 75 L398 72 L436 95 L471 64" fill="none" stroke="url(#line)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 95 L64 91 L98 105 L136 65 L173 78 L210 73 L248 107 L290 85 L326 52 L362 75 L398 72 L436 95 L471 64L471 143H30Z" fill="#4c89ee" opacity=".07"/><g fill="#fff" stroke="#4882e9" stroke-width="3"><circle cx="136" cy="65" r="6"/><circle cx="248" cy="107" r="6"/><circle cx="326" cy="52" r="6"/><circle cx="471" cy="64" r="6"/></g></svg>
+        <h2>Ready when you are.</h2><p>Choose your file on the left and click Analyze to see glucose patterns and the analyses available for your device selection.</p>
+        <div class="tags"><span class="tag">Latest 14 days</span><span class="tag">Hourly BG</span><span class="tag">Low episodes</span><span class="tag">Basal pattern review</span></div>
+      </div>
+      <div id="results">
+        <div class="result-title"><div><h2>Analysis overview</h2><p id="periodTitle">Historical analysis results</p></div><div class="results-tools"><button class="outline" id="exportJson">Download JSON</button><button class="outline" id="printReport">Print report</button></div></div>
+        <div class="cards" id="summaryCards"></div>
+        <section class="panel block meal-timeline" id="mealTimelinePanel" hidden>
+          <div class="blocktitle"><div><h3>Daily glucose &amp; meal-period timeline</h3><p>Three routine meal windows compared with the latest 14 days of LibreView readings</p></div><span class="mini">24-hour view</span></div>
+          <p class="timeline-sub">The timeline highlights historic glucose patterns, not medical approval or restrictions on eating.</p>
+          <div class="timeline-scroll"><div class="daytrack" id="mealTrack"></div></div>
+          <div class="timeline-legend"><span><i style="background:#d4f1e7"></i>Fewer alerts observed</span><span><i style="background:#ffe7c9"></i>Frequent high readings</span><span><i style="background:#ffcfdb"></i>Low readings occurred</span><span><i style="background:#edf2f7"></i>Insufficient data</span></div>
+          <div class="attention-hours" id="attentionHours"></div>
+          <div class="meal-cards" id="mealCards"></div>
+          <div class="timeline-notice" id="mealNotice"></div>
+        </section>
+        <section class="panel block pattern-panel" id="patternPanel">
+          <div class="blocktitle"><div><h3>Recent basal-rate ranges · review only</h3>
+            <p>Searches recent pump days for recorded rate transitions. A complete programmed profile cannot always be recovered from a CSV. Illustrative rates are not pump-setting recommendations.</p></div>
+            <div class="results-tools"><button class="explain-btn" id="explainMods" type="button">Explain modifications</button><button class="outline" id="exportSchedule">Export simulated CSV</button></div>
+          </div>
+          <div class="pattern-period" id="patternPeriod"></div>
+          <div class="pattern-metrics" id="patternMetrics"></div>
+          <div class="candidate-block" id="candidateBlock" hidden>
+            <div class="candidate-heading"><div><strong>Recorded time ranges · candidate only</strong><p id="candidateSource">Inferred from a single recent pump-record day, not the confirmed programmed pattern.</p></div>
+              <button class="outline" id="exportCandidate">Export candidate ranges</button></div>
+            <div class="tablewrap"><table><thead><tr><th>Time range</th><th>Recorded basal rate (U/h)</th></tr></thead><tbody id="candidateTable"></tbody><tfoot id="candidateTotal"></tfoot></table></div>
+          </div>
+          <h4 class="comparison-title">Illustrative range-by-range comparison · not pump settings</h4>
+          <div class="tablewrap"><table><thead><tr><th>Time range</th><th>Observed U/h</th><th>Illustrative U/h</th><th>Simulated step</th><th>Pattern / impacted hours</th></tr></thead>
+          <tbody id="patternTable"></tbody><tfoot id="illustrativeTotal"></tfoot></table></div>
+          <p class="pattern-footnote">GLUCOLAB analyzes the latest 14 days, shortened after a detected explicit profile edit. Comparisons use the specified high/low pattern rules and at most one hypothetical 0.05 U/h step per inferred rate segment; conflicting signals remain unchanged. These are not verified pump settings.</p>
+        </section>
+        <section class="panel block"><div class="blocktitle"><div><h3>Glucose patterns · 24-hour profile (AGP-style)</h3><p>Recent LibreView readings combined into one representative day · median and percentile bands</p></div><span class="mini" id="chartLegend">Target band</span></div><canvas id="trendCanvas" class="trend" role="img" aria-label="Ambulatory glucose profile style 24-hour chart with median and fifth, twenty-fifth, seventy-fifth, ninety-fifth percentiles"></canvas><div class="agp-legend"><span><i class="agp-swatch median"></i>Median (50%)</span><span><i class="agp-swatch inner"></i>25–75% of readings</span><span><i class="agp-swatch outer"></i>5–95% of readings</span><span><i class="agp-swatch orange"></i>Above target</span></div><p class="agp-note" id="agpNote">Percentiles are grouped into 30-minute clock-time bins. Missing or sparse bins are not estimated. This is an exploratory AGP-style chart, not an official clinical AGP report.</p></section>
+        <div class="split"><section class="panel block"><div class="blocktitle"><div><h3>Hourly average glucose</h3><p>Mean BG by hour of the day</p></div><button class="outline" id="exportHourly">Export CSV</button></div><div class="bar-list" id="hourlyBars"></div><div class="glucose-legend" id="hourlyLegend" aria-label="Hourly glucose bar colors"></div></section><section class="panel block"><div class="blocktitle"><div><h3>Hypoglycemia episodes by hour</h3><p>Low episodes grouped by starting hour</p></div><button class="outline" id="exportEpisodes">Export CSV</button></div><div class="bar-list" id="hypoBars"></div></section></div>
+        <div class="split"><section class="panel block"><div class="blocktitle"><div><h3>Daily glucose summary</h3><p>Daily average, minimum, maximum and sample count</p></div></div><div class="tablewrap"><table><thead><tr><th>Date</th><th>Mean</th><th>Min</th><th>Max</th><th>Readings</th></tr></thead><tbody id="dailyTable"></tbody></table></div></section><section class="panel block"><div class="blocktitle"><div><h3>Detected low episodes</h3><p>Starts below target after a normal reading or gap &gt;20 min</p></div></div><div class="tablewrap"><table><thead><tr><th>Start</th><th>End</th><th>Lowest</th></tr></thead><tbody id="eventsTable"></tbody></table></div></section></div>
+        <section class="panel block"><div class="blocktitle"><div><h3>Ask a quick data question</h3><p id="questionHelp">Try “lowest glucose”, “average BG at 14:00”, or “hypo events at 03:00”. In pump mode you can also ask about basal rates.</p></div></div><form class="askrow" id="questionForm"><input id="questionInput" placeholder="What was my lowest blood glucose?" aria-label="Ask a question about your results"><button type="submit">Ask</button></form><div class="answer" id="answer">Answers use the calculated numbers in this report (not an AI chatbot).</div></section>
+        <section class="panel block"><div class="blocktitle"><div><h3>Formatted Python output</h3><p>Readable, copyable summary of the analysis and every hour</p></div><button class="outline" id="copySummary">Copy output</button></div><pre class="terminal" id="terminalOut"></pre></section>
+      </div>
+    </section>
+  </main>
+  <dialog class="explain-dialog" id="modDialog" aria-labelledby="modTitle">
+    <div class="dialog-head"><div><h2 id="modTitle">Explain modifications</h2><p>Readable evidence behind each illustrated basal change</p></div><button type="button" class="dialog-close" id="closeExplain" aria-label="Close explanation">×</button></div>
+    <div class="dialog-content"><p class="explain-intro" id="modIntro"></p><div class="explain-summary" id="modStats"></div><div class="explain-cards" id="modSegments"></div><div class="explain-evidence"><h3>Hour-by-hour supporting evidence</h3><p>Only hours with a rule signal appear below. A high signal means the historical 200 mg/dL threshold rule triggered; a low signal means recurring low episodes were detected.</p><div class="evidence-grid" id="modHourly"></div></div><p class="explain-note">This is a mathematical illustration using unverified recorded basal intervals. It cannot establish a safe insulin dose or a confirmed programmed pump profile. Any real pump-setting changes require clinical review.</p></div>
+  </dialog>
+  <footer class="footer" aria-label="GLUCOLAB legal and attribution">
+    <span class="footer-line">© 2026 GLUCOLAB.</span>
+    <span class="footer-line">Exploratory pattern software only.</span>
+    <span class="footer-line">Simulated U/h values are not medical recommendations and must not be programmed into a pump without review by a qualified diabetes clinician.</span>
+    <strong class="footer-line">BY MAHMOUD ABIAD</strong>
+  </footer>
+</div>
+<section class="method-guide-page" id="methodGuide" aria-label="Data download instructions" hidden>
+  <div class="method-brand">GLUCOLAB</div>
+<article class="method-paper" hidden="" id="libreGuide"><a class="back" href="/">← Back to GLUCOLAB</a><div class="eyebrow" style="margin-top:23px">DATA DOWNLOAD GUIDE</div><h1>How to get your LibreView File</h1><p class="lead">Download the historical glucose data from your LibreView account.</p><ol><li>Open <a href="https://www.libreview.com/" rel="noopener noreferrer" target="_blank"><strong>LibreView.com</strong></a> and sign in to the account connected to your Libre app or reader.</li><li>Open <strong>Glucose History</strong>.</li><li>Choose <strong>Download Glucose Data</strong> and follow any verification prompts.</li><li>Choose <strong>Download</strong> to save the data file to your computer.</li><li>Go back to GLUCOLAB and click <strong>Choose file</strong> under LibreView glucose data; select the downloaded File.</li></ol><div class="tip">Use the raw glucose export, not a screenshot or PDF report. Never share sensitive glucose exports publicly.</div><div class="source">Reference: <a href="https://www.freestyle.abbott/en-us/support/faq/apps/downloading-glucose-data-from-the-freestyle-libre-3-app.html" rel="noopener noreferrer" target="_blank">Abbott FreeStyle: downloading glucose data from LibreView</a>. These instructions describe the providers' export features; interfaces may differ by device and region.</div></article>
+<article class="method-paper" hidden="" id="pumpGuide"><a class="back" href="/">← Back to GLUCOLAB</a><div class="eyebrow" style="margin-top:23px">DATA DOWNLOAD GUIDE</div><h1>How to get your Medtronic File</h1><p class="lead">Export your insulin-pump records from Medtronic CareLink Personal.</p><ol><li>Sign in to your <strong>CareLink Personal</strong> account and make sure your pump data is uploaded.</li><li>Open <strong>Reports</strong> and choose the period containing the data you want.</li><li>Find <strong>Data Export (CSV)</strong> (often shown near the bottom right of the Reports screen).</li><li>Download the exported file and save it on your computer.</li><li>Return to GLUCOLAB and click <strong>Choose file</strong> under Medtronic pump data; select the exported File.</li></ol><div class="tip">The exported pump data describes recorded device events; it does not necessarily contain your verified programmed basal profile. Keep the file private.</div><div class="source">Reference: <a href="https://www.medtronic-diabetes.com/sites/stage.medtronic-diabetes.com/files/shared/documents/2021-06/carelink_personal_guidebook_ipad_za_lr.pdf" rel="noopener noreferrer" target="_blank">Medtronic CareLink Personal guide: Data Export (CSV)</a>. These instructions describe the providers' export features; interfaces may differ by device and region.</div></article>
+  <p class="method-footer">© 2026 GLUCOLAB · BY MAHMOUD ABIAD</p>
+</section>
+<script>
+"use strict";
+const $=id=>document.getElementById(id);
+let latest=null;
+let deviceMode=null;
+let sidebarCollapsed=false;
+function setSidebarCollapsed(collapsed){
+  sidebarCollapsed=Boolean(collapsed);
+  $("workspace").classList.toggle("sidebar-collapsed",sidebarCollapsed);
+  $("sidebarToggle").setAttribute("aria-expanded",String(!sidebarCollapsed));
+  $("sidebarToggle").setAttribute("aria-label",sidebarCollapsed?"Show file upload panel":"Hide file upload panel");
+  $("sidebarToggle").title=sidebarCollapsed?"Show file upload panel":"Hide file upload panel";
+  $("sidebarToggle").querySelector(".chevron").textContent=sidebarCollapsed?"›":"‹";
+  // The chart uses a canvas; redraw it whenever the main panel's width changes.
+  if(latest)window.setTimeout(drawTrend,270);
+}
+$("sidebarToggle").addEventListener("click",()=>setSidebarCollapsed(!sidebarCollapsed));
+function fmt(x,d=2){return x==null||!Number.isFinite(Number(x))?"—":Number(x).toLocaleString(undefined,{maximumFractionDigits:d});}
+function esc(x){return String(x==null?"":x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));}
+function chooseDevices(mode){
+  deviceMode=mode; latest=null;
+  setSidebarCollapsed(false);
+  $("devicePicker").hidden=true; $("mainHeader").hidden=false; $("workspace").hidden=false; $("changeMode").hidden=false;
+  $("pumpUpload").hidden=mode!=="both";
+  $("results").style.display="none"; $("welcome").style.display="flex";
+  $("mainHeading").textContent=mode==="both"?"Glucose patterns & basal review":"Libre glucose pattern explorer";
+  $("mainDescription").textContent=mode==="both"?
+    "Upload your LibreView and Medtronic CSV files to review recent glucose patterns and an illustrative basal comparison.":
+    "Upload your LibreView CSV to explore recent glucose patterns and a three-meal daily timeline.";
+  $("modePill").textContent=mode==="both"?"Two files · One dashboard":"One file · Glucose timeline";
+  $("analyzeButton").textContent=mode==="both"?"Analyze both files  →":"Analyze Libre data  →";
+  $("error").hidden=true;
+}
+$("chooseBoth").addEventListener("click",()=>chooseDevices("both"));
+$("chooseLibre").addEventListener("click",()=>chooseDevices("libre"));
+$("changeMode").addEventListener("click",()=>{
+  $("devicePicker").hidden=false;$("mainHeader").hidden=true;$("workspace").hidden=true;$("changeMode").hidden=true;
+  deviceMode=null;latest=null;setSidebarCollapsed(false);
+});
+for(const [id,label] of [["libreFile","libreName"],["pumpFile","pumpName"]]){
+  $(id).addEventListener("change",()=>{
+    const f=$(id).files[0]; $(label).textContent=f?`${f.name} (${(f.size/1024/1024).toFixed(2)} MB)`:"No file selected";
+    $(label).classList.toggle("ready",!!f); $("error").hidden=true;
+  });
+}
+function showError(message){$("error").textContent=message;$("error").hidden=false;}
+async function checkConnection(){
+  const status=$("serverStatus"),dot=$("serverDot");
+  if(location.protocol==="file:"){
+    status.textContent="Python server not connected";
+    dot.style.background="#dc4b58";
+    showError("Start the Python server first: open a terminal in the GLUCOLAB folder, run 'python app.py', and visit http://127.0.0.1:8000. Do not double-click index.html.");
+    return;
+  }
+  try{
+    const response=await fetch("/api/health",{cache:"no-store"});
+    const data=response.headers.get("content-type")?.includes("application/json")?await response.json():null;
+    if(!response.ok||data?.product!=="GLUCOLAB"||data?.status!=="ok")throw new Error("No GLUCOLAB backend");
+    status.textContent="Python server connected";
+    dot.style.background="#32ae91";
+  }catch(err){
+    status.textContent="Python server not connected";
+    dot.style.background="#dc4b58";
+    showError("This page is not connected to the GLUCOLAB Python backend. Run 'python app.py' from the extracted GLUCOLAB folder, then open http://127.0.0.1:8000.");
+  }
+}
+checkConnection();
+$("analyzeButton").addEventListener("click",async()=>{
+  const lf=$("libreFile").files[0],pf=$("pumpFile").files[0];
+  if(!lf||(deviceMode==="both"&&!pf)){showError(deviceMode==="both"?"Please select both your LibreView and Medtronic files.":"Please select your LibreView CSV file.");return;}
+  $("error").hidden=true;const button=$("analyzeButton");button.disabled=true;button.textContent="Analyzing files…";
+  try{
+    const form=new FormData();
+    form.append("libre_file",lf);form.append("mode",deviceMode);if(deviceMode==="both")form.append("pump_file",pf);
+    if(location.protocol==="file:") throw Error("This page was opened as an HTML file, without the Python server. Run 'python app.py' in the GLUCOLAB folder, then open http://127.0.0.1:8000 instead.");
+    let response;
+    try {
+      response=await fetch("/api/analyze",{method:"POST",body:form,cache:"no-store"});
+    }catch(networkError){
+      throw Error("Cannot reach the GLUCOLAB Python server. Open a terminal in the GLUCOLAB folder, run 'python app.py', and use http://127.0.0.1:8000. Keep the terminal open while analyzing.");
+    }
+    const contentType=response.headers.get("content-type")||"";
+    if(!contentType.includes("application/json")){
+      throw Error("This webpage is not connected to the GLUCOLAB Python backend (server responded with HTML instead of JSON). Run 'python app.py' and open http://127.0.0.1:8000.");
+    }
+    const data=await response.json();
+    if(!response.ok)throw Error(data.error||`The server returned status ${response.status}.`);
+    latest=data;render(data);$("results").style.display="block";$("welcome").style.display="none";setSidebarCollapsed(true);
+  }catch(err){showError(err.message||"Could not complete the upload. Check the server and your CSV files.");}
+  finally{button.disabled=false;button.textContent=deviceMode==="both"?"Analyze both files  →":"Analyze Libre data  →";}
+});
+function render(data){
+  const s=data.libre.summary,p=data.pump?.summary,u=data.libre.unit;
+  const pumpMode=data.mode!=="libre";
+  $("patternPanel").hidden=!pumpMode;
+  $("mealTimelinePanel").hidden=pumpMode;
+  if(pumpMode)renderPattern(data.pattern,u);
+  else renderMealTimeline(data.meal_timeline,u);
+  $("periodTitle").textContent=`Recent analysis (${data.filters.days} days maximum) · ${s.from} → ${s.to} · ${fmt(s.readings,0)} LibreView readings selected`;
+  const stats=[
+    ["Average glucose",fmt(s.mean)+" "+u,`${fmt(s.readings,0)} historical readings`,"blue"],
+    ["Lowest glucose",fmt(s.lowest)+" "+u,`Recorded ${s.lowest_at}`,"red"],
+    ["Highest glucose",fmt(s.highest)+" "+u,`Recorded ${s.highest_at}`,"amber"],
+    ["In target range",fmt(s.in_range_pct,1)+"%","Percentage of observed readings","teal"],
+    ["Low episodes",fmt(s.hypo_episodes,0),`${fmt(s.low_readings,0)} low readings`,"red"],
+    pumpMode?["Average basal rate",p.mean==null?"—":fmt(p.mean)+" U/h",`${fmt(p.entries,0)} recorded rate entries`,"blue"]:["Above range",fmt(s.above_pct,1)+"%","Percentage of observed readings","amber"]
+  ];
+  $("summaryCards").innerHTML=stats.map(([k,v,sub,c])=>`<article class="panel stat ${c}"><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div><div class="sub">${esc(sub)}</div></article>`).join("");
+  $("chartLegend").textContent=`Target range: ${data.libre.low}–${data.libre.high} ${u}`;
+  const validAgp=(data.libre.agp?.bins||[]).filter(b=>b.p50!=null).length;
+  $("agpNote").textContent=`Each half-hour band is based on observed readings from at least 2 different days (≥5 total readings). ${validAgp} of 48 half-hour bins have sufficient data. The 5th–95th and 25th–75th percentile bands show historical spread, not a predicted glucose level. Exploratory AGP-style display.`;
+  renderBars("hourlyBars",data.libre.hourly,"average",false,u);
+  renderBars("hypoBars",data.libre.hourly,"episodes",true,"episodes");
+  $("dailyTable").innerHTML=data.libre.daily.map(r=>`<tr><td><b>${esc(r.date)}</b></td><td>${esc(fmt(r.mean))}</td><td>${esc(fmt(r.min))}</td><td>${esc(fmt(r.max))}</td><td>${esc(fmt(r.readings,0))}</td></tr>`).join("");
+  $("eventsTable").innerHTML=data.libre.episodes.length?data.libre.episodes.map(r=>`<tr><td>${esc(r.started)}</td><td>${esc(r.ended)}</td><td>${esc(fmt(r.lowest))} ${esc(u)}</td></tr>`).join(""):'<tr><td colspan="3">No low episodes began in this selected time period.</td></tr>';
+  $("terminalOut").textContent=data.report;$("answer").textContent="Ask about average or lowest BG, target range, low episodes, or a specific hourly average.";
+  requestAnimationFrame(drawTrend);
+}
+function renderPattern(p,u){
+  const ready=["review_only","review_only_unknown_edit"].includes(p.status)&&p.segments.length>0;
+  const periodSource=p.last_edit?`Explicit profile-edit marker: ${p.last_edit}; limited to latest ${p.recent_days} days`:`Automatic latest ${p.recent_days} days; actual profile-edit date not identified`;
+  $("patternPeriod").textContent=`${periodSource} · LibreView: ${p.glucose_start||"—"} to ${p.glucose_end||"—"}`;
+  $("patternMetrics").innerHTML=`<span>Recent Libre readings: <b>${fmt(p.glucose_readings,0)}</b></span><span>Calendar days: <b>${fmt(p.days_observed||0,0)}</b></span><span>Recent pump entries: <b>${fmt(p.recent_rate_entries||0,0)}</b></span><span>Candidate ranges: <b>${fmt(p.segments.length,0)}</b></span>`;
+  $("candidateBlock").hidden=!ready;
+  $("candidateSource").textContent=ready?`Source: ${p.profile_day}; most recent complete candidate day at or before LibreView end. ${p.excluded_rate_entries||0} interruption/nonrecurring rate rows excluded; ${p.suspension_events_on_day||0} explicit suspend/resume events on this day. Not confirmed programmed settings.`:"";
+  $("candidateTable").innerHTML=ready?p.segments.map(seg=>`<tr><td>${esc(seg.start)} – ${esc(seg.end)}</td><td>${esc(Number(seg.original_rate).toFixed(2))}</td></tr>`).join(""):"";
+  const candidateTotal=p.observed_daily_basal_u;
+  $("candidateTotal").innerHTML=ready?`<tr class="total-row"><td>Estimated 24-hour candidate basal total<span class="total-note">Rate × duration for each recorded interval; not actual insulin delivered.</span></td><td class="total-value">${candidateTotal==null?"Unavailable":esc(fmt(candidateTotal,3))+" U/day"}</td></tr>`:"";
+  $("exportCandidate").disabled=!ready;
+  $("patternTable").innerHTML=ready?p.segments.map(seg=>{
+    const tone=seg.action==="high"?"signal-up":seg.action==="low"?"signal-down":seg.action==="conflict"?"signal-conflict":"";
+    const hours=[...new Set([...seg.high_hours,...seg.low_hours])].join(", ");
+    return `<tr><td><b>${esc(seg.start)}–${esc(seg.end)}</b></td><td>${esc(fmt(seg.original_rate,3))}</td><td><b>${esc(fmt(seg.illustrative_rate,3))}</b></td><td class="${tone}">${seg.change>0?"+":""}${esc(fmt(seg.change,2))}</td><td><span class="${tone}">${esc(seg.reason)}</span>${hours?`<div class="table-sub">Hour(s): ${esc(hours)}</div>`:""}</td></tr>`;
+  }).join(""):'<tr><td colspan="5">No complete set of recorded rate ranges could be reconstructed from these CSV rows.</td></tr>';
+  const illustrativeTotal=p.illustrative_daily_basal_u;
+  const diff=p.illustrative_daily_difference_u;
+  $("illustrativeTotal").innerHTML=ready?`<tr class="total-row"><td colspan="3">Illustrative 24-hour total<span class="total-note">Integrated using segment duration; not an actual or recommended insulin dose.</span></td><td colspan="2" class="total-value illustrated">${illustrativeTotal==null?"Unavailable":esc(fmt(illustrativeTotal,3))+" U/day"}${diff==null?"":` <span class="total-note">Difference vs. candidate: ${diff>0?"+":""}${esc(fmt(diff,3))} U/day</span>`}</td></tr>`:"";
+  $("exportSchedule").disabled=!ready;
+}
+
+
+function renderMealTimeline(meals,unit){
+  if(!meals)return;
+  const cells=meals.hourly.map(h=>`<span class="hourcell ${esc(h.status)}" title="${esc(h.start)}: ${esc(h.average==null?'No readings':fmt(h.average)+' '+unit)}; ${esc(h.readings)} readings"></span>`).join("");
+  const markers=meals.windows.map(m=>`<div class="meal-highlight" style="left:${m.start_hour/24*100}%;width:${(m.end_hour-m.start_hour)/24*100}%"><span>${esc(m.meal)}</span></div>`).join("");
+  const axes=[0,6,12,18,24].map(h=>`<span class="axis ${h===24?'end':h===0?'first':''}" style="left:${h/24*100}%">${String(h).padStart(2,'0')}:00</span>`).join("");
+  $("mealTrack").innerHTML=`<div class="daytrack-line">${cells}</div>${markers}${axes}`;
+  const flagged=meals.attention_windows||[];
+  $("attentionHours").innerHTML=flagged.length?
+    `<b>Hours needing glucose-pattern review (not “do not eat” hours):</b><div>${flagged.map(a=>`<span class="alert-tag ${a.status==='low-pattern'?'low':''}">${esc(a.start)}–${esc(a.end)} · ${esc(a.label)}</span>`).join("")}</div>`:
+    `<b>Review note:</b> No consistently recurring alert period was flagged from the available readings. This does not establish medically ideal or forbidden eating times.`;
+  $("mealCards").innerHTML=meals.windows.map(m=>{
+    const label=m.status==="lower-alert"?"Fewer alerts":m.status==="review"?"Review pattern":"Limited data";
+    return `<article class="meal-card"><div class="topline"><span>${esc(m.meal)}</span><span class="status ${esc(m.status)}">${label}</span></div><strong>${esc(m.start)}–${esc(m.end)}</strong><p>${esc(m.summary)}</p><small>Observed average: ${esc(fmt(m.average))} ${esc(unit)} · ${esc(fmt(m.readings,0))} readings</small></article>`;
+  }).join("");
+  $("mealNotice").textContent=meals.notice;
+}
+function explainModifications(){
+  if(!latest?.pattern)return;
+  const p=latest.pattern,u=latest.libre.unit;
+  $("modIntro").textContent=`Based on ${p.glucose_readings} LibreView readings, GLUCOLAB compared glucose patterns with recorded pump rates on ${p.profile_day||'an unverified date'}. Multiple hours in the same rate segment count as ONE illustrative change. High and low signals together are marked as conflicting, rather than automatically resolved.`;
+  $("modStats").innerHTML=`<div><strong>${esc(fmt(p.segments_changed||0,0))}</strong>segments with hypothetical change</div><div><strong>${esc(fmt(p.segments_conflict||0,0))}</strong>conflicting segments</div><div><strong>${esc(fmt(p.days_observed||0,0))}</strong>days with glucose readings</div>`;
+  $("modSegments").innerHTML=p.segments.length?p.segments.map(seg=>{
+    const action=seg.action==="high"?"High-glucose pattern":seg.action==="low"?"Recurring low-glucose pattern":seg.action==="conflict"?"Conflicting high/low patterns":"No threshold trigger";
+    const affected=[...new Set([...seg.high_hours,...seg.low_hours])].sort();
+    const step=(seg.change>0?"+":"")+fmt(seg.change,2);
+    return `<article class="explain-card"><div><div class="range">${esc(seg.start)}–${esc(seg.end)}</div><p>Recorded ${esc(fmt(seg.original_rate,2))} U/h</p></div><div><div class="action ${esc(seg.action)}">${esc(action)} · ${esc(step)} U/h (simulation)</div><p>${esc(seg.reason)}. ${affected.length?`Relevant hour(s): ${esc(affected.join(', '))}.`:"No flagged hour in this segment."}</p><p>Illustrative comparison: ${esc(fmt(seg.illustrative_rate,2))} U/h — not a pump setting.</p></div></article>`;
+  }).join(""):`<p>No full recorded basal-rate pattern could be established. GLUCOLAB did not create a simulated schedule.</p>`;
+  const flagged=p.hourly_evidence.filter(h=>h.signal!=="none");
+  $("modHourly").innerHTML=flagged.length?flagged.map(h=>{
+    const words=h.signal==="high"?"Above-threshold pattern":h.signal==="low"?"Repeated low events":"High + low conflict";
+    const text=`Average ${fmt(h.average)} ${u} across ${h.days_with_readings} day(s). `+
+      `${h.high_dates.length?`Daily hourly mean >200 mg/dL on ${h.high_dates.join(', ')}. `:''}`+
+      `${h.overall_average_high?'Overall hourly mean reached the 200 mg/dL criterion. ':''}`+
+      `${h.low_consecutive_pairs.length?`Low-episode starts on consecutive dates: ${h.low_consecutive_pairs.map(x=>x.join(' and ')).join('; ')}.`:''}`;
+    return `<div class="evidence-row"><div class="when">${esc(h.hour)}</div><div class="details">${esc(text)}</div><div class="state">${esc(words)}</div></div>`;
+  }).join(""):`<p>No hours triggered the illustration's threshold rules.</p>`;
+  $("modDialog").showModal();
+}
+$("explainMods").addEventListener("click",explainModifications);
+$("closeExplain").addEventListener("click",()=>$("modDialog").close());
+$("modDialog").addEventListener("click",e=>{if(e.target===$("modDialog"))$("modDialog").close();});
+
+// Colors are descriptive display categories, NOT treatment thresholds.
+function hourlyBgColor(v,unit){
+  if(v==null||!Number.isFinite(Number(v)))return "";
+  // Convert mmol/L into approximately mg/dL for consistent breakpoints.
+  const mg=Number(v)*(unit==="mmol/L"?18.0182:1);
+  if(mg<54)return "bg-very-low";
+  if(mg<70)return "bg-low";
+  if(mg<100)return "bg-lower-target";
+  if(mg<=180)return "bg-upper-target";
+  if(mg<=250)return "bg-high";
+  return "bg-very-high";
+}
+function renderBars(id,rows,key,isHypo,unit){
+  const nums=rows.map(r=>r[key]==null?0:r[key]);const max=Math.max(...nums,0.0001);
+  $(id).innerHTML=rows.map(r=>{
+    const n=r[key];const pct=n==null?0:Math.max(0,n/max*100);
+    const bgClass=isHypo?"hypo":hourlyBgColor(n,unit);
+    const detail=n==null?"No readings":`${fmt(n,isHypo?0:2)} ${unit}`;
+    return `<div class="bar-line" title="${esc(r.hour)}: ${esc(detail)}"><span>${esc(r.hour)}</span><div class="bar-track"><div class="bar-fill ${bgClass}" style="width:${pct}%"></div></div><span class="bar-val">${esc(n==null?'—':fmt(n,isHypo?0:2))}</span></div>`;
+  }).join("");
+  if(!isHypo&&$("hourlyLegend")){
+    const labels=unit==="mmol/L"?
+      ["<3.0","3.0–3.8","3.9–5.5","5.6–10.0","10.1–13.9",">13.9"]:
+      ["<54","54–69","70–99","100–180","181–250",">250"];
+    const classes=["bg-very-low","bg-low","bg-lower-target","bg-upper-target","bg-high","bg-very-high"];
+    $("hourlyLegend").innerHTML=classes.map((c,i)=>`<span class="item"><span class="swatch ${c}" aria-hidden="true"></span>${esc(labels[i])}</span>`).join("");
+    $("hourlyLegend").setAttribute("title",`Hourly mean glucose bands (${unit}), shown for visual reference only`);
+  }
+}
+
+function drawTrend(){
+  // An AGP-style *aggregate day*, not the chronological glucose trace.
+  // The percentiles are calculated from observed LibreView readings in
+  // the same recent period as the rest of GLUCOLAB's report.
+  if(!latest || $("results").style.display==="none")return;
+  const canvas=$("trendCanvas"), rect=canvas.getBoundingClientRect();
+  if(!rect.width)return;
+  const width=rect.width, height=width<610?330:370, scale=Math.min(window.devicePixelRatio||1,2);
+  canvas.width=Math.round(width*scale);canvas.height=Math.round(height*scale);
+  const ctx=canvas.getContext("2d");ctx.scale(scale,scale);ctx.clearRect(0,0,width,height);
+  const profile=latest.libre.agp?.bins || [];
+  const low=latest.libre.low,high=latest.libre.high,unit=latest.libre.unit;
+  const left=width<430?44:55,right=width-(width<430?45:62),top=18,bottom=height-76;
+  const max95=Math.max(high, ...profile.filter(b=>b.p95!=null).map(b=>b.p95));
+  const step=unit==="mg/dL"?50:2;
+  const maxY=Math.ceil(Math.max(max95*1.06,high*1.65)/step)*step;
+  const minY=0;
+  const X=m=>left+(right-left)*m/1440;
+  const Y=v=>bottom-(v-minY)/(maxY-minY)*(bottom-top);
+  ctx.save();ctx.fillStyle="#fbfdfd";ctx.fillRect(left,top,right-left,bottom-top);
+  ctx.fillStyle="rgba(46,170,107,.065)";ctx.fillRect(left,Y(high),right-left,Y(low)-Y(high));
+
+  // Grid and target lines.
+  ctx.font="11px Segoe UI, Arial";ctx.fillStyle="#7d8da1";
+  for(let v=0;v<=maxY+0.001;v+=step){
+    const y=Y(v);ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(right,y);
+    ctx.setLineDash([3,5]);ctx.strokeStyle="#e3eaf2";ctx.lineWidth=1;ctx.stroke();ctx.setLineDash([]);
+    ctx.textAlign="right";ctx.fillText(String(Math.round(v*100)/100),left-9,y+4);
+  }
+  for(const [value,text] of [[low,String(low)],[high,String(high)]]){
+    const y=Y(value);ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(right,y);ctx.lineWidth=1.65;
+    ctx.strokeStyle="#4b9b65";ctx.stroke();
+    ctx.fillStyle="#317d51";ctx.textAlign="right";ctx.font="bold 11px Segoe UI, Arial";ctx.fillText(text,left-9,y+4);
+  }
+  for(let hr=0;hr<=24;hr+=3){
+    const x=X(hr*60);
+    ctx.beginPath();ctx.moveTo(x,top);ctx.lineTo(x,bottom);ctx.lineWidth=1;
+    ctx.strokeStyle="#e8edf3";ctx.setLineDash([2,5]);ctx.stroke();ctx.setLineDash([]);
+    ctx.font="11px Segoe UI, Arial";ctx.fillStyle="#61768c";
+    ctx.textAlign=hr===0?"left":hr===24?"right":"center";
+    ctx.fillText(`${String(hr%24).padStart(2,'0')}:00`,x,bottom+20);
+  }
+  // Draw only contiguous half-hour bins with enough observed days.
+  const runs=[];let run=[];
+  for(const b of profile){
+    if(b.p50==null){if(run.length){runs.push(run);run=[];}}
+    else run.push(b);
+  }
+  if(run.length)runs.push(run);
+  const midpoint=b=>b.minute+15;
+  function curve(rows,key){
+    for(let i=1;i<rows.length;i++){
+      const a=rows[i-1],b=rows[i],middle=(X(midpoint(a))+X(midpoint(b)))/2;
+      ctx.bezierCurveTo(middle,Y(a[key]),middle,Y(b[key]),X(midpoint(b)),Y(b[key]));
+    }
+  }
+  function bandPath(rows,highKey,lowKey){
+    if(rows.length<2)return false;
+    ctx.beginPath();ctx.moveTo(X(midpoint(rows[0])),Y(rows[0][highKey]));
+    curve(rows,highKey);
+    const reversed=rows.slice().reverse();
+    ctx.lineTo(X(midpoint(reversed[0])),Y(reversed[0][lowKey]));
+    curve(reversed,lowKey);ctx.closePath();return true;
+  }
+  // Clip each percentile band to the target, above-target and below-target regions.
+  // Green and amber mirror the reference visual without turning these data into
+  // a recommendation to change insulin delivery or eat at a certain time.
+  function paintedBand(upperKey,lowerKey,colors){
+    const clips=[
+      {y:top,h:Math.max(0,Y(high)-top),fill:colors.high},
+      {y:Y(high),h:Math.max(0,Y(low)-Y(high)),fill:colors.target},
+      {y:Y(low),h:Math.max(0,bottom-Y(low)),fill:colors.low},
+    ];
+    for(const clip of clips){
+      if(!clip.h)continue;
+      ctx.save();ctx.beginPath();ctx.rect(left,clip.y,right-left,clip.h);ctx.clip();
+      ctx.fillStyle=clip.fill;
+      for(const rows of runs)if(bandPath(rows,upperKey,lowerKey))ctx.fill();
+      ctx.restore();
+    }
+  }
+  paintedBand("p95","p05",{high:"rgba(251,179,69,.29)",target:"rgba(70,175,111,.20)",low:"rgba(225,75,91,.18)"});
+  paintedBand("p75","p25",{high:"rgba(250,168,25,.51)",target:"rgba(58,152,95,.39)",low:"rgba(223,75,99,.36)"});
+
+  // Sparse individual dots: observed data from the most recent report period,
+  // positioned by time of day rather than calendar date.
+  const points=latest.libre.trend || [];
+  const stride=Math.max(1,Math.ceil(points.length/1500));
+  ctx.save();ctx.beginPath();ctx.rect(left,top,right-left,bottom-top);ctx.clip();
+  for(let i=0;i<points.length;i+=stride){
+    const p=points[i],h=Number(p.time.slice(11,13)),m=Number(p.time.slice(14,16));
+    if(!Number.isFinite(h)||!Number.isFinite(m))continue;
+    ctx.beginPath();ctx.arc(X(h*60+m),Y(p.value),1.2,0,Math.PI*2);
+    ctx.fillStyle=p.value>high?"rgba(207,135,20,.24)":p.value<low?"rgba(196,70,81,.23)":"rgba(31,118,80,.19)";
+    ctx.fill();
+  }
+  ctx.restore();
+
+  // Smooth median plus subtle dotted outer percentile curves.
+  for(const [key,color,dash,thickness] of [
+    ["p05","rgba(63,118,96,.39)",[2,4],.9],
+    ["p95","rgba(165,118,56,.45)",[2,4],.9],
+    ["p50","#315f4b",[],3.1]
+  ]){
+    ctx.save();ctx.strokeStyle=color;ctx.lineWidth=thickness;ctx.setLineDash(dash);ctx.lineJoin="round";
+    for(const rows of runs){
+      ctx.beginPath();ctx.moveTo(X(midpoint(rows[0])),Y(rows[0][key]));curve(rows,key);ctx.stroke();
+    }
+    ctx.restore();
+  }
+  // Right-side percentile labels anchored to the last available segment.
+  const last=profile.filter(b=>b.p50!=null).at(-1);
+  if(last){
+    const list=[["95%",last.p95],["75%",last.p75],["50%",last.p50],["25%",last.p25],["5%",last.p05]];
+    let previous=-100;
+    const positions=list.map(([label,val])=>{
+      const at=Math.min(bottom-7,Math.max(top+8,Math.max(Y(val),previous+16)));
+      previous=at;return {label,value:val,at};
+    });
+    for(const p of positions){
+      const y0=Y(p.value);ctx.beginPath();ctx.moveTo(right+2,y0);ctx.lineTo(right+8,p.at);
+      ctx.strokeStyle="#9eb0ad";ctx.lineWidth=1;ctx.stroke();
+      ctx.textAlign="left";ctx.font=(p.label==="50%"?"bold ":"")+"11px Segoe UI, Arial";
+      ctx.fillStyle=p.label==="50%"?"#244d3d":"#627889";ctx.fillText(p.label,right+10,p.at+4);
+    }
+  }
+  const parts=[["Overnight",0,6],["Morning",6,12],["Afternoon",12,18],["Evening",18,24]];
+  for(const [name,a,b] of parts){
+    const x1=X(a*60),x2=X(b*60);
+    ctx.fillStyle="#f5f7fa";ctx.fillRect(x1,bottom+31,x2-x1,26);
+    ctx.strokeStyle="#dce5ee";ctx.strokeRect(x1,bottom+31,x2-x1,26);
+    ctx.textAlign="center";ctx.font="10px Segoe UI, Arial";ctx.fillStyle="#6b7e94";
+    ctx.fillText(name,(x1+x2)/2,bottom+48);
+  }
+  if(!profile.some(b=>b.p50!=null)){
+    ctx.textAlign="center";ctx.fillStyle="#5b6f87";ctx.font="13px Segoe UI, Arial";
+    ctx.fillText("Not enough readings across multiple days for a 24-hour percentile profile",(left+right)/2,top+56);
+  }
+  ctx.restore();
+}
+window.addEventListener("resize",()=>{if(latest)drawTrend();});
+function saveFile(name,contents,type){const link=document.createElement("a");const url=URL.createObjectURL(new Blob([contents],{type}));link.href=url;link.download=name;link.click();setTimeout(()=>URL.revokeObjectURL(url),1500);}
+function csvString(rows){if(!rows.length)return"";const keys=Object.keys(rows[0]);return [keys.join(","),...rows.map(row=>keys.map(k=>`"${String(row[k]??"").replaceAll('"','""')}"`).join(","))].join("\r\n");}
+$("exportJson").addEventListener("click",()=>{if(latest)saveFile("GLUCOLAB_report.json",JSON.stringify(latest,null,2),"application/json");});
+$("exportHourly").addEventListener("click",()=>{if(latest)saveFile("GLUCOLAB_hourly_glucose.csv",csvString(latest.libre.hourly),"text/csv");});
+$("exportEpisodes").addEventListener("click",()=>{if(latest)saveFile("GLUCOLAB_hypo_episodes.csv",csvString(latest.libre.episodes),"text/csv");});
+$("exportCandidate").addEventListener("click",()=>{
+  if(!latest||!latest.pattern.segments.length)return;
+  saveFile("GLUCOLAB_candidate_recorded_ranges_UNVERIFIED.csv",csvString(latest.pattern.segments.map(x=>({
+    start:x.start,end:x.end,recorded_rate_U_per_h:x.original_rate,source_date:latest.pattern.profile_day,
+    note:"UNVERIFIED recorded rate intervals; NOT programmed pump settings"
+  }))),"text/csv");
+});
+$("exportSchedule").addEventListener("click",()=>{
+  if(!latest||!latest.pattern.segments.length)return;
+  saveFile("GLUCOLAB_SIMULATION_NOT_FOR_PUMP.csv",csvString(latest.pattern.segments.map(x=>({
+    start:x.start,end:x.end,observed_rate_U_per_h:x.original_rate,simulated_step_U_per_h:x.change,illustrative_rate_U_per_h:x.illustrative_rate,action:x.action,reason:x.reason,high_hours:x.high_hours.join(" "),low_hours:x.low_hours.join(" ")
+  }))),"text/csv");
+});
+$("printReport").addEventListener("click",()=>window.print());
+$("copySummary").addEventListener("click",async()=>{if(!latest)return;try{await navigator.clipboard.writeText(latest.report);$("copySummary").textContent="Copied ✓";setTimeout(()=>$("copySummary").textContent="Copy output",1700);}catch(e){$("terminalOut").focus();showError("Your browser blocked clipboard access. Select and copy the formatted output manually.");}});
+$("questionForm").addEventListener("submit",e=>{
+  e.preventDefault();if(!latest)return;
+  const q=$("questionInput").value.toLowerCase().trim();const s=latest.libre.summary,p=latest.pump?.summary,u=latest.libre.unit;
+  const time=q.match(/(?:at|hour)\s*(\d{1,2})(?::(\d{2}))?/i);
+  const hour=time?Number(time[1]):null;
+  let reply="";
+  if(hour!=null&&(hour<0||hour>23)){reply="Please enter an hour from 0 to 23.";}
+  else if(/basal|pump/.test(q)){
+    if(!latest.pump){reply="Pump-rate questions require Pump + Libre mode and a Medtronic CSV file.";}else{
+    if(hour!=null){const row=latest.pump.hourly[hour];reply=row.average==null?`No basal-rate entries were recorded for ${row.hour} in this selection.`:`At ${row.hour}, the mean recorded basal rate was ${fmt(row.average)} U/h from ${row.entries} entries.`;}
+    else reply=p.mean==null?"No basal-rate entries match this time period.":`The mean recorded basal rate was ${fmt(p.mean)} U/h across ${p.entries} entries; this is not delivered insulin.`;
+    }
+  }else if(/hypo|episode|low event/.test(q)){
+    if(hour!=null){const row=latest.libre.hourly[hour];reply=`${row.episodes} low episodes started during ${row.hour}–${String((hour+1)%24).padStart(2,'0')}:00 across the selected dates.`;}
+    else reply=`There were ${s.hypo_episodes} detected low episodes, with ${s.low_readings} readings below ${latest.libre.low} ${u}.`;
+  }else if(/lowest|minimum|min\b/.test(q)){reply=`Lowest glucose: ${fmt(s.lowest)} ${u}, at ${s.lowest_at}.`;}
+  else if(/highest|maximum|max\b/.test(q)){reply=`Highest glucose: ${fmt(s.highest)} ${u}, at ${s.highest_at}.`;}
+  else if(/range|target|tir/.test(q)){reply=`${fmt(s.in_range_pct,1)}% of observed readings were in ${latest.libre.low}–${latest.libre.high} ${u}. This is a reading-based percentage, not validated time-weighted TIR.`;}
+  else if(/average|mean|bg|glucose/.test(q)){
+    if(hour!=null){const row=latest.libre.hourly[hour];reply=row.average==null?`No glucose readings match hour ${row.hour}.`:`Average glucose during hour ${row.hour} was ${fmt(row.average)} ${u} from ${row.readings} readings.`;}
+    else reply=`The average glucose was ${fmt(s.mean)} ${u} from ${s.readings} selected readings.`;
+  }else{reply='I can answer questions about lowest/highest glucose, average BG (including by hour), target range, hypo episodes, and average basal rate. Try “average BG at 14:00”.';}
+  $("answer").textContent=reply;
+});
+
+// Show the appropriate standalone help page using the main / route. This deliberately
+// does not depend on /how-to routes, new tabs or popup permissions.
+(function showRequestedGuide() {
+  const requested = new URLSearchParams(window.location.search).get("guide");
+  if (requested !== "libre" && requested !== "pump") return;
+  document.body.classList.add("method-view");
+  document.getElementById("methodGuide").hidden = false;
+  const article = document.getElementById(requested + "Guide");
+  article.hidden = false;
+  document.title = (requested === "libre" ? "LibreView" : "Medtronic") + " download guide | GLUCOLAB";
+})();
+</script>
+</body>
+</html>

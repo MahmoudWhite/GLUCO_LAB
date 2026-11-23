@@ -1,0 +1,1415 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%2064%2064%22%3E%3Crect%20width%3D%2264%22%20height%3D%2264%22%20rx%3D%2216%22%20fill%3D%22%23F8B715%22/%3E%3Ctext%20x%3D%2232%22%20y%3D%2242%22%20font-family%3D%22Consolas%2Cmonospace%22%20font-size%3D%2230%22%20font-weight%3D%22900%22%20fill%3D%22%23fff%22%20text-anchor%3D%22middle%22%3E-_-%3C/text%3E%3C/svg%3E">
+<title>GLUCOLAB | Select Your Devices</title>
+<style>
+:root{--ink:#102139;--muted:#66758a;--line:#dfe8f0;--blue:#3668e8;--orange:#f39a12;--orange-deep:#d78000;--orange-soft:#fff3df;--navy:#112a54;--teal:#128a8c;--bg:#f4f7fb;--white:#fff;--soft:#eff5ff;--red:#ce4d58;--shadow:0 16px 42px rgba(21,43,80,.055)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color:var(--ink);background:var(--bg);line-height:1.48}
+button,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:wait;opacity:.7}a{color:var(--blue)}.shell{max-width:1380px;margin:0 auto;padding:0 35px 68px}
+.nav{height:86px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e8edf4}.brand{display:flex;align-items:center;gap:12px;font-size:24px;font-weight:800;letter-spacing:-.7px}.logo{width:48px;height:48px;flex-shrink:0;display:grid;place-items:center;background:transparent;border:0;box-shadow:none;border-radius:0}.logo svg{width:100%;height:100%;display:block;overflow:visible}.brand small{font-size:12px;display:block;font-weight:500;letter-spacing:.1px;color:var(--muted);margin-top:-3px}.navpill{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:#fff;border-radius:40px;padding:9px 14px;font-size:12px;color:#48607c;font-weight:650}.dot{width:7px;height:7px;background:#32ae91;border-radius:50%}
+.top{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:36px 0 28px}.eyebrow{text-transform:uppercase;letter-spacing:2.5px;color:var(--orange-deep);font-size:11px;font-weight:800;margin-bottom:9px}.top h1{font-size:clamp(31px,3.4vw,47px);line-height:1.15;letter-spacing:-1.7px;margin:0 0 10px;font-weight:800}.top p{max-width:670px;color:var(--muted);font-size:15px;margin:0}.step-pill{border:1px solid #f2d7a5;background:#fff4df;color:#a5670a;border-radius:100px;padding:10px 16px;font-size:12px;font-weight:800;white-space:nowrap}
+.workspace{display:grid;grid-template-columns:355px minmax(0,1fr);gap:23px;align-items:start}.panel{background:var(--white);border:1px solid #e3eaf3;border-radius:18px;box-shadow:var(--shadow)}.sidebar{padding:24px}.sectionhead{font-size:12px;text-transform:uppercase;letter-spacing:1.7px;font-weight:800;color:#74839a;margin:0 0 17px}.upload-card{border:1.5px dashed #e7d8b7;background:#fffdf8;border-radius:14px;padding:17px;margin-bottom:14px;transition:border-color .2s,background .2s}.upload-card:hover,.upload-card:focus-within{border-color:var(--orange);background:#fff9ef}.upload-card .row-title{display:flex;align-items:center;gap:11px}.upload-icon{height:42px;width:42px;border-radius:12px;background:var(--orange-soft);display:grid;place-items:center;color:var(--orange-deep);font-size:20px;font-weight:750;border:1px solid #f1d19a;box-shadow:inset 0 1px 0 rgba(255,255,255,.8)}.upload-icon.pump{color:#7a5a12;background:#fff7e6;border-color:#f1d19a}.upload-card strong{font-size:14px}.upload-card p{font-size:12px;color:var(--muted);margin:8px 0 14px;line-height:1.6}.file-row{display:flex;align-items:center;gap:9px;min-width:0}.file-button{display:inline-block;background:#fff;border:1px solid #edd8ae;color:#a36508;border-radius:9px;padding:8px 12px;font-size:12px;font-weight:800;white-space:nowrap;cursor:pointer}.file-button:hover{background:#fff4df}.file-name{font-size:11px;color:#61738c;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.file-name.ready{color:#167e69;font-weight:700}.file-input{position:absolute;width:1px;height:1px;opacity:0;overflow:hidden}
+.sep{border:0;border-top:1px solid #eaf0f6;margin:23px 0}.formgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.field{min-width:0}.field label{display:block;font-size:11px;color:#5e6f85;font-weight:750;margin-bottom:7px}.field input{width:100%;border:1px solid #dbe3ef;background:#fff;border-radius:9px;padding:11px 9px;color:#203550;font-size:12px;min-width:0}.field input:focus{outline:2px solid #c1d5ff;outline-offset:1px}.hint{font-size:11px;color:#73849a;line-height:1.6;margin:11px 0 0}.checkrow{display:flex;align-items:center;gap:9px;font-size:11px;color:#587088;margin-top:11px}.checkrow input{accent-color:var(--blue);margin:0}.analyze{width:100%;border:0;border-radius:12px;padding:15px;background:linear-gradient(115deg,#ec980a,#f7b21a);color:#fff;font-weight:800;font-size:14px;margin-top:23px;box-shadow:0 9px 22px rgba(243,154,18,.28)}.analyze:hover{filter:brightness(1.04)}.error{background:#fff1f1;color:#aa2734;border:1px solid #f7c8cd;padding:12px 14px;border-radius:10px;font-size:12px;margin-top:12px;white-space:pre-line}.info{display:flex;align-items:flex-start;gap:10px;background:#f3f7fd;border:1px solid #e2ebf6;border-radius:10px;padding:12px;margin-top:19px;color:#63778e;font-size:11px;line-height:1.65}.info b{color:#3e5372}.small-icon{font-size:16px}
+.right{min-width:0}.welcome{padding:39px;min-height:420px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:radial-gradient(circle at 70% 22%,#eef7ff 0,#fff 47%);overflow:hidden}.welcome-art{width:100%;max-width:500px;height:170px;margin:0 0 18px}.welcome h2{font-size:22px;letter-spacing:-.5px;margin:0 0 9px}.welcome p{font-size:13px;color:var(--muted);max-width:440px;margin:0}.welcome .tags{display:flex;gap:8px;margin-top:24px;flex-wrap:wrap;justify-content:center}.tag{border:1px solid #e0e9f4;border-radius:99px;background:#f9fbfe;padding:8px 12px;font-size:11px;color:#53708c;font-weight:700}
+#results{display:none}.result-title{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:16px}.result-title h2{font-size:20px;letter-spacing:-.5px;margin:0 0 3px}.result-title p{font-size:12px;color:var(--muted);margin:0}.results-tools{display:flex;gap:8px;flex-wrap:wrap}.outline{border:1px solid #ecd9b4;background:white;border-radius:9px;padding:10px 13px;color:#9b620a;font-size:11px;font-weight:750}.outline:hover{background:#fff7ea}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-bottom:14px}.stat{padding:19px 20px;min-width:0}.stat .k{color:#718096;font-size:11px;font-weight:700;margin-bottom:12px}.stat .v{font-size:clamp(21px,2.1vw,30px);font-weight:850;letter-spacing:-.6px;line-height:1.17}.stat .sub{font-size:11px;color:#77889d;margin-top:8px;min-height:16px}.stat.blue .v{color:#346be9}.stat.red .v{color:#c34d61}.stat.teal .v{color:#068e87}.stat.amber .v{color:var(--orange-deep)}
+.block{padding:23px;margin-top:15px;min-width:0}.blocktitle{display:flex;justify-content:space-between;align-items:start;gap:15px;margin-bottom:16px}.blocktitle h3{font-size:15px;letter-spacing:-.1px;margin:0 0 4px}.blocktitle p{margin:0;font-size:11px;color:#8290a1}.mini{font-size:10px;color:#69809a;white-space:nowrap;background:#f1f5fa;border-radius:7px;padding:5px 8px}.trend{width:100%;height:260px;display:block}.split{display:grid;grid-template-columns:1fr 1fr;gap:15px}.bar-list{display:flex;flex-direction:column;gap:8px;max-height:315px;overflow:auto;padding-right:5px}.bar-line{display:grid;grid-template-columns:45px 1fr 58px;align-items:center;gap:9px;font-size:11px;color:#526782;min-height:16px}.bar-track{height:9px;background:#eef3f9;border-radius:99px;overflow:hidden}.bar-fill{height:100%;min-width:0;border-radius:99px;background:linear-gradient(90deg,#4b7bea,#83b6f8)}.bar-fill.hypo{background:linear-gradient(90deg,#f3a1a8,#d75465)}.bar-val{text-align:right;color:#314761;font-weight:700;font-variant-numeric:tabular-nums}.tablewrap{overflow:auto;max-height:375px;border:1px solid #edf1f6;border-radius:10px}table{width:100%;border-collapse:collapse;font-size:12px;white-space:nowrap}th{text-align:left;background:#f7f9fd;color:#718096;letter-spacing:.1px;font-size:11px;position:sticky;top:0;z-index:1}th,td{padding:11px 14px;border-bottom:1px solid #edf1f6}tr:last-child td{border-bottom:0}td{font-variant-numeric:tabular-nums;color:#40536d}td b{color:#152d4d}tr:hover td{background:#f9fbfe}.terminal{background:#13243e;color:#d5e4fb;border-radius:12px;padding:19px 22px;max-height:480px;overflow:auto;font-size:11px;line-height:1.65;white-space:pre;font-family:ui-monospace,SFMono-Regular,Consolas,Monaco,monospace;tab-size:2}.askrow{display:flex;gap:9px;margin-top:13px}.askrow input{flex:1;width:0;padding:12px 13px;border-radius:10px;border:1px solid #dbe3ef;font-size:12px}.askrow button{background:#183d78;color:#fff;border:0;border-radius:9px;padding:0 19px;font-size:12px;font-weight:800}.answer{margin-top:13px;font-size:12px;color:#2d577c;background:#eff7ff;border-left:3px solid #5b94ee;padding:11px 13px;min-height:41px}.footer{font-size:11px;text-align:center;color:#8491a2;padding:28px 0 0}
+@media(max-width:1100px){.workspace{grid-template-columns:320px minmax(0,1fr)}.shell{padding-left:22px;padding-right:22px}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:820px){.workspace{grid-template-columns:1fr}.sidebar{display:grid;grid-template-columns:1fr 1fr;gap:0 19px}.sidebar>.sectionhead:first-child,.sidebar>.sep,.sidebar>.info,.sidebar>.analyze,.sidebar>.error{grid-column:1/-1}.sidebar>.upload-card{min-width:0}.sidebar>.sectionhead:not(:first-child),.sidebar>.formgrid,.sidebar>.hint,.sidebar>.checkrow{grid-column:1/-1}.nav{height:72px}.top{padding-top:26px}.step-pill{display:none}}@media(max-width:560px){.shell{padding:0 13px 45px}.top h1{font-size:32px}.top p{font-size:13px}.navpill{font-size:0;padding:9px}.navpill .dot{width:9px;height:9px}.sidebar{display:block;padding:19px}.welcome{padding:25px;min-height:345px}.cards{gap:9px}.stat{padding:13px}.stat .v{font-size:21px}.split{grid-template-columns:1fr}.block{padding:17px}.result-title{display:block}.results-tools{margin-top:12px}.terminal{font-size:9px}.askrow{flex-direction:column}.askrow input{width:100%}.askrow button{padding:11px}}
+@media print{body{background:#fff}.nav,.top,.sidebar,.results-tools,.askrow,.welcome,.outline,#questionHelp,.footer{display:none!important}.workspace{display:block}.right{width:100%}.panel{box-shadow:none;break-inside:avoid}.terminal{max-height:none;color:#000;background:#fff;white-space:pre-wrap}.bar-list,.tablewrap{max-height:none;overflow:visible}#results{display:block!important}.shell{padding:0}}
+.pattern-alert{padding:14px 16px;border:1px solid #f0d7ad;background:#fff9ee;color:#775521;font-size:12px;line-height:1.6;border-radius:10px}
+.pattern-period{color:#59718f;font-size:12px;font-weight:700;margin-bottom:11px}
+.pattern-metrics{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px}.pattern-metrics span{border:1px solid #dfe8f3;border-radius:9px;padding:9px 12px;background:#f9fbff;font-size:12px;color:#4d6180}
+.pattern-details{margin-top:20px}.pattern-details>strong{display:block;font-size:12px;margin-bottom:9px}.pattern-details .tablewrap{max-height:220px}
+.pattern-footnote{font-size:11px;color:#64758d;line-height:1.7;margin:14px 0 0}
+.signal-up{color:#b25600;font-weight:800}.signal-down{color:#c33e5c;font-weight:800}.signal-conflict{color:#8532ac;font-weight:800}.table-sub{font-size:10px;color:#7b8ba0;margin-top:4px;max-width:300px;white-space:normal}
+@media print{.pattern-details .tablewrap{max-height:none}}
+.candidate-block{margin:15px 0 20px;padding:15px;border:1px solid #dce6f6;border-radius:12px;background:#fbfdff}.candidate-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;margin-bottom:12px}.candidate-heading strong{font-size:13px;color:#1c3764}.candidate-heading p{font-size:11px;margin:4px 0 0;color:#647993}.candidate-block .tablewrap{max-height:none}.candidate-block table{max-width:610px}.candidate-block td:first-child{font-weight:750}.candidate-block td:nth-child(2){font-weight:800;color:#184e83}.comparison-title{font-size:13px;letter-spacing:0;margin:16px 0 10px;color:#304968}
+@media(max-width:560px){.candidate-heading{flex-direction:column}.candidate-heading .outline{align-self:start}}
+
+[hidden]{display:none!important}
+.device-picker{margin:46px auto 10px;max-width:890px;padding:24px 5px 30px;text-align:center}
+.device-picker .eyebrow{margin-bottom:12px}.device-picker h1{font-size:clamp(28px,4.1vw,43px);letter-spacing:-1.4px;line-height:1.2;margin:0 auto 13px}.device-picker p{font-size:14px;color:var(--muted);margin:0 auto 27px;max-width:590px}
+.device-options{display:grid;grid-template-columns:1fr 1fr;gap:18px;text-align:left}.device-card{border:1px solid #dce6f1;background:#fff;border-radius:20px;padding:27px;min-height:230px;text-align:left;box-shadow:var(--shadow);display:flex;flex-direction:column;align-items:flex-start;gap:13px;transition:transform .17s,border-color .17s,box-shadow .17s}.device-card:hover,.device-card:focus-visible{border-color:#efb146;transform:translateY(-3px);box-shadow:0 18px 40px rgba(201,128,5,.14)}.device-card .device-icon{border-radius:16px;background:var(--orange-soft);width:62px;height:62px;display:grid;place-items:center;color:var(--orange-deep);border:1px solid #f1d19a;box-shadow:inset 0 1px 0 rgba(255,255,255,.75)}.device-card .device-icon.single{background:#fff6e7;color:var(--orange-deep)}.device-card b{font-size:19px;color:#172d4e}.device-card span{font-size:12px;color:#60748d}.device-card em{margin-top:auto;font-style:normal;color:var(--orange-deep);font-weight:800;font-size:12px}.icon-svg{display:block;width:34px;height:34px}.icon-svg.libre{width:36px;height:36px}.icon-svg.combo{width:40px;height:40px}.upload-icon .icon-svg{width:28px;height:28px}.upload-icon.libre-icon .icon-svg{width:31px;height:31px}.combo-wrap .icon-svg{width:30px;height:30px}.device-card .device-icon .combo-wrap .icon-svg.libre{width:28px;height:28px}.icon-raster{display:block;width:34px;height:34px;object-fit:contain;border-radius:10px}.upload-icon .icon-raster{width:30px;height:30px;border-radius:9px}.device-card .device-icon .icon-raster{width:38px;height:38px;border-radius:12px}.combo-wrap{position:relative;display:block;width:40px;height:40px}.combo-wrap .combo-main{position:absolute;left:0;top:0}.combo-wrap .combo-badge{position:absolute;right:-5px;bottom:-6px;background:transparent;border:none;box-shadow:none;display:block;line-height:0;padding:0}/* Libre symbol is a vector shape in every location, never an img tag. */
+.libre-symbol{display:block;overflow:visible;width:38px;height:38px;flex-shrink:0}
+.device-icon.single .libre-symbol{width:42px;height:42px}
+.upload-icon.libre-icon .libre-symbol{width:30px;height:30px}
+.combo-wrap .combo-badge .libre-symbol{width:21px;height:21px}.upload-card{border:1.5px dashed #e7d8b7;background:#fffdf8;border-radius:14px;padding:17px;margin-bottom:14px;transition:border-color .2s,background .2s}.upload-card:hover,.upload-card:focus-within{border-color:var(--orange);background:#fff9ef}.upload-icon{height:42px;width:42px;border-radius:12px;background:var(--orange-soft);display:grid;place-items:center;color:var(--orange-deep);border:1px solid #f1d19a;box-shadow:inset 0 1px 0 rgba(255,255,255,.8)}.upload-icon.pump{color:#7a5a12;background:#fff7e6;border-color:#f1d19a}.file-button{display:inline-block;background:#fff;border:1px solid #edd8ae;color:#a36508;border-radius:9px;padding:8px 12px;font-size:12px;font-weight:800;white-space:nowrap;cursor:pointer}.file-button:hover{background:#fff4df}
+.change-mode{padding:7px 10px;margin-left:5px}.meal-timeline{background:linear-gradient(140deg,#fff,#f9fcff)}.timeline-sub{margin:0 0 18px;font-size:12px;color:#63748b}.timeline-scroll{overflow-x:auto;padding:10px 5px 6px}.daytrack{position:relative;margin-top:25px;min-width:560px;max-width:100%;height:92px}.daytrack-line{position:absolute;top:34px;left:0;right:0;height:28px;background:#edf3f9;border-radius:9px;display:flex;overflow:hidden;border:1px solid #dfe7ef}.hourcell{height:100%;flex:1;border-right:1px solid rgba(255,255,255,.7)}.hourcell:last-child{border-right:0}.hourcell.lower-alert{background:#d4f1e7}.hourcell.above-range{background:#ffe7c9}.hourcell.low-pattern{background:#ffcfdb}.hourcell.insufficient{background:#edf2f7}
+.meal-highlight{position:absolute;top:19px;height:47px;border:2px solid #305ddd;outline:3px solid rgba(255,255,255,.86);border-radius:9px;box-shadow:0 3px 9px #2454ae30;pointer-events:none}.meal-highlight span{position:absolute;left:50%;transform:translateX(-50%);bottom:100%;font-size:11px;color:#31539b;font-weight:800;white-space:nowrap;padding-bottom:4px}.axis{position:absolute;top:74px;color:#718099;font-size:10px;transform:translateX(-50%)}.axis.end{transform:translateX(-100%)}.axis.first{transform:none}
+.timeline-legend{display:flex;gap:17px;flex-wrap:wrap;font-size:11px;color:#65778a;margin-top:7px;margin-bottom:16px}.timeline-legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:middle}.meal-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.meal-card{border:1px solid #e0e8f2;background:#fff;border-radius:13px;padding:16px;min-width:0}.meal-card .topline{display:flex;justify-content:space-between;gap:7px;font-size:12px;color:#73849b;font-weight:700}.meal-card strong{display:block;font-size:20px;color:#203d6a;margin:9px 0}.meal-card p{font-size:12px;margin:6px 0 0;color:#5c728a;line-height:1.55}.meal-card .status{font-size:10px;font-weight:800;border-radius:99px;padding:4px 7px;background:#e8f6f1;color:#107568;white-space:nowrap}.meal-card .status.review{background:#fff1e2;color:#a5671d}.meal-card .status.insufficient{background:#f0f3f7;color:#687a90}.timeline-notice{margin-top:18px;padding:12px 15px;background:#f2f7ff;border-radius:10px;color:#54708c;font-size:12px;line-height:1.6;border:1px solid #e0eaf7}.meal-card small{display:block;color:#8290a3;margin-top:8px;font-size:11px}
+.explain-btn{background:#edf3ff;color:#2858bb;border:1px solid #ceddf7;padding:11px 16px;border-radius:9px;font-weight:800;font-size:12px}.explain-btn:hover{background:#e0ecff}.explain-dialog{width:min(930px,calc(100vw - 30px));max-height:min(88vh,950px);border:1px solid #dbe4ef;border-radius:18px;box-shadow:0 22px 90px #0c21385c;padding:0;color:var(--ink);background:#fff}.explain-dialog::backdrop{background:rgba(13,29,53,.60);backdrop-filter:blur(4px)}.dialog-head{position:sticky;top:0;background:#fff;z-index:3;display:flex;justify-content:space-between;gap:15px;align-items:start;padding:22px 26px 16px;border-bottom:1px solid #e8edf4}.dialog-head h2{font-size:21px;line-height:1.2;margin:0 0 5px}.dialog-head p{font-size:12px;color:#70829b;margin:0}.dialog-close{background:#f1f5fa;border:0;border-radius:9px;width:37px;height:37px;flex-shrink:0;font-size:24px;color:#4c6380;line-height:1}.dialog-content{padding:24px 26px 28px;overflow:auto}.explain-intro{color:#48647e;font-size:13px;line-height:1.75;margin:0 0 20px}.explain-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:20px}.explain-summary div{background:#f4f8fe;border-radius:10px;padding:12px;color:#5e7390;font-size:12px}.explain-summary strong{display:block;font-size:22px;color:#183b6b}.explain-cards{display:grid;gap:10px}.explain-card{border:1px solid #e2eaf4;border-radius:12px;padding:15px;display:grid;grid-template-columns:156px 1fr;gap:14px;align-items:start;background:#fff}.explain-card .range{font-weight:850;font-size:15px;color:#1a3a63}.explain-card p{font-size:12px;color:#5d728a;margin:4px 0}.explain-card .action{font-weight:800;font-size:12px;margin-bottom:6px}.explain-card .action.high{color:#a56616}.explain-card .action.low{color:#b94a63}.explain-card .action.conflict{color:#743ca2}.explain-evidence{margin-top:26px}.explain-evidence h3{font-size:16px;margin:0 0 6px}.explain-evidence p{color:#657b94;font-size:12px;margin:0 0 12px}.evidence-grid{display:grid;gap:10px}.evidence-row{display:grid;grid-template-columns:65px minmax(0,1fr) 124px;gap:12px;align-items:start;padding:13px 14px;border-radius:10px;border:1px solid #e5ebf3;background:#fcfdff}.evidence-row .when{font-weight:850;color:#1c426a;font-size:13px}.evidence-row .details{font-size:12px;color:#526b85;line-height:1.6;overflow-wrap:anywhere}.evidence-row .state{font-size:11px;font-weight:800;text-align:right;color:#60728b}.explain-note{font-size:12px;color:#647793;margin-top:20px;padding:12px;background:#f6f9fc;border-radius:10px}
+@media(max-width:900px){.meal-cards{grid-template-columns:1fr}.daytrack{min-width:520px}}
+@media(max-width:620px){.device-options{grid-template-columns:1fr}.device-card{min-height:190px}.device-picker{margin:22px auto}.dialog-content{padding:17px}.dialog-head{padding:16px}.explain-card{grid-template-columns:1fr;gap:3px}.evidence-row{grid-template-columns:60px 1fr}.evidence-row .state{grid-column:2;text-align:left}.explain-summary{grid-template-columns:1fr 1fr}.daytrack{min-width:520px}}
+@media print{.device-picker,.explain-dialog,.change-mode{display:none!important}}
+
+.attention-hours{font-size:12px;margin:6px 0 17px;padding:13px 14px;border:1px solid #e4eaf4;border-radius:10px;background:#fafcff;color:#536d88}.attention-hours b{color:#224b79}.attention-hours .alert-tag{display:inline-block;font-size:11px;padding:6px 10px;background:#fff1e6;border-radius:8px;color:#915b25;margin:7px 7px 0 0}.attention-hours .alert-tag.low{background:#fff0f3;color:#aa4860}
+
+/* AGP plot + 24h total rows */
+.trend{height:370px}
+.agp-legend{display:flex;gap:15px;flex-wrap:wrap;align-items:center;margin:4px 0 8px;font-size:11px;color:#59718b}
+.agp-swatch{display:inline-block;vertical-align:-2px;width:16px;height:10px;border-radius:3px;margin-right:5px}
+.agp-swatch.median{background:#315f4b;height:3px;vertical-align:3px}
+.agp-swatch.inner{background:#80b89a}.agp-swatch.outer{background:#d0e9d9}.agp-swatch.orange{background:#f5bd56}
+.agp-note{color:#8290a2;font-size:11px;line-height:1.6;margin:0}
+.total-row td{border-top:2px solid #d6e3f0!important;background:#eef5ff;color:#183c6a;font-size:12px;font-weight:800;white-space:normal;padding-top:14px!important;padding-bottom:14px!important}
+.total-row .total-value{color:#174e90;font-size:15px;white-space:nowrap}
+.total-row .total-value.illustrated{color:#235b72}
+.total-note{font-weight:500;display:block;color:#6b7e94;font-size:10px;margin-top:4px;max-width:500px;line-height:1.5}
+@media(max-width:610px){.trend{height:330px}.agp-legend{gap:10px}.total-row td{font-size:11px}}
+
+/* Six descriptive glucose-color bands. The same colors work in either device mode. */
+.bar-fill.bg-very-low{background:linear-gradient(90deg,#a71f4e,#c92e5a)}
+.bar-fill.bg-low{background:linear-gradient(90deg,#e96a78,#f596a0)}
+.bar-fill.bg-lower-target{background:linear-gradient(90deg,#078fa9,#3eb6c5)}
+.bar-fill.bg-upper-target{background:linear-gradient(90deg,#17966d,#4fbb8a)}
+.bar-fill.bg-high{background:linear-gradient(90deg,#e49416,#f5b33e)}
+.bar-fill.bg-very-high{background:linear-gradient(90deg,#cc532c,#ed7640)}
+.glucose-legend{display:flex;flex-wrap:wrap;gap:7px 11px;margin-top:16px;padding-top:13px;border-top:1px solid #edf1f6}
+.glucose-legend .item{font-size:10px;color:#576d85;display:inline-flex;align-items:center;gap:5px;white-space:nowrap}
+.glucose-legend .swatch{display:inline-block;flex:0 0 10px;width:10px;height:10px;border-radius:3px}
+.glucose-legend .swatch.bg-very-low{background:#b52a55}.glucose-legend .swatch.bg-low{background:#ed7887}
+.glucose-legend .swatch.bg-lower-target{background:#169daf}.glucose-legend .swatch.bg-upper-target{background:#25a477}
+.glucose-legend .swatch.bg-high{background:#eda32c}.glucose-legend .swatch.bg-very-high{background:#dc6032}
+/* Arrow sits INSIDE the visible panel/header, rather than floating as its own card. */
+.workspace{position:relative;transition:grid-template-columns .22s ease,gap .22s ease}
+.workspace.sidebar-collapsed{grid-template-columns:minmax(0,1fr);gap:0;padding-left:0}
+.workspace.sidebar-collapsed .sidebar{display:none!important}
+.workspace .right{min-width:0;width:100%}
+.sidebar-toggle{
+  position:absolute;z-index:5;
+  left:calc(355px - 54px);top:15px;
+  width:36px;height:36px;padding:0;
+  border:0;border-radius:9px;
+  background:transparent;color:#a56d0c;
+  display:grid;place-items:center;
+  box-shadow:none;font-weight:800;font-size:25px;line-height:1;
+  transition:left .22s ease,background-color .15s ease,color .15s ease
+}
+.sidebar-toggle:hover,.sidebar-toggle:focus-visible{background:#f4b018;color:#4c3300}
+.sidebar-toggle:focus-visible{outline:2px solid #9b620a;outline-offset:1px}
+.workspace.sidebar-collapsed .sidebar-toggle{left:0;top:0;border-radius:9px}
+/* The results heading shares the arrow's row when uploads are collapsed. */
+.workspace.sidebar-collapsed .result-title{padding-left:44px;min-height:38px}
+@media(max-width:1100px){.sidebar-toggle{left:calc(320px - 54px)}}
+@media(max-width:820px){.sidebar-toggle{left:calc(100% - 54px);top:15px}.workspace.sidebar-collapsed .sidebar-toggle{left:0;top:0}}
+@media(max-width:560px){.sidebar-toggle{left:calc(100% - 50px);top:11px;width:34px;height:34px}.workspace.sidebar-collapsed .sidebar-toggle{left:0;top:0}.workspace.sidebar-collapsed .result-title{padding-left:42px}}
+@media print{.sidebar-toggle{display:none!important}}
+
+
+/* Upload help links and aligned top-right actions */
+.nav{height:auto;min-height:86px;padding:11px 0;align-items:center}
+.nav-actions{display:flex;flex-direction:column;align-items:flex-end;gap:7px;flex-shrink:0}
+.nav-actions .change-mode{margin:0;min-height:31px;padding:6px 12px;font-size:11px;align-self:flex-end}
+.nav-actions .navpill{max-width:100%}
+.upload-help{display:flex;justify-content:flex-end;align-items:center;margin-top:10px}
+.method-link{color:#ad6900;font-size:11px;font-weight:750;text-decoration:underline;text-underline-offset:3px;display:inline-flex;align-items:center;padding:2px 0}
+.method-link:hover,.method-link:focus-visible{color:#f09d0c;text-decoration-thickness:2px}
+.method-link:focus-visible{outline:2px solid #e4a52b;outline-offset:3px;border-radius:2px}
+.footer strong{font-weight:800;white-space:nowrap;color:#586b81}
+@media(max-width:560px){.nav{min-height:72px;height:auto;padding:10px 0;align-items:center;gap:10px}.nav-actions{gap:5px}.nav-actions .change-mode{font-size:10px;padding:5px 7px}.nav-actions .navpill{font-size:0;padding:9px}.nav-actions .navpill .dot{width:9px;height:9px}}
+
+/* Standalone file-download guides: independent of additional backend routes. */
+.footer .footer-line{display:block;line-height:1.7}
+body.method-view .shell{display:none!important}
+.method-guide-page{max-width:820px;margin:0 auto;padding:34px 18px 60px;color:#142b45;font-family:inherit}
+.method-guide-page[hidden],.method-guide-page [hidden]{display:none!important}
+.method-brand{font-weight:900;font-size:17px;letter-spacing:1.2px;margin:0 0 22px}
+.method-paper{padding:32px 37px;background:white;border:1px solid #e2eaf3;border-radius:21px;box-shadow:0 15px 35px rgba(30,50,70,.04);line-height:1.65}
+.method-paper .back{color:#a96700;font-size:13px;font-weight:650;text-decoration:underline;text-underline-offset:3px}
+.method-paper h1{font-size:clamp(26px,4.5vw,40px);letter-spacing:-1px;line-height:1.18;margin:7px 0}
+.method-paper .lead{color:#66788e;font-size:14px;margin:0 0 23px}
+.method-paper ol{padding-left:24px;margin:0 0 24px}
+.method-paper li{font-size:15px;margin-bottom:13px;padding-left:4px}
+.method-paper li::marker{font-weight:850;color:#ec9b10}
+.method-paper .tip{border:1px solid #f2d9a3;background:#fff9ee;border-radius:12px;padding:14px 16px;font-size:13px;color:#665333}
+.method-paper .source{font-size:12px;color:#66788e;margin-top:27px;padding-top:17px;border-top:1px solid #e7eaf0;word-break:break-word}
+.method-paper a{color:#a45d00}
+.method-paper a:hover{color:#db8700}
+.method-footer{text-align:center;color:#7a889c;font-size:11px;margin-top:25px}
+@media(max-width:540px){.method-paper{padding:24px 18px}.method-guide-page{padding:20px 12px 45px}}
+
+.public-beta-note{border:1px solid #f0cc8b;background:#fff6e5;color:#784d10;border-radius:12px;padding:12px 17px;margin:16px 0 4px;font-size:12px;line-height:1.65}
+.public-beta-note[hidden]{display:none!important}
+
+/* 2026 update: original floating blue-glass highlights over 24 hourly cells.
+   Detailed 30-minute glucose evaluation remains in the Python backend. */
+.daytrack{min-width:650px;height:100px;margin-top:16px}
+.daytrack-line{top:37px;height:30px;border-radius:9px;z-index:1}
+.hourcell{height:100%;flex:1;min-width:0;border-right:1px solid rgba(255,255,255,.85)}
+.hourcell:last-child{border-right:0}
+.hourcell.below-230{background:#bdeee0}
+.hourcell.above-230{background:#ffd8aa}
+.hourcell.low-observed{background:#ffcfdb}
+.hourcell.insufficient{background:#edf2f7}
+/* Separate floating boxes, like the older two-hour design. Blue outlines
+   mark continuous below-threshold historical hours, never eating advice. */
+.period-row{position:absolute;inset:0;z-index:3;pointer-events:none}
+.meal-highlight{position:absolute;top:26px;height:49px;box-sizing:border-box;
+  border:2px solid #285dff;outline:2px solid rgba(255,255,255,.97);
+  border-radius:10px;background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(225,237,255,.08));
+  box-shadow:0 2px 4px rgba(29,72,165,.16),inset 0 1px 0 rgba(255,255,255,.82);
+  /* Keep the colored hourly blocks fully sharp behind the floating glass. */
+  backdrop-filter:none;-webkit-backdrop-filter:none}
+.period-label{position:absolute;top:2px;transform:translateX(-50%);
+  font-size:11px;font-weight:800;color:#31539b;white-space:nowrap;
+  text-shadow:0 1px 0 rgba(255,255,255,.9)}
+.axis{top:79px}
+.meal-cards{grid-template-columns:repeat(3,minmax(0,1fr))}
+.meal-card{padding:15px}
+.meal-card .topline{align-items:center;margin-bottom:13px}
+.meal-card .status{color:#586f9a;background:#eef3fb;font-size:10px}
+.segment-line{font-size:11px;color:#546b86;line-height:1.65;margin:9px 0;overflow-wrap:anywhere}
+.segment-line b{color:#19365b}
+.segment-dot{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:6px}
+.segment-dot.below-230{background:#8bdabc}
+.segment-dot.above-230{background:#ffbf78}
+.segment-dot.low-observed{background:#f4a2b5}
+.attention-hours small{display:block;margin-top:9px;color:#69809b}
+/* Place both two-button groups at the far-right of their panels. */
+.result-title,.pattern-panel>.blocktitle{align-items:flex-start}
+.result-title>.results-tools,.pattern-panel>.blocktitle>.results-tools{display:flex;flex-direction:column;align-items:flex-end;justify-content:flex-start;gap:8px;margin-left:auto;flex-shrink:0}
+.result-title>.results-tools>button,.pattern-panel>.blocktitle>.results-tools>button{white-space:nowrap}
+@media(max-width:900px){.meal-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.meal-cards{grid-template-columns:1fr}.result-title>.results-tools{margin-top:0}.result-title{display:flex;align-items:flex-start}.pattern-panel>.blocktitle{display:flex;align-items:flex-start}.pattern-panel>.blocktitle>.results-tools{max-width:47%}.pattern-panel>.blocktitle>.results-tools>button{white-space:normal;text-align:center;max-width:100%}}
+
+
+/* 2026 first-page redesign: guided device selector; analysis engine unchanged. */
+.device-picker{max-width:1180px;padding:24px 0 36px;margin:20px auto 0;text-align:left}
+.picker-hero{padding:30px 12px 26px;text-align:center}
+.device-picker .picker-hero h1{font-size:clamp(31px,4.2vw,49px);max-width:780px;margin:0 auto 12px;line-height:1.1}
+.device-picker .picker-hero p{max-width:650px;margin:0 auto 20px;font-size:14px}
+.picker-steps{display:flex;justify-content:center;align-items:center;gap:13px;color:#687b95;font-weight:750;font-size:12px}
+.picker-steps span:not(.step-line){display:flex;align-items:center;gap:7px}
+.picker-steps b{background:#fff2d8;color:#aa6908;border:1px solid #f1d6a5;border-radius:99px;padding:4px 7px;font-size:10px}
+.step-line{width:37px;height:1px;background:#d5dfed}
+.hardware-section{margin:0 0 20px;padding:24px 27px 23px;border-radius:22px;border:1px solid #dfe8f2;background:#fff;box-shadow:0 12px 35px rgba(26,47,85,.045);min-width:0;display:block;width:100%}
+fieldset.hardware-section{min-inline-size:0}
+.hardware-heading{display:flex;align-items:center;gap:13px;margin:0 0 18px}
+.hardware-heading-icon{width:41px;height:41px;flex-shrink:0;display:grid;place-items:center;border-radius:12px;background:#fff4e2;color:#b9770f;font-weight:850;font-size:14px;border:1px solid #f2dfba}
+.hardware-heading h2{font-size:20px;line-height:1.2;letter-spacing:-.4px;margin:0 0 5px}
+.device-picker .hardware-heading p{font-size:12px;margin:0;color:#6a7e97;max-width:none}
+.section-count{margin-left:auto;font-size:11px;font-weight:800;color:#a96b10;background:#fff4e5;border:1px solid #f3e1c5;border-radius:99px;padding:7px 10px;white-space:nowrap}
+.hardware-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:11px}
+.hardware-choice{--accent:#f1a72d;--accent-rgb:241,167,45;--accent-soft:#fff6e8;--state-bg:#eef3ff;--state-color:#315bb1;border:1.5px solid #e2eaf3;border-radius:15px;background:#fcfdff;padding:15px;display:flex;flex-direction:column;gap:7px;min-height:148px;position:relative;cursor:pointer;min-width:0;transition:border .16s,box-shadow .16s,transform .16s,background .16s}
+.hardware-choice:has(input:not(:disabled)):hover{transform:translateY(-2px);border-color:var(--accent);box-shadow:0 7px 16px rgba(var(--accent-rgb),.12)}
+.hardware-choice:has(input:checked){border-color:var(--accent);background:linear-gradient(145deg,#fff,var(--accent-soft));box-shadow:0 0 0 2px rgba(var(--accent-rgb),.18),0 9px 19px rgba(var(--accent-rgb),.10)}
+.hardware-choice:has(input:focus-visible){outline:3px solid #2b61de;outline-offset:3px}
+.hardware-choice input{position:absolute;opacity:0;width:1px;height:1px;left:16px;top:16px}
+.hardware-top{display:flex;justify-content:space-between;align-items:flex-start;gap:8px}
+.hardware-icon{width:44px;height:44px;display:grid;place-items:center;background:#fff5e7;border:1px solid #f3e2c2;border-radius:12px;flex-shrink:0;transition:border-color .16s, box-shadow .16s, background .16s}
+.hardware-choice:has(input:hover) .hardware-icon,.hardware-choice:has(input:checked) .hardware-icon{border-color:rgba(var(--accent-rgb),.32);box-shadow:0 0 0 3px rgba(var(--accent-rgb),.11)}
+.hardware-icon .libre-symbol{width:30px;height:30px}
+.hardware-state{background:var(--state-bg);color:var(--state-color);border-radius:99px;padding:4px 7px;font-weight:800;font-size:9px;white-space:nowrap;letter-spacing:.1px;transition:background .16s,color .16s}
+.hardware-choice:has(input:checked) .hardware-state{background:rgba(var(--accent-rgb),.12);color:var(--accent)}
+.hardware-name{font-weight:850;font-size:14px;color:#18304e;line-height:1.24}
+.hardware-choice:has(input:checked) .hardware-name{color:color-mix(in srgb, var(--accent) 72%, #12253c)}
+.hardware-detail{font-size:11px;color:#74869b;margin-top:auto;line-height:1.38}
+.integration-message{padding:17px 18px;border:1px solid #c9d9f4;background:#f2f7ff;border-radius:12px;color:#32527a;font-size:13px;line-height:1.7;margin:5px 0 17px}
+.integration-message strong{display:block;color:#1c4173;font-size:15px;margin-bottom:5px}
+.device-picker .hardware-hint{font-size:11px;color:#778ba0;max-width:none;text-align:left;margin:12px 0 0}
+.hardware-section.locked{border-style:dashed;background:#f5f7fb}
+.hardware-section.locked .hardware-grid,.hardware-section.locked .hardware-hint{opacity:.36;filter:grayscale(.35);pointer-events:none}
+.hardware-section.locked .section-count{color:#6682ad;background:#edf4ff;border-color:#dce6f6}
+.hardware-section:not(.locked) .section-count{background:#eff8f3;color:#20735c;border-color:#d5eede}
+.clock-section{background:linear-gradient(115deg,#fff,#f8fbff);margin-bottom:6px}
+.clock-choice{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:540px}
+.clock-option{cursor:pointer;position:relative;display:block}
+.clock-option input{position:absolute;left:18px;top:16px;accent-color:#315fe5}
+.clock-option span{border:1.5px solid #e0e7f1;background:white;border-radius:12px;padding:13px 15px 13px 43px;display:flex;flex-direction:column;gap:2px;min-height:70px}
+.clock-option input:checked+span{border-color:#356beb;box-shadow:0 0 0 2px #dce6ff;background:#f2f6ff}
+.clock-option input:focus-visible+span{outline:3px solid #4677e4;outline-offset:3px}
+.clock-option b{font-size:13px;color:#193b70}.clock-option small{color:#6d8099;font-size:11px}
+.selector-bottom{margin-top:21px;border-top:1px solid #e6edf6;padding-top:19px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.selection-summary{font-size:12px;color:#5a6e85;max-width:500px;line-height:1.6}
+.selection-continue{margin:0;width:auto;min-width:240px;padding:14px 20px}
+.selection-continue:disabled{opacity:.55;cursor:not-allowed;filter:grayscale(.2);box-shadow:none}
+.no-pump-symbol{color:#48658a;font-size:27px;font-weight:700}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(max-width:1010px){.hardware-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:750px){.hardware-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hardware-section{padding:18px}.hardware-heading{flex-wrap:wrap}.section-count{margin-left:0}.selector-bottom{flex-direction:column;align-items:stretch}.selection-continue{width:100%}}
+@media(max-width:470px){.device-picker{padding-top:0}.picker-hero{padding:24px 0}.hardware-grid{gap:9px}.hardware-choice{padding:10px;min-height:143px}.hardware-name{font-size:12px}.hardware-detail{font-size:10px}.hardware-state{font-size:8px}.hardware-icon{width:34px;height:34px}.hardware-icon svg{max-width:28px;max-height:28px}.hardware-heading h2{font-size:18px}.clock-choice{grid-template-columns:1fr}.picker-steps{gap:7px;font-size:10px}.step-line{width:18px}}
+@media print{.picker-hero,.hardware-section{display:none!important}}
+
+/* Accessible completion feedback: each step brightens only after its selection. */
+.picker-steps .picker-step{padding:5px 7px;border-radius:99px;transition:color .17s,background .17s,opacity .17s}
+.picker-steps .picker-step.locked{opacity:.43}
+.picker-steps .picker-step.current{opacity:1;color:#1b4b94;background:rgba(232,241,255,.78)}
+.picker-steps .picker-step.current b{border-color:#5087e8;background:#e0edff;color:#2557ad;box-shadow:0 0 0 3px rgba(75,126,222,.12)}
+.picker-steps .picker-step.completed{opacity:1;color:#0c775e;background:#e4f8ed;font-weight:850}
+.picker-steps .picker-step.completed b{border-color:#23a37e;background:linear-gradient(140deg,#1db78b,#0b8e70);color:#fff;box-shadow:0 0 0 3px rgba(39,181,134,.18);font-size:12px;min-width:23px}
+.picker-steps .step-line.completed{height:2px;background:#33b891}
+.hardware-section.clock-section.locked{border-style:dashed;background:#f5f7fb}
+.hardware-section.clock-section.locked .clock-choice{opacity:.4;pointer-events:none}
+
+
+/* All device-selection logos below are local, visible SVG brand-reference marks.
+   They never hotlink outside websites, so they work offline. */
+/* Local vector logos — no network dependencies or text-only fallbacks. */
+.hardware-choice .hardware-icon:has(.local-device-logo){
+  display:flex;justify-content:center;align-items:center;
+  width:110px;height:52px;min-width:110px;max-width:110px;
+  padding:3px 5px;box-sizing:border-box;overflow:visible;
+  border:0;background:transparent;box-shadow:none;
+}
+.hardware-choice .hardware-icon:has(.local-device-logo.square){
+  width:52px;min-width:52px;max-width:52px;height:52px;padding:2px;
+}
+.hardware-choice .local-device-logo{display:block;width:100%;max-height:100%;height:auto;flex-shrink:0;}
+.hardware-choice .local-device-logo.square{width:46px;height:46px;}
+.hardware-choice .local-device-logo.wide{width:105px;height:47px;}
+.upload-icon .local-device-logo.square{width:28px;height:28px}
+.upload-icon .local-device-logo.wide{width:31px;height:auto}
+.upload-icon .libre-symbol{width:28px;height:28px}
+.upload-icon .no-pump-symbol{font-size:24px;line-height:1;color:#5d7594;font-weight:800}
+
+
+
+/* The device card glows in brand color; the logo itself is not framed. */
+.hardware-choice .hardware-icon,
+.hardware-choice .hardware-icon:has(.local-device-logo),
+.hardware-choice .hardware-icon:has(.local-device-logo.square),
+.hardware-choice:has(input:hover) .hardware-icon,
+.hardware-choice:has(input:checked) .hardware-icon{
+  background:transparent!important;border:0!important;box-shadow:none!important;
+  border-radius:0!important;padding:0!important;
+}
+.hardware-choice .hardware-icon:has(.local-device-logo),
+.hardware-choice .hardware-icon:has(.local-device-logo.square){
+  width:auto;min-width:44px;max-width:140px;height:52px;
+}
+.hardware-choice .hardware-icon:has(.local-device-logo.emblem){width:52px;min-width:52px;max-width:52px}
+.hardware-choice .hardware-icon:has(.local-device-logo.wide){width:130px;min-width:130px;max-width:130px}
+.hardware-choice .local-device-logo.emblem{width:46px;height:46px}
+.hardware-choice .local-device-logo.square{width:48px;height:48px}
+.hardware-choice .local-device-logo.wide{width:130px;height:47px}
+.hardware-choice .local-device-logo.eversense-vector{width:130px;height:48px;max-height:48px}
+/* Selected export icons follow the user's chosen sensor and pump. */
+#sensorUploadIcon,#pumpUploadIcon{width:auto;max-width:142px;min-width:42px;height:44px;border:0;background:transparent;box-shadow:none;padding:0}
+#sensorUploadIcon .local-device-logo,#pumpUploadIcon .local-device-logo{max-width:138px;max-height:43px}
+#sensorUploadIcon .local-device-logo.emblem,#pumpUploadIcon .local-device-logo.emblem{width:42px;height:42px}
+#sensorUploadIcon .local-device-logo.square,#pumpUploadIcon .local-device-logo.square{width:40px;height:40px}
+#sensorUploadIcon .local-device-logo.wide,#pumpUploadIcon .local-device-logo.wide{width:125px;height:43px}
+#sensorUploadIcon .libre-symbol{width:35px;height:35px}
+
+
+/* User-supplied logo references: accurate local vector wordmark silhouettes. */
+.hardware-choice .hardware-icon:has(.omnipod-mark){width:64px;min-width:64px;max-width:64px;height:44px}
+.hardware-choice .hardware-icon:has(.ypsopump-refined){width:135px;min-width:135px;max-width:135px;height:62px}
+.hardware-choice .local-device-logo.omnipod-mark{width:64px;height:36px;max-width:64px;max-height:36px}
+.hardware-choice .local-device-logo.ypsopump-refined{width:132px;height:50px;max-height:none}
+.hardware-choice .hardware-icon:has(.eversense-vector){width:138px;min-width:138px;max-width:138px;height:52px}
+.hardware-choice .local-device-logo.eversense-vector{width:136px;height:48px;max-height:none}
+#sensorUploadIcon .local-device-logo.omnipod-mark,#pumpUploadIcon .local-device-logo.omnipod-mark{width:56px;height:31px;max-width:56px;max-height:31px}
+#sensorUploadIcon .local-device-logo.ypsopump-refined,#pumpUploadIcon .local-device-logo.ypsopump-refined{width:125px;height:43px;max-height:43px}
+#sensorUploadIcon .local-device-logo.eversense-vector,#pumpUploadIcon .local-device-logo.eversense-vector{width:125px;height:37px;max-height:37px}
+
+@media (max-width: 820px){
+  .hardware-choice .hardware-icon:has(.omnipod-mark){width:60px;min-width:60px;max-width:60px;height:40px}
+  .hardware-choice .hardware-icon:has(.ypsopump-refined),
+  .hardware-choice .hardware-icon:has(.eversense-vector){width:93px;min-width:93px;max-width:93px;height:52px}
+  .hardware-choice .local-device-logo.omnipod-mark{width:60px;height:34px;max-width:60px;max-height:34px}
+  .hardware-choice .local-device-logo.ypsopump-refined{width:93px;height:40px;max-width:93px;max-height:40px}
+  .hardware-choice .local-device-logo.eversense-vector{width:93px;height:38px;max-width:93px;max-height:38px}
+}
+@media (max-width: 470px){
+  .hardware-choice:has(.ypsopump-refined) .hardware-top,
+  .hardware-choice:has(.eversense-vector) .hardware-top{display:flex;flex-direction:column-reverse;align-items:flex-start;gap:4px}
+  .hardware-choice:has(.ypsopump-refined) .hardware-state,
+  .hardware-choice:has(.eversense-vector) .hardware-state{align-self:flex-end;font-size:8px}
+  .hardware-choice .hardware-icon:has(.omnipod-mark){width:60px;min-width:60px;max-width:60px;height:40px}
+  .hardware-choice .hardware-icon:has(.ypsopump-refined),
+  .hardware-choice .hardware-icon:has(.eversense-vector){width:125px;min-width:0;max-width:125px;height:60px}
+  .hardware-choice .local-device-logo.omnipod-mark{width:60px;height:34px;max-width:60px!important;max-height:34px!important}
+  .hardware-choice .local-device-logo.ypsopump-refined{width:122px;height:43px;max-width:none!important;max-height:none!important}
+  .hardware-choice .local-device-logo.eversense-vector{width:122px;height:42px;max-width:none!important;max-height:none!important}
+}
+
+/* Tandem mark: same small icon scale as the other pump symbols. */
+.hardware-choice .hardware-icon:has(.tandem-mark){width:56px;min-width:56px;max-width:56px;height:44px}
+.hardware-choice .local-device-logo.tandem-mark{width:56px;height:34px;max-width:56px;max-height:34px}
+#pumpUploadIcon .local-device-logo.tandem-mark{width:52px;height:30px;max-width:52px;max-height:30px}
+.hardware-choice .hardware-icon:has(.eversense-vector){width:139px;min-width:139px;max-width:139px;height:52px}
+.hardware-choice .local-device-logo.eversense-vector{width:138px;height:auto;max-width:138px;max-height:51px;object-fit:contain}
+#sensorUploadIcon .local-device-logo.eversense-vector{width:135px;height:auto;max-height:41px;object-fit:contain}
+@media(max-width:820px){
+  .hardware-choice .hardware-icon:has(.eversense-vector){width:118px;min-width:118px;max-width:118px}
+  .hardware-choice .local-device-logo.eversense-vector{width:116px;max-width:116px;max-height:40px}
+}
+@media(max-width:470px){
+  .hardware-choice .hardware-icon:has(.eversense-vector){width:120px;min-width:0;max-width:120px}
+  .hardware-choice .local-device-logo.eversense-vector{width:119px;max-width:119px;max-height:42px}
+  .hardware-choice .hardware-icon:has(.tandem-mark){width:50px;min-width:50px;max-width:50px;height:40px}
+  .hardware-choice .local-device-logo.tandem-mark{width:50px;max-width:50px;height:31px;max-height:31px}
+}
+
+/* GLUCOLAB yellow setup steps: current, completed and inactive all use the yellow palette. */
+.picker-steps .picker-step.current{color:#895400;background:#fff2bc}
+.picker-steps .picker-step.current b{border-color:#d7a02f;background:#ffe191;color:#805000;box-shadow:0 0 0 3px rgba(242,185,36,.19)}
+.picker-steps .picker-step.completed{color:#8d5d00;background:#fff1ad;font-weight:850}
+.picker-steps .picker-step.completed b{border-color:#daa319;background:linear-gradient(140deg,#ffc625,#e9a400);color:#fff;box-shadow:0 0 0 3px rgba(250,187,20,.2)}
+.picker-steps .step-line.completed{background:#eab11b;height:2px}
+.picker-steps .picker-step.locked{color:#ab874d;background:#fff9eb;opacity:.55}
+.picker-steps .picker-step.locked b{background:#fff7e0;color:#c49b57;border-color:#f2e0b8}
+/* Restore the original yellow rounded-square GLUCOLAB identity, showing -_-. */
+.brand .logo{width:43px;height:43px;flex:0 0 43px;display:flex;align-items:center;justify-content:center;
+  border-radius:13px;background:linear-gradient(145deg,#f4a600,#f9ca2f);border:0;
+  box-shadow:0 5px 13px rgba(193,121,5,.15);color:#fff;font:900 19px/1 Consolas,monospace;
+  letter-spacing:-1.2px;white-space:nowrap}
+/* Keep the two pump symbols at the very same upper-left origin as iLet. */
+.hardware-choice:has(.omnipod-mark) .hardware-top,
+.hardware-choice:has(.tandem-mark) .hardware-top{flex-direction:row;align-items:flex-start;justify-content:space-between}
+.hardware-choice:has(.omnipod-mark) .hardware-icon,
+.hardware-choice:has(.tandem-mark) .hardware-icon,
+.hardware-choice .hardware-icon:has(.omnipod-mark),
+.hardware-choice .hardware-icon:has(.tandem-mark){margin:0!important;align-self:flex-start!important;justify-content:flex-start!important;
+  padding:0!important;border:0!important;background:transparent!important;box-shadow:none!important;position:relative;left:0}
+.hardware-choice .hardware-icon .omnipod-mark,
+.hardware-choice .hardware-icon .tandem-mark{display:block;margin:0!important;align-self:flex-start!important;object-position:left center}
+@media(max-width:470px){
+  .hardware-choice:has(.omnipod-mark) .hardware-top,
+  .hardware-choice:has(.tandem-mark) .hardware-top{flex-direction:row;align-items:flex-start}
+}
+
+
+/* Upload cards take their colors from the selected device, not from a fixed Libre/MiniMed palette. */
+#uploadSidebar .upload-card{
+  --upload-brand:241,167,45;
+  --upload-brand-ink:#845a00;
+  border-color:rgba(var(--upload-brand),.64);
+  background:linear-gradient(135deg,rgba(var(--upload-brand),.11),rgba(var(--upload-brand),.045));
+  transition:border-color .2s,background .2s,box-shadow .2s;
+}
+#uploadSidebar .upload-card:hover,#uploadSidebar .upload-card:focus-within{
+  border-color:rgba(var(--upload-brand),.95);
+  background:linear-gradient(135deg,rgba(var(--upload-brand),.17),rgba(var(--upload-brand),.07));
+  box-shadow:0 6px 18px rgba(var(--upload-brand),.10);
+}
+#uploadSidebar .upload-card .file-button{
+  color:var(--upload-brand-ink);
+  background:rgba(255,255,255,.86);
+  border-color:rgba(var(--upload-brand),.58);
+}
+#uploadSidebar .upload-card .file-button:hover{
+  background:rgba(var(--upload-brand),.15);
+  border-color:rgba(var(--upload-brand),.90);
+}
+#uploadSidebar .upload-card .file-button:focus-visible,
+#uploadSidebar .upload-card .method-link:focus-visible{
+  outline:2px solid var(--upload-brand-ink);
+  outline-offset:3px;
+}
+#uploadSidebar .upload-card .method-link,
+#uploadSidebar .upload-card .method-link:hover{
+  color:var(--upload-brand-ink);
+}
+#uploadSidebar .upload-card .file-name.ready{
+  color:var(--upload-brand-ink);
+}
+
+
+
+/* Device-specific instructions link to manufacturer sources and never assume unsupported data formats. */
+.method-paper .guide-status{display:inline-flex;align-items:center;margin:0 0 22px;padding:7px 12px;
+  border-radius:20px;border:1px solid #d8e7d8;background:#f2faf4;color:#196b4a;font-size:12px;font-weight:750}
+.method-paper .guide-status.limited{border-color:#f0d7ab;background:#fff8eb;color:#86590a}
+.method-paper .source a{display:inline-block;margin:3px 8px 4px 0}
+</style>
+</head>
+<body>
+<div class="shell">
+  <nav class="nav">
+    <div class="brand"><div class="logo" aria-hidden="true">-_-</div><div>GLUCOLAB<small>Data analysis workspace</small></div></div>
+    <div class="nav-actions">
+      <div class="navpill" id="connectionStatus"><span class="dot" id="serverDot"></span><span id="serverStatus">Checking Python server…</span></div>
+      <button type="button" class="outline change-mode" id="changeMode" hidden>Change devices</button>
+    </div>
+  </nav>
+  <div id="publicBetaNotice" class="public-beta-note" hidden><b>Public beta:</b> Files are uploaded to a hosted server for temporary analysis. Do not upload identifiable medical records until the service has completed independent security/privacy review. Use de-identified or test files.</div>
+  <section class="device-picker" id="devicePicker" aria-label="Select glucose sensor and insulin pump">
+  <div class="picker-hero">
+    <div class="eyebrow">WELCOME TO GLUCOLAB · YOUR DEVICE SETUP</div>
+    <h1>Let's set up your glucose analysis.</h1>
+    <p>Choose one glucose sensor, then optionally choose an insulin pump. We’ll open the analysis that fits your setup.</p>
+    <div class="picker-steps" aria-label="Setup progress"><span id="sensorStep" class="picker-step current"><b>01</b> Sensor</span><span id="stepLine1" class="step-line"></span><span id="pumpStep" class="picker-step locked"><b>02</b> Pump</span><span id="stepLine2" class="step-line"></span><span id="timeStep" class="picker-step locked"><b>03</b> Time format</span></div>
+  </div>
+  <div class="hardware-section" id="sensorSection">
+    <div class="hardware-heading"><div class="hardware-heading-icon">01</div><div><h2>Choose your glucose sensor</h2><p>Choose exactly one sensor. All choices are available for device setup; GLUCOLAB will inspect the uploaded export and verify its timestamped glucose values.</p></div><span class="section-count">1 required</span></div>
+    <div class="hardware-grid sensor-grid" id="sensorOptions">
+<label class="hardware-choice" for="sensor-libre2" style="--accent:#ffcf00;--accent-rgb:255,207,0;--accent-soft:#fffbe8;--state-bg:#edf8f4;--state-color:#14715c">
+     <input type="radio" id="sensor-libre2" name="sensorChoice" value="libre2" >
+     <span class="hardware-top"><span class="hardware-icon"><svg class="libre-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="116 74 233 235" aria-hidden="true" focusable="false">
+<path fill="#ffcf00" fill-rule="evenodd" d="M156 82 C185 101 215 138 216 165 C217 182 214 195 210 205 C233 176 268 155 292 157 C312 156 329 162 341 166 L313 223 C301 247 274 251 240 233 C260 246 264 266 253 285 C241 303 218 303 202 293 C190 284 188 269 188 252 C180 265 167 272 154 270 C134 268 121 251 122 230 C123 211 143 195 171 201 C141 189 127 176 127 155 C128 135 145 103 156 82 Z M224 245 C214 245 205 254 205 264 C205 274 213 282 223 283 C233 283 242 275 242 264 C242 253 234 245 224 245 Z"/>
+</svg></span><span class="hardware-state">CSV</span></span>
+     <span class="hardware-name">FreeStyle Libre 2</span><span class="hardware-detail">Abbott · LibreView File</span>
+   </label>
+<label class="hardware-choice" for="sensor-libre2plus" style="--accent:#ffcf00;--accent-rgb:255,207,0;--accent-soft:#fffbe8;--state-bg:#edf8f4;--state-color:#14715c">
+     <input type="radio" id="sensor-libre2plus" name="sensorChoice" value="libre2plus" >
+     <span class="hardware-top"><span class="hardware-icon"><svg class="libre-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="116 74 233 235" aria-hidden="true" focusable="false">
+<path fill="#ffcf00" fill-rule="evenodd" d="M156 82 C185 101 215 138 216 165 C217 182 214 195 210 205 C233 176 268 155 292 157 C312 156 329 162 341 166 L313 223 C301 247 274 251 240 233 C260 246 264 266 253 285 C241 303 218 303 202 293 C190 284 188 269 188 252 C180 265 167 272 154 270 C134 268 121 251 122 230 C123 211 143 195 171 201 C141 189 127 176 127 155 C128 135 145 103 156 82 Z M224 245 C214 245 205 254 205 264 C205 274 213 282 223 283 C233 283 242 275 242 264 C242 253 234 245 224 245 Z"/>
+</svg></span><span class="hardware-state">CSV</span></span>
+     <span class="hardware-name">FreeStyle Libre 2 Plus</span><span class="hardware-detail">Abbott · LibreView File</span>
+   </label>
+<label class="hardware-choice" for="sensor-libre3" style="--accent:#ffcf00;--accent-rgb:255,207,0;--accent-soft:#fffbe8;--state-bg:#edf8f4;--state-color:#14715c">
+     <input type="radio" id="sensor-libre3" name="sensorChoice" value="libre3" >
+     <span class="hardware-top"><span class="hardware-icon"><svg class="libre-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="116 74 233 235" aria-hidden="true" focusable="false">
+<path fill="#ffcf00" fill-rule="evenodd" d="M156 82 C185 101 215 138 216 165 C217 182 214 195 210 205 C233 176 268 155 292 157 C312 156 329 162 341 166 L313 223 C301 247 274 251 240 233 C260 246 264 266 253 285 C241 303 218 303 202 293 C190 284 188 269 188 252 C180 265 167 272 154 270 C134 268 121 251 122 230 C123 211 143 195 171 201 C141 189 127 176 127 155 C128 135 145 103 156 82 Z M224 245 C214 245 205 254 205 264 C205 274 213 282 223 283 C233 283 242 275 242 264 C242 253 234 245 224 245 Z"/>
+</svg></span><span class="hardware-state">CSV</span></span>
+     <span class="hardware-name">FreeStyle Libre 3</span><span class="hardware-detail">Abbott · LibreView File</span>
+   </label>
+<label class="hardware-choice" for="sensor-libre3plus" style="--accent:#ffcf00;--accent-rgb:255,207,0;--accent-soft:#fffbe8;--state-bg:#edf8f4;--state-color:#14715c">
+     <input type="radio" id="sensor-libre3plus" name="sensorChoice" value="libre3plus" >
+     <span class="hardware-top"><span class="hardware-icon"><svg class="libre-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="116 74 233 235" aria-hidden="true" focusable="false">
+<path fill="#ffcf00" fill-rule="evenodd" d="M156 82 C185 101 215 138 216 165 C217 182 214 195 210 205 C233 176 268 155 292 157 C312 156 329 162 341 166 L313 223 C301 247 274 251 240 233 C260 246 264 266 253 285 C241 303 218 303 202 293 C190 284 188 269 188 252 C180 265 167 272 154 270 C134 268 121 251 122 230 C123 211 143 195 171 201 C141 189 127 176 127 155 C128 135 145 103 156 82 Z M224 245 C214 245 205 254 205 264 C205 274 213 282 223 283 C233 283 242 275 242 264 C242 253 234 245 224 245 Z"/>
+</svg></span><span class="hardware-state">CSV</span></span>
+     <span class="hardware-name">FreeStyle Libre 3 Plus</span><span class="hardware-detail">Abbott · LibreView File</span>
+   </label>
+<label class="hardware-choice integration-pending" for="sensor-dexcomg6" style="--accent:#2aae0a;--accent-rgb:42,174,10;--accent-soft:#f1fbef;--state-bg:#eef9eb;--state-color:#2a7a15">
+     <input type="radio" id="sensor-dexcomg6" name="sensorChoice" value="dexcomg6" >
+     <span class="hardware-top"><span class="hardware-icon"><svg class="local-device-logo square dexcom-g6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" role="img" aria-label="Dexcom G6 symbol" focusable="false">
+  <rect width="72" height="72" rx="11" fill="#43B43E"/>
+  <path d="M33 11h27v27c0 16-10.5 27-26 27S8 54 8 39c0-16 11-28 25-28Z" fill="#fff"/>
+  <circle cx="34" cy="38" r="17.3" fill="#43B43E"/>
+</svg></span><span class="hardware-state">CSV</span></span>
+     <span class="hardware-name">Dexcom G6</span><span class="hardware-detail">Dexcom Clarity export</span>
+   </label>
+<label class="hardware-choice integration-pending" for="sensor-dexcomg7" style="--accent:#2bae48;--accent-rgb:43,174,72;--accent-soft:#eef9f1;--state-bg:#eef9f1;--state-color:#1e7d37">
+     <input type="radio" id="sensor-dexcomg7" name="sensorChoice" value="dexcomg7" >
+     <span class="hardware-top"><span class="hardware-icon"><svg class="local-device-logo square dexcom-g7" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" role="img" aria-label="Dexcom G7 symbol" focusable="false">
+  <path d="M66 6H37C19 6 6 20 6 39c0 18 14 29 30 29 19 0 30-13 30-30V6Z" fill="#1BA75F"/>
+  <circle cx="36.5" cy="39" r="21" fill="#fff"/>
+  <circle cx="36.5" cy="39" r="16.1" fill="#1BA75F"/>
+</svg></span><span class="hardware-state">CSV</span></span>
+     <span class="hardware-name">Dexcom G7</span><span class="hardware-detail">Dexcom Clarity export</span>
+   </label>
+<label class="hardware-choice integration-pending" for="sensor-guardian4" style="--accent:#1d5fae;--accent-rgb:29,95,174;--accent-soft:#eff5ff;--state-bg:#eef3ff;--state-color:#315bb1">
+     <input type="radio" id="sensor-guardian4" name="sensorChoice" value="guardian4" >
+     <span class="hardware-top"><span class="hardware-icon"><img class="local-device-logo emblem medtronic-emblem" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAvCAYAAAClgknJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAOYSURBVGhD7ZhLSFRRGMf/9zqO44wP8ImVEj2UzAiDNkHaCymSWrjRggjpYVSkO1uIhlq4qKzMrLSoFj0WGeVoYmlYSVGgVBs3WRlmqZnOw7mjzmlRY94z9zmj3oT57e537jnn+//Pud85MwwhhGAew9KB+YZfgNb4BWiNX4DWML6cA1aOoOghh67eSSTHsSjYEoRl0XPriU8C1pRb0dk7OfUcEsTgdWEIkuPmToTXM516zPGSx98VKax38GKzjVcChu0E5U0cHQYAvOqZoEOzilcCzjzhYOOEd55jnI7MLqoFjIwRVD510mHNUC2gopmDVcR9LVAlYMhGcKFN2n2WoSPK6eydxIkGDjur7bjyXHoeN6rKaGG9AxXNwh+vmzADg5HKMDosiZUjKGngcLqFP/aB9Xpc3h3Mi9EoFjBoJUg4bsHYuPTragU0fpjAvlt2fBsRHpfUhNMhHoq3UEUzJ5s8AMi/8YdhO8GuOju2V9lEkweAvhEXHeKhSMCQjaDqmfTWUcPdt+NIKrbg9hvfa64iAeWN3IzU9x8WgsyLNmTX2jFgEXddDbIChmwEl9p9d/96hxNJxRaY38/sSS0roNTsm/tfh13YdNaG3Jtj+GWfGdenIymgf5TgXKs69y2Of0nWtDuxosSKtm7vXWcgfbBIltFj98ZwvlXZgTKdpFgWRj3jcVv1hr6KMMSFi4sQXYH+UYKadvXJA0D3d9eMJA8ARKYwiwooa3TAKbLyS6JYfD4ZivREHd0kSVZqIN4VhSDSJO4ojdwWEhTQP0pw9YW4+3HhDBIiWJgPG5EaH0A3i7I0msWqhQFoOmqCUS+dmBuvVqDkkbj70zEFMWjJNyEhQnAYD9yprF0cAPMRI3TKukniMUTvsAu1L8Xdp4k0MWgtMKnaFgCwIVGHO/uNYNR188BDQKmZw6T09cODpdEsWvJNMATSLdJkpQaiOkf6tikHT8CnIZfk3ndjCPS0LTU+APcPmugwD6FVykvTozgziA5PoZP5gcETUNao7NDamCRcfbal6FC3R9zRrSuF+5VkGnAoXU+HERXCICZUhYAHXfJ3hrTlOhRs9pzMTe46PW7sDUZsGH/iquxgrF4kXrGqc4KRl8Yft3SHgfcsBO8k/jjowpef4h9ATCir6k+r+q5x9Ay6kJGsQ8oC8eSnc63DiQELQUayTlGJlrxKzAeU2/mf4hegNX4BWuMXoDV+AVrjF6A1vwE4Xj8xoA8YHwAAAABJRU5ErkJggg==" alt="Medtronic logo" /></span><span class="hardware-state">CSV • XLSX</span></span>
+     <span class="hardware-name">Guardian 4</span><span class="hardware-detail">Medtronic CGM</span>
+   </label>
+<label class="hardware-choice integration-pending" for="sensor-simplera" style="--accent:#1d5fae;--accent-rgb:29,95,174;--accent-soft:#eff5ff;--state-bg:#eef3ff;--state-color:#315bb1">
+     <input type="radio" id="sensor-simplera" name="sensorChoice" value="simplera" >
+     <span class="hardware-top"><span class="hardware-icon"><img class="local-device-logo emblem medtronic-emblem" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAvCAYAAAClgknJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAOYSURBVGhD7ZhLSFRRGMf/9zqO44wP8ImVEj2UzAiDNkHaCymSWrjRggjpYVSkO1uIhlq4qKzMrLSoFj0WGeVoYmlYSVGgVBs3WRlmqZnOw7mjzmlRY94z9zmj3oT57e537jnn+//Pud85MwwhhGAew9KB+YZfgNb4BWiNX4DWML6cA1aOoOghh67eSSTHsSjYEoRl0XPriU8C1pRb0dk7OfUcEsTgdWEIkuPmToTXM516zPGSx98VKax38GKzjVcChu0E5U0cHQYAvOqZoEOzilcCzjzhYOOEd55jnI7MLqoFjIwRVD510mHNUC2gopmDVcR9LVAlYMhGcKFN2n2WoSPK6eydxIkGDjur7bjyXHoeN6rKaGG9AxXNwh+vmzADg5HKMDosiZUjKGngcLqFP/aB9Xpc3h3Mi9EoFjBoJUg4bsHYuPTragU0fpjAvlt2fBsRHpfUhNMhHoq3UEUzJ5s8AMi/8YdhO8GuOju2V9lEkweAvhEXHeKhSMCQjaDqmfTWUcPdt+NIKrbg9hvfa64iAeWN3IzU9x8WgsyLNmTX2jFgEXddDbIChmwEl9p9d/96hxNJxRaY38/sSS0roNTsm/tfh13YdNaG3Jtj+GWfGdenIymgf5TgXKs69y2Of0nWtDuxosSKtm7vXWcgfbBIltFj98ZwvlXZgTKdpFgWRj3jcVv1hr6KMMSFi4sQXYH+UYKadvXJA0D3d9eMJA8ARKYwiwooa3TAKbLyS6JYfD4ZivREHd0kSVZqIN4VhSDSJO4ojdwWEhTQP0pw9YW4+3HhDBIiWJgPG5EaH0A3i7I0msWqhQFoOmqCUS+dmBuvVqDkkbj70zEFMWjJNyEhQnAYD9yprF0cAPMRI3TKukniMUTvsAu1L8Xdp4k0MWgtMKnaFgCwIVGHO/uNYNR188BDQKmZw6T09cODpdEsWvJNMATSLdJkpQaiOkf6tikHT8CnIZfk3ndjCPS0LTU+APcPmugwD6FVykvTozgziA5PoZP5gcETUNao7NDamCRcfbal6FC3R9zRrSuF+5VkGnAoXU+HERXCICZUhYAHXfJ3hrTlOhRs9pzMTe46PW7sDUZsGH/iquxgrF4kXrGqc4KRl8Yft3SHgfcsBO8k/jjowpef4h9ATCir6k+r+q5x9Ay6kJGsQ8oC8eSnc63DiQELQUayTlGJlrxKzAeU2/mf4hegNX4BWuMXoDV+AVrjF6A1vwE4Xj8xoA8YHwAAAABJRU5ErkJggg==" alt="Medtronic logo" /></span><span class="hardware-state">CSV • XLSX</span></span>
+     <span class="hardware-name">Simplera / Simplera Sync</span><span class="hardware-detail">Medtronic CGM</span>
+   </label>
+<label class="hardware-choice integration-pending" for="sensor-eversense" style="--accent:#6366f1;--accent-rgb:99,102,241;--accent-soft:#f2f2ff;--state-bg:#eef0ff;--state-color:#4f52cf">
+     <input type="radio" id="sensor-eversense" name="sensorChoice" value="eversense" >
+     <span class="hardware-top"><span class="hardware-icon"><img class="local-device-logo wide eversense-vector" src="data:image/png;base64,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" alt="Eversense 365 logo" /></span><span class="hardware-state">CSV</span></span>
+     <span class="hardware-name">Eversense 365</span><span class="hardware-detail">Senseonics CGM</span>
+   </label>
+    </div><p class="hardware-hint">Badges show possible structured formats, not guaranteed support for every manufacturer report. Sensor analysis needs raw timestamps and glucose readings; summary-only PDFs are not sufficient. Device availability varies by country.</p>
+  </div>
+  <fieldset class="hardware-section locked" id="pumpSection" disabled>
+    <legend class="sr-only">Insulin pump</legend>
+    <div class="hardware-heading"><div class="hardware-heading-icon">02</div><div><h2>Do you use an insulin pump?</h2><p>Select one pump, or choose “No insulin pump” for sensor-only analysis.</p></div><span class="section-count" id="pumpLock">Select a sensor to unlock</span></div>
+    <div class="hardware-grid pump-grid" id="pumpOptions">
+<label class="hardware-choice" for="pump-no-pump" style="--accent:#7e8ca3;--accent-rgb:126,140,163;--accent-soft:#f5f7fb;--state-bg:#eef3ff;--state-color:#5d7594">
+     <input type="radio" id="pump-no-pump" name="pumpChoice" value="no-pump">
+     <span class="hardware-top"><span class="hardware-icon"><span class="no-pump-symbol" aria-hidden="true">—</span></span><span class="hardware-state">Sensor only</span></span>
+     <span class="hardware-name">No insulin pump</span><span class="hardware-detail">Sensor-only timeline</span>
+   </label>
+<label class="hardware-choice" for="pump-minimed600" style="--accent:#1d5fae;--accent-rgb:29,95,174;--accent-soft:#eff5ff;--state-bg:#eef3ff;--state-color:#315bb1">
+     <input type="radio" id="pump-minimed600" name="pumpChoice" value="minimed600" >
+     <span class="hardware-top"><span class="hardware-icon"><img class="local-device-logo emblem medtronic-emblem" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAvCAYAAAClgknJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAOYSURBVGhD7ZhLSFRRGMf/9zqO44wP8ImVEj2UzAiDNkHaCymSWrjRggjpYVSkO1uIhlq4qKzMrLSoFj0WGeVoYmlYSVGgVBs3WRlmqZnOw7mjzmlRY94z9zmj3oT57e537jnn+//Pud85MwwhhGAew9KB+YZfgNb4BWiNX4DWML6cA1aOoOghh67eSSTHsSjYEoRl0XPriU8C1pRb0dk7OfUcEsTgdWEIkuPmToTXM516zPGSx98VKax38GKzjVcChu0E5U0cHQYAvOqZoEOzilcCzjzhYOOEd55jnI7MLqoFjIwRVD510mHNUC2gopmDVcR9LVAlYMhGcKFN2n2WoSPK6eydxIkGDjur7bjyXHoeN6rKaGG9AxXNwh+vmzADg5HKMDosiZUjKGngcLqFP/aB9Xpc3h3Mi9EoFjBoJUg4bsHYuPTragU0fpjAvlt2fBsRHpfUhNMhHoq3UEUzJ5s8AMi/8YdhO8GuOju2V9lEkweAvhEXHeKhSMCQjaDqmfTWUcPdt+NIKrbg9hvfa64iAeWN3IzU9x8WgsyLNmTX2jFgEXddDbIChmwEl9p9d/96hxNJxRaY38/sSS0roNTsm/tfh13YdNaG3Jtj+GWfGdenIymgf5TgXKs69y2Of0nWtDuxosSKtm7vXWcgfbBIltFj98ZwvlXZgTKdpFgWRj3jcVv1hr6KMMSFi4sQXYH+UYKadvXJA0D3d9eMJA8ARKYwiwooa3TAKbLyS6JYfD4ZivREHd0kSVZqIN4VhSDSJO4ojdwWEhTQP0pw9YW4+3HhDBIiWJgPG5EaH0A3i7I0msWqhQFoOmqCUS+dmBuvVqDkkbj70zEFMWjJNyEhQnAYD9yprF0cAPMRI3TKukniMUTvsAu1L8Xdp4k0MWgtMKnaFgCwIVGHO/uNYNR188BDQKmZw6T09cODpdEsWvJNMATSLdJkpQaiOkf6tikHT8CnIZfk3ndjCPS0LTU+APcPmugwD6FVykvTozgziA5PoZP5gcETUNao7NDamCRcfbal6FC3R9zRrSuF+5VkGnAoXU+HERXCICZUhYAHXfJ3hrTlOhRs9pzMTe46PW7sDUZsGH/iquxgrF4kXrGqc4KRl8Yft3SHgfcsBO8k/jjowpef4h9ATCir6k+r+q5x9Ay6kJGsQ8oC8eSnc63DiQELQUayTlGJlrxKzAeU2/mf4hegNX4BWuMXoDV+AVrjF6A1vwE4Xj8xoA8YHwAAAABJRU5ErkJggg==" alt="Medtronic logo" /></span><span class="hardware-state">CSV</span></span>
+     <span class="hardware-name">MiniMed 600 Series</span><span class="hardware-detail">Medtronic · CareLink CSV</span>
+   </label>
+<label class="hardware-choice" for="pump-minimed700" style="--accent:#1d5fae;--accent-rgb:29,95,174;--accent-soft:#eff5ff;--state-bg:#eef3ff;--state-color:#315bb1">
+     <input type="radio" id="pump-minimed700" name="pumpChoice" value="minimed700" >
+     <span class="hardware-top"><span class="hardware-icon"><img class="local-device-logo emblem medtronic-emblem" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAvCAYAAAClgknJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAOYSURBVGhD7ZhLSFRRGMf/9zqO44wP8ImVEj2UzAiDNkHaCymSWrjRggjpYVSkO1uIhlq4qKzMrLSoFj0WGeVoYmlYSVGgVBs3WRlmqZnOw7mjzmlRY94z9zmj3oT57e537jnn+//Pud85MwwhhGAew9KB+YZfgNb4BWiNX4DWML6cA1aOoOghh67eSSTHsSjYEoRl0XPriU8C1pRb0dk7OfUcEsTgdWEIkuPmToTXM516zPGSx98VKax38GKzjVcChu0E5U0cHQYAvOqZoEOzilcCzjzhYOOEd55jnI7MLqoFjIwRVD510mHNUC2gopmDVcR9LVAlYMhGcKFN2n2WoSPK6eydxIkGDjur7bjyXHoeN6rKaGG9AxXNwh+vmzADg5HKMDosiZUjKGngcLqFP/aB9Xpc3h3Mi9EoFjBoJUg4bsHYuPTragU0fpjAvlt2fBsRHpfUhNMhHoq3UEUzJ5s8AMi/8YdhO8GuOju2V9lEkweAvhEXHeKhSMCQjaDqmfTWUcPdt+NIKrbg9hvfa64iAeWN3IzU9x8WgsyLNmTX2jFgEXddDbIChmwEl9p9d/96hxNJxRaY38/sSS0roNTsm/tfh13YdNaG3Jtj+GWfGdenIymgf5TgXKs69y2Of0nWtDuxosSKtm7vXWcgfbBIltFj98ZwvlXZgTKdpFgWRj3jcVv1hr6KMMSFi4sQXYH+UYKadvXJA0D3d9eMJA8ARKYwiwooa3TAKbLyS6JYfD4ZivREHd0kSVZqIN4VhSDSJO4ojdwWEhTQP0pw9YW4+3HhDBIiWJgPG5EaH0A3i7I0msWqhQFoOmqCUS+dmBuvVqDkkbj70zEFMWjJNyEhQnAYD9yprF0cAPMRI3TKukniMUTvsAu1L8Xdp4k0MWgtMKnaFgCwIVGHO/uNYNR188BDQKmZw6T09cODpdEsWvJNMATSLdJkpQaiOkf6tikHT8CnIZfk3ndjCPS0LTU+APcPmugwD6FVykvTozgziA5PoZP5gcETUNao7NDamCRcfbal6FC3R9zRrSuF+5VkGnAoXU+HERXCICZUhYAHXfJ3hrTlOhRs9pzMTe46PW7sDUZsGH/iquxgrF4kXrGqc4KRl8Yft3SHgfcsBO8k/jjowpef4h9ATCir6k+r+q5x9Ay6kJGsQ8oC8eSnc63DiQELQUayTlGJlrxKzAeU2/mf4hegNX4BWuMXoDV+AVrjF6A1vwE4Xj8xoA8YHwAAAABJRU5ErkJggg==" alt="Medtronic logo" /></span><span class="hardware-state">CSV</span></span>
+     <span class="hardware-name">MiniMed 700 Series</span><span class="hardware-detail">Medtronic · CareLink CSV</span>
+   </label>
+<label class="hardware-choice integration-pending" for="pump-omnipod5" style="--accent:#ff9d06;--accent-rgb:255,157,6;--accent-soft:#fff7ea;--state-bg:#fff3df;--state-color:#c87400">
+     <input type="radio" id="pump-omnipod5" name="pumpChoice" value="omnipod5" >
+     <span class="hardware-top"><span class="hardware-icon"><svg class="local-device-logo wide omnipod-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 729 407" role="img" aria-label="Omnipod wordmark" focusable="false">
+<path fill="#FFA700" fill-rule="evenodd" d="M367,131 367,219 386,219 386,131Z M337,137 326,131 303,130 295,132 287,136 281,141 280,131 261,131 261,219 280,219 280,165 284,155 289,150 294,147 303,145 308,145 318,148 322,152 325,159 326,165 325,219 345,219 345,203 344,202 345,159 342,145Z M107,132 108,136 108,211 107,219 126,219 126,163 129,155 136,148 141,146 156,147 161,151 164,157 165,165 164,170 165,171 164,172 164,219 182,219 182,163 185,155 191,149 198,146 210,146 214,148 219,153 221,161 220,219 239,219 239,151 235,140 229,134 219,130 202,130 190,135 182,142 173,134 162,130 143,131 132,136 128,141 126,140 127,131 108,131Z M25,132 16,137 8,145 2,158 0,168 0,179 4,196 9,205 18,214 28,219 36,221 54,221 62,219 78,209 84,201 87,194 90,180 90,168 86,152 82,145 74,137 62,131 53,129 37,129Z M38,146 52,146 58,148 66,155 71,167 71,183 67,193 62,199 52,204 43,205 32,202 24,195 20,187 19,182 20,162 23,156 29,150Z M367,102 364,107 364,114 369,120 381,121 384,120 388,116 389,108 388,105 384,101 371,100Z M424,6 415,14 410,23 408,30 408,254 411,276 415,292 422,310 432,329 444,346 461,364 480,379 506,393 534,402 552,405 581,405 596,403 628,394 656,379 674,365 688,351 699,337 714,311 723,287 728,260 728,28 724,18 714,7 701,1 436,1Z M550,130 559,128 577,128 589,131 603,141 611,154 614,165 614,184 611,195 604,207 598,213 585,220 577,222 559,222 551,220 536,211 526,196 522,179 522,168 525,155 530,145 540,135Z M556,149 548,155 544,163 543,182 547,193 554,200 560,203 566,204 576,203 585,198 592,187 593,167 591,160 584,151 577,148 563,147Z M498,133 509,144 516,162 517,183 515,193 509,207 500,216 492,220 484,222 465,221 458,219 449,214 450,240 449,241 429,241 428,240 428,131 429,130 449,130 450,131 449,140 460,131 471,128 489,129Z M468,146 458,150 453,155 450,161 449,197 461,203 479,204 485,202 493,193 496,181 495,163 492,155 485,148 480,146Z M708,104 709,105 709,219 708,220 688,220 687,219 688,211 677,219 667,222 651,222 642,219 629,208 623,197 621,190 620,165 625,148 628,143 637,134 649,129 656,128 673,129 688,136 687,134 687,105 688,104Z M660,146 651,149 645,155 641,167 641,184 643,192 648,200 655,204 666,205 678,201 684,195 686,191 688,182 688,154 677,148Z"/>
+</svg></span><span class="hardware-state">CSV • XLSX</span></span>
+     <span class="hardware-name">Omnipod 5</span><span class="hardware-detail">Insulet</span>
+   </label>
+<label class="hardware-choice integration-pending" for="pump-tslim" style="--accent:#10a7f2;--accent-rgb:16,167,242;--accent-soft:#eefaff;--state-bg:#ebf7ff;--state-color:#1c72b1">
+     <input type="radio" id="pump-tslim" name="pumpChoice" value="tslim" >
+     <span class="hardware-top"><span class="hardware-icon"><svg class="local-device-logo wide tandem-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 60" role="img" aria-label="Tandem Diabetes Care T logo" focusable="false">
+  <path d="M10 4H98Q106 4 106 12V52Q106 60 98 60H10Q2 60 2 52V12Q2 4 10 4Z" fill="#29A3DB"/>
+  <path d="M28 20H80V30H59V60H49V30H28Z" fill="#FFFFFF"/>
+</svg></span><span class="hardware-state">CSV • JSON</span></span>
+     <span class="hardware-name">t:slim X2</span><span class="hardware-detail">Tandem Diabetes Care</span>
+   </label>
+<label class="hardware-choice integration-pending" for="pump-mobi" style="--accent:#10a7f2;--accent-rgb:16,167,242;--accent-soft:#eefaff;--state-bg:#ebf7ff;--state-color:#1c72b1">
+     <input type="radio" id="pump-mobi" name="pumpChoice" value="mobi" >
+     <span class="hardware-top"><span class="hardware-icon"><svg class="local-device-logo wide tandem-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 108 60" role="img" aria-label="Tandem Diabetes Care T logo" focusable="false">
+  <path d="M10 4H98Q106 4 106 12V52Q106 60 98 60H10Q2 60 2 52V12Q2 4 10 4Z" fill="#29A3DB"/>
+  <path d="M28 20H80V30H59V60H49V30H28Z" fill="#FFFFFF"/>
+</svg></span><span class="hardware-state">CSV • JSON</span></span>
+     <span class="hardware-name">Tandem Mobi</span><span class="hardware-detail">Tandem Diabetes Care</span>
+   </label>
+<label class="hardware-choice integration-pending" for="pump-ilet" style="--accent:#0d2a63;--accent-rgb:13,42,99;--accent-soft:#eef2fb;--state-bg:#eef2fb;--state-color:#24478b">
+     <input type="radio" id="pump-ilet" name="pumpChoice" value="ilet" >
+     <span class="hardware-top"><span class="hardware-icon"><svg class="local-device-logo square" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 54 54" role="img" aria-label="Beta Bionics logo" focusable="false">
+<circle cx="27" cy="27" r="25" fill="#0E1F5B" stroke="#D7DCE7" stroke-width="2"/>
+<text x="27" y="36" text-anchor="middle" fill="#fff" font-family="Arial,Helvetica,sans-serif" font-size="28" font-weight="700">β</text>
+</svg></span><span class="hardware-state">CSV • JSON</span></span>
+     <span class="hardware-name">iLet Bionic Pancreas</span><span class="hardware-detail">Beta Bionics</span>
+   </label>
+<label class="hardware-choice integration-pending" for="pump-ypsopump" style="--accent:#b7d43a;--accent-rgb:183,212,58;--accent-soft:#f6fbdc;--state-bg:#eef7cf;--state-color:#6f8a11">
+     <input type="radio" id="pump-ypsopump" name="pumpChoice" value="ypsopump" >
+     <span class="hardware-top"><span class="hardware-icon"><svg class="local-device-logo wide ypsopump-refined" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 170 57" role="img" aria-label="mylife YpsoPump logo" focusable="false">
+<rect x="1" y="3" width="51" height="51" rx="12" fill="#B0CE3B"/>
+<text x="26.5" y="24.5" text-anchor="middle" fill="#fff" font-size="22" font-family="Arial,Helvetica,sans-serif" font-weight="800">my</text>
+<text x="26.5" y="46" text-anchor="middle" fill="#fff" font-size="22" font-family="Arial,Helvetica,sans-serif" font-weight="800">life</text>
+<text x="60" y="35" fill="#4E5155" font-size="19" font-family="'Segoe UI',Arial,Helvetica,sans-serif" letter-spacing="-.8" font-weight="750">YpsoPump</text>
+</svg></span><span class="hardware-state">CSV • XLSX</span></span>
+     <span class="hardware-name">mylife YpsoPump</span><span class="hardware-detail">Ypsomed</span>
+   </label>
+    </div><p class="hardware-hint">File badges show possible structured import formats, not guaranteed compatibility with every manufacturer export. Detailed MiniMed basal analysis is established; other pumps require identifiable timestamped basal U/h rows. Report-only PDFs cannot supply missing readings. Some vendor exports may not be recognized yet.</p>
+  </fieldset>
+  <fieldset class="hardware-section clock-section locked" id="clockSection" disabled><legend class="sr-only">Time format</legend>
+    <div class="hardware-heading"><div class="hardware-heading-icon">03</div><div><h2>Choose your time format</h2><p>This changes how times appear on your GLUCOLAB report, not how the data is analyzed.</p></div></div>
+    <div class="clock-choice" role="radiogroup" aria-label="Time display format">
+      <label class="clock-option"><input type="radio" name="clockChoice" value="12"><span><b>12-hour</b><small>8:00 AM · 2:00 PM</small></span></label>
+      <label class="clock-option"><input type="radio" name="clockChoice" value="24"><span><b>24-hour</b><small>08:00 · 14:00</small></span></label>
+    </div>
+    <div class="selector-bottom"><div class="selection-summary" id="selectionSummary" role="status">Choose a glucose sensor to continue.</div><button type="button" class="analyze selection-continue" id="continueSetup" disabled>Choose a sensor to continue <span aria-hidden="true">→</span></button></div>
+  </fieldset>
+</section>
+  <header class="top" id="mainHeader" hidden>
+    <div><div class="eyebrow">Your diabetes data, organized</div><h1 id="mainHeading">Glucose patterns &amp; basal review</h1><p id="mainDescription">Import supported structured files and review recent glucose and pump patterns. Automatically analyzes the latest 14 days from your newest LibreView reading.</p></div>
+    <div><span class="step-pill" id="modePill">Two files · One dashboard</span></div>
+  </header>
+  <main class="workspace" id="workspace" hidden>
+    <button type="button" id="sidebarToggle" class="sidebar-toggle" aria-controls="uploadSidebar" aria-expanded="true" aria-label="Hide file upload panel" title="Hide file upload panel"><span class="chevron" aria-hidden="true">‹</span></button>
+    <section class="panel sidebar" id="uploadSidebar" aria-label="Analysis setup">
+      <h2 class="sectionhead" id="uploadHeading">01 / Upload your files</h2>
+      <div id="integrationMessage" class="integration-message" role="status" hidden></div>
+      <div class="upload-card"><div class="row-title"><div class="upload-icon libre-icon" id="sensorUploadIcon" aria-hidden="true"><svg class="libre-symbol" xmlns="http://www.w3.org/2000/svg" viewBox="116 74 233 235" aria-hidden="true" focusable="false">
+<path fill="#ffcf00" fill-rule="evenodd" d="M156 82 C185 101 215 138 216 165 C217 182 214 195 210 205 C233 176 268 155 292 157 C312 156 329 162 341 166 L313 223 C301 247 274 251 240 233 C260 246 264 266 253 285 C241 303 218 303 202 293 C190 284 188 269 188 252 C180 265 167 272 154 270 C134 268 121 251 122 230 C123 211 143 195 171 201 C141 189 127 176 127 155 C128 135 145 103 156 82 Z M224 245 C214 245 205 254 205 264 C205 274 213 282 223 283 C233 283 242 275 242 264 C242 253 234 245 224 245 Z"/>
+</svg></div><strong>Glucose sensor data</strong></div><p>Choose a raw, timestamped glucose data file (CSV, Excel, JSON, or structured document).</p><div class="file-row"><label class="file-button" for="libreFile">Choose file</label><input class="file-input" type="file" id="libreFile" accept=".csv,.tsv,.xlsx,.json,.pdf,.docx" aria-label="Select glucose sensor export" required><span id="libreName" class="file-name">No file selected</span></div><div class="upload-help"><a class="method-link" href="/?guide=libre" aria-label="Show method for downloading LibreView data">Show Method</a></div></div>
+      <div class="upload-card" id="pumpUpload"><div class="row-title"><div class="upload-icon pump pump-icon" id="pumpUploadIcon" aria-hidden="true"><img class="icon-raster" src="data:image/png;base64,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" alt=""></div><strong>Medtronic pump data</strong></div><p>Choose a timestamped pump basal-rate export showing U/h. PDF/Word summaries without raw rows cannot be analyzed.</p><div class="file-row"><label class="file-button" for="pumpFile">Choose file</label><input class="file-input" type="file" id="pumpFile" accept=".csv,.tsv,.xlsx,.json,.pdf,.docx" aria-label="Select pump data export" required><span id="pumpName" class="file-name">No file selected</span></div><div class="upload-help"><a class="method-link" href="/?guide=pump" aria-label="Show method for downloading Medtronic CareLink data">Show Method</a></div></div>
+      <button type="button" id="analyzeButton" class="analyze">Analyze both files &nbsp; →</button>
+      <div id="error" class="error" role="alert" hidden></div>
+      <div class="info" id="privacyInfo"><span class="small-icon" aria-hidden="true">ⓘ</span><div><b>Private by default.</b> Uploads are temporarily spooled to disk as needed on your local Python server; there is no fixed application file-size cap and nothing is stored in a database. Use the server only on a trusted computer or network.</div></div>
+    </section>
+    <section class="right" aria-live="polite">
+      <div class="panel welcome" id="welcome">
+        <svg class="welcome-art" viewBox="0 0 500 170" aria-hidden="true" preserveAspectRatio="xMidYMid meet"><defs><linearGradient id="line" x1="0" x2="1"><stop stop-color="#8db4ef"/><stop offset="1" stop-color="#3e73ec"/></linearGradient></defs><rect x="14" y="10" rx="16" width="472" height="151" fill="#f5f9ff"/><path d="M30 125H471M30 92H471M30 59H471" stroke="#deebf6" stroke-dasharray="4 6"/><path d="M30 95 L64 91 L98 105 L136 65 L173 78 L210 73 L248 107 L290 85 L326 52 L362 75 L398 72 L436 95 L471 64" fill="none" stroke="url(#line)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M30 95 L64 91 L98 105 L136 65 L173 78 L210 73 L248 107 L290 85 L326 52 L362 75 L398 72 L436 95 L471 64L471 143H30Z" fill="#4c89ee" opacity=".07"/><g fill="#fff" stroke="#4882e9" stroke-width="3"><circle cx="136" cy="65" r="6"/><circle cx="248" cy="107" r="6"/><circle cx="326" cy="52" r="6"/><circle cx="471" cy="64" r="6"/></g></svg>
+        <h2>Ready when you are.</h2><p>Choose your file on the left and click Analyze to see glucose patterns and the analyses available for your device selection.</p>
+        <div class="tags"><span class="tag">Latest 14 days</span><span class="tag">Hourly BG</span><span class="tag">Low episodes</span><span class="tag">Basal pattern review</span></div>
+      </div>
+      <div id="results">
+        <div class="result-title"><div><h2>Analysis overview</h2><p id="periodTitle">Historical analysis results</p></div><div class="results-tools"><button class="outline" id="exportJson">Download JSON</button><button class="outline" id="printReport">Print report</button></div></div>
+        <div class="cards" id="summaryCards"></div>
+        <section class="panel block meal-timeline" id="mealTimelinePanel" hidden>
+          <div class="blocktitle"><div><h3>Daily glucose &amp; meal/snack timeline</h3><p>Floating meal and snack highlights over a 24-hour glucose timeline</p></div><span class="mini">24 hourly blocks · detailed 30-minute analysis</span></div>
+          <p class="timeline-sub">Each colored block represents one hour, summarized from two analyzed half-hours. Blue outlines highlight stretches whose historical pattern is below the 230 mg/dL marker (12.8 mmol/L), not permission to eat. Meal and snack labels are illustrative, not detected meals.</p>
+          <div class="timeline-scroll"><div class="daytrack" id="mealTrack"></div></div>
+          <div class="timeline-legend"><span><i style="background:#bdeee0"></i>Both half-hours below 230</span><span><i style="background:#ffd8aa"></i>High pattern in at least one half-hour</span><span><i style="background:#ffcfdb"></i>Low pattern in at least one half-hour</span><span><i style="background:#edf2f7"></i>Insufficient data</span></div>
+          <div class="attention-hours" id="attentionHours"></div>
+          <div class="meal-cards" id="mealCards"></div>
+          <div class="timeline-notice" id="mealNotice"></div>
+        </section>
+        <section class="panel block pattern-panel" id="patternPanel">
+          <div class="blocktitle"><div><h3>Recent basal-rate ranges · review only</h3>
+            <p>Searches recent pump days for recorded rate transitions. A complete programmed profile cannot always be recovered from a CSV. Illustrative rates are not pump-setting recommendations.</p></div>
+            <div class="results-tools"><button class="explain-btn" id="explainMods" type="button">Explain modifications</button><button class="outline" id="exportSchedule">Export simulated CSV</button></div>
+          </div>
+          <div class="pattern-period" id="patternPeriod"></div>
+          <div class="pattern-metrics" id="patternMetrics"></div>
+          <div class="candidate-block" id="candidateBlock" hidden>
+            <div class="candidate-heading"><div><strong>Recorded time ranges · candidate only</strong><p id="candidateSource">Inferred from a single recent pump-record day, not the confirmed programmed pattern.</p></div>
+              <button class="outline" id="exportCandidate">Export candidate ranges</button></div>
+            <div class="tablewrap"><table><thead><tr><th>Time range</th><th>Recorded basal rate (U/h)</th></tr></thead><tbody id="candidateTable"></tbody><tfoot id="candidateTotal"></tfoot></table></div>
+          </div>
+          <h4 class="comparison-title">Illustrative range-by-range comparison · not pump settings</h4>
+          <div class="tablewrap"><table><thead><tr><th>Time range</th><th>Observed U/h</th><th>Illustrative U/h</th><th>Simulated step</th><th>Pattern / impacted hours</th></tr></thead>
+          <tbody id="patternTable"></tbody><tfoot id="illustrativeTotal"></tfoot></table></div>
+          <p class="pattern-footnote">GLUCOLAB analyzes the latest 14 days, shortened after a detected explicit profile edit. Comparisons use the specified high/low pattern rules and at most one hypothetical 0.05 U/h step per inferred rate segment; conflicting signals remain unchanged. These are not verified pump settings.</p>
+        </section>
+        <section class="panel block"><div class="blocktitle"><div><h3>Glucose patterns · 24-hour profile (AGP-style)</h3><p>Recent LibreView readings combined into one representative day · median and percentile bands</p></div><span class="mini" id="chartLegend">Target band</span></div><canvas id="trendCanvas" class="trend" role="img" aria-label="Ambulatory glucose profile style 24-hour chart with median and fifth, twenty-fifth, seventy-fifth, ninety-fifth percentiles"></canvas><div class="agp-legend"><span><i class="agp-swatch median"></i>Median (50%)</span><span><i class="agp-swatch inner"></i>25–75% of readings</span><span><i class="agp-swatch outer"></i>5–95% of readings</span><span><i class="agp-swatch orange"></i>Above target</span></div><p class="agp-note" id="agpNote">Percentiles are grouped into 30-minute clock-time bins. Missing or sparse bins are not estimated. This is an exploratory AGP-style chart, not an official clinical AGP report.</p></section>
+        <div class="split"><section class="panel block"><div class="blocktitle"><div><h3>Hourly average glucose</h3><p>Mean BG by hour of the day</p></div><button class="outline" id="exportHourly">Export CSV</button></div><div class="bar-list" id="hourlyBars"></div><div class="glucose-legend" id="hourlyLegend" aria-label="Hourly glucose bar colors"></div></section><section class="panel block"><div class="blocktitle"><div><h3>Hypoglycemia episodes by hour</h3><p>Low episodes grouped by starting hour</p></div><button class="outline" id="exportEpisodes">Export CSV</button></div><div class="bar-list" id="hypoBars"></div></section></div>
+        <div class="split"><section class="panel block"><div class="blocktitle"><div><h3>Daily glucose summary</h3><p>Daily average, minimum, maximum and sample count</p></div></div><div class="tablewrap"><table><thead><tr><th>Date</th><th>Mean</th><th>Min</th><th>Max</th><th>Readings</th></tr></thead><tbody id="dailyTable"></tbody></table></div></section><section class="panel block"><div class="blocktitle"><div><h3>Detected low episodes</h3><p>Starts below target after a normal reading or gap &gt;20 min</p></div></div><div class="tablewrap"><table><thead><tr><th>Start</th><th>End</th><th>Lowest</th></tr></thead><tbody id="eventsTable"></tbody></table></div></section></div>
+        <section class="panel block"><div class="blocktitle"><div><h3>Ask a quick data question</h3><p id="questionHelp">Try “lowest glucose”, “average BG at 14:00”, or “hypo events at 03:00”. In pump mode you can also ask about basal rates.</p></div></div><form class="askrow" id="questionForm"><input id="questionInput" placeholder="What was my lowest blood glucose?" aria-label="Ask a question about your results"><button type="submit">Ask</button></form><div class="answer" id="answer">Answers use the calculated numbers in this report (not an AI chatbot).</div></section>
+        <section class="panel block"><div class="blocktitle"><div><h3>Formatted Python output</h3><p>Readable, copyable summary of the analysis and every hour</p></div><button class="outline" id="copySummary">Copy output</button></div><pre class="terminal" id="terminalOut"></pre></section>
+      </div>
+    </section>
+  </main>
+  <dialog class="explain-dialog" id="modDialog" aria-labelledby="modTitle">
+    <div class="dialog-head"><div><h2 id="modTitle">Explain modifications</h2><p>Readable evidence behind each illustrated basal change</p></div><button type="button" class="dialog-close" id="closeExplain" aria-label="Close explanation">×</button></div>
+    <div class="dialog-content"><p class="explain-intro" id="modIntro"></p><div class="explain-summary" id="modStats"></div><div class="explain-cards" id="modSegments"></div><div class="explain-evidence"><h3>Hour-by-hour supporting evidence</h3><p>Only hours with a rule signal appear below. A high signal means the historical 200 mg/dL threshold rule triggered; a low signal means recurring low episodes were detected.</p><div class="evidence-grid" id="modHourly"></div></div><p class="explain-note">This is a mathematical illustration using unverified recorded basal intervals. It cannot establish a safe insulin dose or a confirmed programmed pump profile. Any real pump-setting changes require clinical review.</p></div>
+  </dialog>
+  <footer class="footer" aria-label="GLUCOLAB legal and attribution">
+    <span class="footer-line">© 2026 GLUCOLAB.</span>
+    <span class="footer-line">Exploratory pattern software only.</span>
+    <span class="footer-line">Simulated U/h values are not medical recommendations and must not be programmed into a pump without review by a qualified diabetes clinician.</span>
+    <strong class="footer-line">BY MAHMOUD ABIAD</strong>
+  </footer>
+</div>
+<section class="method-guide-page" id="methodGuide" aria-label="Data download instructions" hidden>
+  <div class="method-brand">GLUCOLAB</div>
+<article class="method-paper" hidden="" id="libreGuide"><a class="back" href="/">← Back to GLUCOLAB</a><div class="eyebrow" style="margin-top:23px">DATA DOWNLOAD GUIDE</div><h1>How to get your LibreView File</h1><p class="lead">Download the historical glucose data from your LibreView account.</p><ol><li>Open <a href="https://www.libreview.com/" rel="noopener noreferrer" target="_blank"><strong>LibreView.com</strong></a> and sign in to the account connected to your Libre app or reader.</li><li>Open <strong>Glucose History</strong>.</li><li>Choose <strong>Download Glucose Data</strong> and follow any verification prompts.</li><li>Choose <strong>Download</strong> to save the data file to your computer.</li><li>Go back to GLUCOLAB and click <strong>Choose file</strong> under LibreView glucose data; select the downloaded File.</li></ol><div class="tip">Use the raw glucose export, not a screenshot or PDF report. Never share sensitive glucose exports publicly.</div><div class="source">Reference: <a href="https://www.freestyle.abbott/en-us/support/faq/apps/downloading-glucose-data-from-the-freestyle-libre-3-app.html" rel="noopener noreferrer" target="_blank">Abbott FreeStyle: downloading glucose data from LibreView</a>. These instructions describe the providers' export features; interfaces may differ by device and region.</div></article>
+<article class="method-paper" hidden="" id="pumpGuide"><a class="back" href="/">← Back to GLUCOLAB</a><div class="eyebrow" style="margin-top:23px">DATA DOWNLOAD GUIDE</div><h1>How to get your Medtronic File</h1><p class="lead">Export your insulin-pump records from Medtronic CareLink Personal.</p><ol><li>Sign in to your <strong>CareLink Personal</strong> account and make sure your pump data is uploaded.</li><li>Open <strong>Reports</strong> and choose the period containing the data you want.</li><li>Find <strong>Data Export (CSV)</strong> (often shown near the bottom right of the Reports screen).</li><li>Download the exported file and save it on your computer.</li><li>Return to GLUCOLAB and click <strong>Choose file</strong> under Medtronic pump data; select the exported File.</li></ol><div class="tip">The exported pump data describes recorded device events; it does not necessarily contain your verified programmed basal profile. Keep the file private.</div><div class="source">Reference: <a href="https://www.medtronic-diabetes.com/sites/stage.medtronic-diabetes.com/files/shared/documents/2021-06/carelink_personal_guidebook_ipad_za_lr.pdf" rel="noopener noreferrer" target="_blank">Medtronic CareLink Personal guide: Data Export (CSV)</a>. These instructions describe the providers' export features; interfaces may differ by device and region.</div></article>
+<article class="method-paper" hidden id="deviceSpecificGuide" aria-live="polite">
+  <a class="back device-guide-back" href="/">← Back to GLUCOLAB</a>
+  <div class="eyebrow" style="margin-top:23px">DEVICE-SPECIFIC DATA DOWNLOAD GUIDE</div>
+  <h1 id="deviceGuideTitle"></h1>
+  <p class="lead" id="deviceGuideIntro"></p>
+  <div class="guide-status" id="deviceGuideStatus"></div>
+  <ol id="deviceGuideSteps"></ol>
+  <div class="tip" id="deviceGuideNote"></div>
+  <div class="source" id="deviceGuideSources"></div>
+</article>
+  <p class="method-footer">© 2026 GLUCOLAB · BY MAHMOUD ABIAD</p>
+</section>
+<script>
+"use strict";
+const $=id=>document.getElementById(id);
+let latest=null;
+let deviceMode=null;
+let sidebarCollapsed=false;
+// The expanded 30-minute Libre timeline requires API schema 2.
+const REQUIRED_API_SCHEMA=3;
+const OUTDATED_SERVER_MESSAGE="Your GLUCOLAB webpage is newer than the running Python server. Stop the old Anaconda Prompt server with Ctrl+C, start python app.py from the NEW extracted GLUCOLAB folder, then press Ctrl+F5 in Chrome.";
+function validExpandedMealTimeline(meals){
+  return !!meals && Array.isArray(meals.half_hourly) && meals.half_hourly.length===48 &&
+    Array.isArray(meals.hourly_display) && meals.hourly_display.length===24 &&
+    Array.isArray(meals.periods) && meals.periods.length>0 &&
+    meals.periods.every(m=>Array.isArray(m.ranges) &&
+      Array.isArray(m.below_230_ranges) && Array.isArray(m.above_230_ranges) &&
+      Array.isArray(m.low_ranges) && Array.isArray(m.missing_ranges));
+}
+function setSidebarCollapsed(collapsed){
+  sidebarCollapsed=Boolean(collapsed);
+  $("workspace").classList.toggle("sidebar-collapsed",sidebarCollapsed);
+  $("sidebarToggle").setAttribute("aria-expanded",String(!sidebarCollapsed));
+  $("sidebarToggle").setAttribute("aria-label",sidebarCollapsed?"Show file upload panel":"Hide file upload panel");
+  $("sidebarToggle").title=sidebarCollapsed?"Show file upload panel":"Hide file upload panel";
+  $("sidebarToggle").querySelector(".chevron").textContent=sidebarCollapsed?"›":"‹";
+  // The chart uses a canvas; redraw it whenever the main panel's width changes.
+  if(latest)window.setTimeout(drawTrend,270);
+}
+$("sidebarToggle").addEventListener("click",()=>setSidebarCollapsed(!sidebarCollapsed));
+function fmt(x,d=2){return x==null||!Number.isFinite(Number(x))?"—":Number(x).toLocaleString(undefined,{maximumFractionDigits:d});}
+function esc(x){return String(x==null?"":x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#39;"}[c]));}
+let selectedSensor=null;
+let selectedPump=null;
+let clockFormat=null;
+const sensorNames={libre2:"FreeStyle Libre 2",libre2plus:"FreeStyle Libre 2 Plus",libre3:"FreeStyle Libre 3",libre3plus:"FreeStyle Libre 3 Plus",dexcomg6:"Dexcom G6",dexcomg7:"Dexcom G7",guardian4:"Guardian 4",simplera:"Simplera / Simplera Sync",eversense:"Eversense 365"};
+const pumpNames={"no-pump":"No insulin pump",minimed600:"MiniMed 600 Series",minimed700:"MiniMed 700 Series",omnipod5:"Omnipod 5",tslim:"t:slim X2",mobi:"Tandem Mobi",ilet:"iLet Bionic Pancreas",ypsopump:"mylife YpsoPump"};
+// All listed devices can submit files for careful schema-based validation.
+// Being selectable does not guarantee any particular vendor export can be parsed.
+function selectedExportsSupported(){return Boolean(selectedSensor&&selectedPump&&clockFormat)}
+// Display-time formatting only: all server data and exported files retain their original timestamps.
+function clockTime(value){
+  const time=String(value);
+  if(clockFormat!=="12")return time;
+  const match=/^(\d{2}):(\d{2})(?::(\d{2}))?$/.exec(time);
+  if(!match)return time;
+  const hour=Number(match[1]);if(hour>24||hour===24&&match[2]!=="00")return time;
+  const h=hour%24,shown=h%12||12;
+  return `${shown}:${match[2]}${match[3]?":"+match[3]:""} ${h>=12?"PM":"AM"}`;
+}
+function clockText(value){
+  const str=String(value==null?"":value);
+  if(clockFormat!=="12")return str;
+  // Convert HH:MM text for on-screen presentation only; keep metadata/CSV untouched.
+  return str.replace(/(^|[^\d])(2[0-4]|[01]\d):([0-5]\d)(:[0-5]\d)?(?=$|[^\d])/g,
+    (whole,pre,h,m,sec)=>pre+clockTime(`${h}:${m}${sec||""}`));
+}
+function markStep(id,stepState){
+  const node=$(id);node.classList.remove("completed","current","locked");node.classList.add(stepState);
+  const circle=node.querySelector("b");circle.textContent=stepState==="completed"?"✓":({sensorStep:"01",pumpStep:"02",timeStep:"03"}[id]);
+}
+function updateSelection(){
+  const sensor=document.querySelector('input[name="sensorChoice"]:checked');
+  const pump=document.querySelector('input[name="pumpChoice"]:checked');
+  const chosenClock=document.querySelector('input[name="clockChoice"]:checked');
+  selectedSensor=sensor?.value||null;
+  selectedPump=pump?.value||null;
+  clockFormat=chosenClock?.value||null;
+  $("pumpSection").disabled=!selectedSensor;
+  $("pumpSection").classList.toggle("locked",!selectedSensor);
+  $("clockSection").disabled=!selectedSensor||!selectedPump;
+  $("clockSection").classList.toggle("locked",!selectedSensor||!selectedPump);
+  $("pumpLock").textContent=selectedSensor?"Choose one, including sensor only":"Select a sensor to unlock";
+  markStep('sensorStep',selectedSensor?'completed':'current');
+  markStep('pumpStep',selectedPump&&selectedSensor?'completed':selectedSensor?'current':'locked');
+  markStep('timeStep',clockFormat&&selectedSensor&&selectedPump?'completed':selectedSensor&&selectedPump?'current':'locked');
+  $("stepLine1").classList.toggle("completed",Boolean(selectedSensor));
+  $("stepLine2").classList.toggle("completed",Boolean(selectedPump&&selectedSensor));
+  const button=$("continueSetup"),summary=$("selectionSummary");
+  syncUploadIcons();
+  button.disabled=!selectedExportsSupported();
+  if(!selectedSensor){summary.textContent="Step 1: Choose your glucose sensor.";button.textContent="Choose a sensor to continue  →";return;}
+  if(!selectedPump){summary.textContent=`${sensorNames[selectedSensor]} selected. Step 2: choose a pump or No insulin pump.`;button.textContent="Choose pump option  →";return;}
+  if(!clockFormat){summary.textContent=`${sensorNames[selectedSensor]} · ${pumpNames[selectedPump]}. Step 3: choose 12-hour or 24-hour time.`;button.textContent="Choose time format  →";return;}
+  const both=selectedPump!=="no-pump";
+  summary.textContent=`${sensorNames[selectedSensor]} · ${both?pumpNames[selectedPump]:"Sensor only"} · ${clockFormat}-hour display · Ready`;
+  button.textContent=both?"Continue to glucose & basal review  →":"Continue to glucose & timing insights  →";
+}
+for(const radio of document.querySelectorAll('input[name="sensorChoice"],input[name="pumpChoice"],input[name="clockChoice"]')){
+  radio.addEventListener("change",updateSelection);
+}
+
+const DEFAULT_SENSOR_ICON=document.querySelector('label[for="sensor-libre2"] .hardware-icon').innerHTML;
+const DEFAULT_PUMP_ICON=document.querySelector('label[for="pump-minimed700"] .hardware-icon').innerHTML;
+function syncUploadIcons(){
+  const sensorIcon=document.querySelector('input[name="sensorChoice"]:checked')?.closest('.hardware-choice')?.querySelector('.hardware-icon')?.innerHTML || DEFAULT_SENSOR_ICON;
+  const pumpIcon=document.querySelector('input[name="pumpChoice"]:checked')?.closest('.hardware-choice')?.querySelector('.hardware-icon')?.innerHTML || DEFAULT_PUMP_ICON;
+  const sensorWrap=$("sensorUploadIcon"),pumpWrap=$("pumpUploadIcon");
+  if(sensorWrap){sensorWrap.innerHTML=sensorIcon; sensorWrap.classList.remove('pump');}
+  if(pumpWrap){pumpWrap.innerHTML=pumpIcon; pumpWrap.classList.add('pump');}
+  // Keep the heading consistent with the selected manufacturer, not always MiniMed.
+  const pumpHeading=document.querySelector('#pumpUpload .row-title strong');
+  if(pumpHeading) pumpHeading.textContent=selectedPump&&selectedPump!=='no-pump'&&!selectedPump.startsWith('minimed')
+    ? `${pumpNames[selectedPump]} pump data` : 'Medtronic pump data';
+  syncUploadCardColors();
+}
+// The device card already holds the authoritative visual color in --accent-rgb.
+// Reuse it for the corresponding upload box, including when the user changes devices.
+function syncUploadCardColors(){
+  const ink={
+    libre2:'#886400',libre2plus:'#886400',libre3:'#886400',libre3plus:'#886400',
+    dexcomg6:'#24730b',dexcomg7:'#237b39',guardian4:'#194d87',simplera:'#194d87',
+    eversense:'#4447a5','no-pump':'#566278',minimed600:'#194d87',minimed700:'#194d87',
+    omnipod5:'#995900',tslim:'#086b9d',mobi:'#086b9d',ilet:'#102f6c',ypsopump:'#6f8a11'
+  };
+  for(const [name,uploadId,fallbackRgb] of [
+    ['sensorChoice','sensorUploadIcon','255,207,0'],
+    ['pumpChoice','pumpUploadIcon','29,95,174']
+  ]){
+    const radio=document.querySelector(`input[name="${name}"]:checked`);
+    const upload=document.getElementById(uploadId)?.closest('.upload-card');
+    if(!upload)continue;
+    const device=radio?.closest('.hardware-choice');
+    const rgb=device?.style.getPropertyValue('--accent-rgb').trim()||fallbackRgb;
+    upload.style.setProperty('--upload-brand',rgb);
+    upload.style.setProperty('--upload-brand-ink',ink[radio?.value]||'#845a00');
+  }
+}
+
+function chooseDevices(mode){
+  if(!selectedSensor||!sensorNames[selectedSensor])return;
+  if(mode==="both"&&(!selectedPump||selectedPump==="no-pump"||!pumpNames[selectedPump]))return;
+  deviceMode=mode; latest=null;
+  setSidebarCollapsed(false);
+  $("devicePicker").hidden=true; $("mainHeader").hidden=false; $("workspace").hidden=false; $("changeMode").hidden=false;
+  $("integrationMessage").hidden=false;
+  $("integrationMessage").innerHTML=`<strong>Structured data import · format check required</strong>You chose ${esc(sensorNames[selectedSensor])}${mode==="both"?" and "+esc(pumpNames[selectedPump]):""}. Upload a raw export with dated sensor glucose values${mode==="both"?" and dated basal-rate values (U/h)":""}. CSV, TSV, Excel, JSON, and documents containing readable data tables can be checked. Not every manufacturer or PDF/Word report layout is supported; an unrecognized file will be rejected rather than guessed.`;
+  // Each Show Method link targets the specific model chosen in the setup screen.
+  const sensorMethodLink=document.querySelector('#uploadSidebar .upload-card:not(#pumpUpload) .method-link');
+  const pumpMethodLink=document.querySelector('#pumpUpload .method-link');
+  if(sensorMethodLink){sensorMethodLink.href='/?guide=sensor-'+encodeURIComponent(selectedSensor);
+    sensorMethodLink.setAttribute('aria-label','Show download method for '+sensorNames[selectedSensor]);}
+  if(pumpMethodLink && selectedPump && selectedPump!=='no-pump'){
+    pumpMethodLink.href='/?guide=pump-'+encodeURIComponent(selectedPump);
+    pumpMethodLink.setAttribute('aria-label','Show download method for '+pumpNames[selectedPump]);}
+  $("uploadHeading").textContent="01 / Upload your data files";
+  for(const card of document.querySelectorAll("#uploadSidebar .upload-card"))card.hidden=(card.id==="pumpUpload"&&mode!=="both");
+  $("analyzeButton").hidden=false;
+  $("analyzeButton").disabled=false;
+  $("results").style.display="none"; $("welcome").style.display="flex";
+  const sensor=sensorNames[selectedSensor],pump=pumpNames[selectedPump];
+  $("mainHeading").textContent=mode==="both"?"Glucose patterns & basal review":"Glucose patterns & timing insights";
+  $("mainDescription").textContent=mode==="both"?
+    `Selected: ${sensor} and ${pump}. Upload structured glucose readings and timestamped pump basal-rate records. GLUCOLAB will verify formats before analysis.`:
+    `Selected: ${sensor}. Upload timestamped raw sensor glucose readings for pattern and illustrative meal/snack timeline review.`;
+  $("modePill").textContent=mode==="both"?`Sensor + pump · ${clockFormat}h clock`:`Sensor only · ${clockFormat}h clock`;
+  $("analyzeButton").textContent=mode==="both"?"Analyze both files  →":"Analyze sensor data  →";
+  $("error").hidden=true;
+}
+$("continueSetup").addEventListener("click",()=>{
+  if(!selectedExportsSupported())return;
+  chooseDevices(selectedPump==="no-pump"?"libre":"both");
+});
+$("changeMode").addEventListener("click",()=>{
+  $("devicePicker").hidden=false;$("mainHeader").hidden=true;$("workspace").hidden=true;$("changeMode").hidden=true;
+  deviceMode=null;latest=null;setSidebarCollapsed(false);updateSelection();
+syncUploadIcons();
+});
+updateSelection();
+for(const [id,label] of [["libreFile","libreName"],["pumpFile","pumpName"]]){
+  $(id).addEventListener("change",()=>{
+    const f=$(id).files[0]; $(label).textContent=f?`${f.name} (${(f.size/1024/1024).toFixed(2)} MB)`:"No file selected";
+    $(label).classList.toggle("ready",!!f); $("error").hidden=true;
+  });
+}
+function showError(message){$("error").textContent=message;$("error").hidden=false;}
+async function checkConnection(){
+  const status=$("serverStatus"),dot=$("serverDot");
+  if(location.protocol==="file:"){
+    status.textContent="Python server not connected";
+    dot.style.background="#dc4b58";
+    showError("Start the Python server first: open a terminal in the GLUCOLAB folder, run 'python app.py', and visit http://127.0.0.1:8000. Do not double-click index.html.");
+    return;
+  }
+  try{
+    const response=await fetch("/api/health",{cache:"no-store"});
+    const data=response.headers.get("content-type")?.includes("application/json")?await response.json():null;
+    if(!response.ok||data?.product!=="GLUCOLAB"||data?.status!=="ok")throw new Error("No GLUCOLAB backend");
+    if(data.api_schema!==REQUIRED_API_SCHEMA){
+      status.textContent="GLUCOLAB server update required";
+      dot.style.background="#dc4b58";
+      showError(OUTDATED_SERVER_MESSAGE);
+      return;
+    }
+    status.textContent=glucolabHosted?"GLUCOLAB connected":"Python server connected";
+    dot.style.background="#32ae91";
+  }catch(err){
+    status.textContent="Python server not connected";
+    dot.style.background="#dc4b58";
+    showError(glucolabHosted?"GLUCOLAB is temporarily unavailable. Please try again later.":"This page is not connected to the GLUCOLAB Python backend. Run 'python app.py' from the extracted GLUCOLAB folder, then open http://127.0.0.1:8000.");
+  }
+}
+// Public host messaging: retain unchanged local workflow on localhost.
+const glucolabHosted = location.protocol === "https:" && !["localhost", "127.0.0.1"].includes(location.hostname);
+if (glucolabHosted) {
+  document.getElementById("publicBetaNotice").hidden = false;
+  const info = document.getElementById("privacyInfo");
+  info.innerHTML = '<span class="small-icon" aria-hidden="true">ⓘ</span><div><b>Public beta — hosted analysis.</b> Your data files are transmitted to this website’s server, analyzed temporarily, and not intentionally saved to a database. Do not upload identifiable medical records until the site has undergone independent privacy/security review. Maximum 30 MB per file.</div>';
+}
+checkConnection();
+$("analyzeButton").addEventListener("click",async()=>{
+  const lf=$("libreFile").files[0],pf=$("pumpFile").files[0];
+  if(!lf||(deviceMode==="both"&&!pf)){showError(deviceMode==="both"?"Please select both a sensor glucose export and a pump basal-rate export.":"Please select your sensor glucose data file.");return;}
+  if(glucolabHosted&&[lf,pf].filter(Boolean).some(f=>f.size>30*1024*1024)){showError("Each file must be 30 MB or less.");return;}
+  $("error").hidden=true;const button=$("analyzeButton");button.disabled=true;button.textContent="Analyzing files…";
+  try{
+    const form=new FormData();
+    form.append("libre_file",lf);form.append("mode",deviceMode);form.append("sensor_device",selectedSensor);if(deviceMode==="both"){form.append("pump_file",pf);form.append("pump_device",selectedPump);}
+    if(location.protocol==="file:") throw Error("This page was opened as an HTML file, without the Python server. Run 'python app.py' in the GLUCOLAB folder, then open http://127.0.0.1:8000 instead.");
+    let response;
+    try {
+      response=await fetch("/api/analyze",{method:"POST",body:form,cache:"no-store"});
+    }catch(networkError){
+      throw Error(glucolabHosted?"The GLUCOLAB server could not be reached. Please retry later.":"Cannot reach the GLUCOLAB Python server. Open a terminal in the GLUCOLAB folder, run 'python app.py', and use http://127.0.0.1:8000. Keep the terminal open while analyzing.");
+    }
+    const contentType=response.headers.get("content-type")||"";
+    if(!contentType.includes("application/json")){
+      throw Error("This webpage is not connected to the GLUCOLAB Python backend (server responded with HTML instead of JSON). Run 'python app.py' and open http://127.0.0.1:8000.");
+    }
+    const data=await response.json();
+    if(!response.ok)throw Error(data.error||`The server returned status ${response.status}.`);
+    if(deviceMode==="libre" && !validExpandedMealTimeline(data.meal_timeline)){
+      throw Error(OUTDATED_SERVER_MESSAGE);
+    }
+    render(data);latest=data;$("results").style.display="block";$("welcome").style.display="none";setSidebarCollapsed(true);
+  }catch(err){showError(err.message||"Could not complete the upload. Check the server and your CSV files.");}
+  finally{button.disabled=false;button.textContent=deviceMode==="both"?"Analyze both files  →":"Analyze sensor data  →";}
+});
+function render(data){
+  const s=data.libre.summary,p=data.pump?.summary,u=data.libre.unit;
+  const pumpMode=data.mode!=="libre";
+  $("patternPanel").hidden=!pumpMode;
+  $("mealTimelinePanel").hidden=pumpMode;
+  if(pumpMode)renderPattern(data.pattern,u);
+  else renderMealTimeline(data.meal_timeline,u);
+  $("periodTitle").textContent=`Recent analysis (${data.filters.days} days maximum) · ${esc(clockText(s.from))} → ${esc(clockText(s.to))} · ${fmt(s.readings,0)} sensor readings selected · ${esc(data.import_info?.sensor_format||"validated CSV")}`;
+  const stats=[
+    ["Average glucose",fmt(s.mean)+" "+u,`${fmt(s.readings,0)} historical readings`,"blue"],
+    ["Lowest glucose",fmt(s.lowest)+" "+u,`Recorded ${clockText(s.lowest_at)}`,"red"],
+    ["Highest glucose",fmt(s.highest)+" "+u,`Recorded ${clockText(s.highest_at)}`,"amber"],
+    ["In target range",fmt(s.in_range_pct,1)+"%","Percentage of observed readings","teal"],
+    ["Low episodes",fmt(s.hypo_episodes,0),`${fmt(s.low_readings,0)} low readings`,"red"],
+    pumpMode?["Average basal rate",p.mean==null?"—":fmt(p.mean)+" U/h",`${fmt(p.entries,0)} recorded rate entries`,"blue"]:["Above range",fmt(s.above_pct,1)+"%","Percentage of observed readings","amber"]
+  ];
+  $("summaryCards").innerHTML=stats.map(([k,v,sub,c])=>`<article class="panel stat ${c}"><div class="k">${esc(k)}</div><div class="v">${esc(v)}</div><div class="sub">${esc(sub)}</div></article>`).join("");
+  $("chartLegend").textContent=`Target range: ${data.libre.low}–${data.libre.high} ${u}`;
+  const validAgp=(data.libre.agp?.bins||[]).filter(b=>b.p50!=null).length;
+  $("agpNote").textContent=`Each half-hour band is based on observed readings from at least 2 different days (≥5 total readings). ${validAgp} of 48 half-hour bins have sufficient data. The 5th–95th and 25th–75th percentile bands show historical spread, not a predicted glucose level. Exploratory AGP-style display.`;
+  renderBars("hourlyBars",data.libre.hourly,"average",false,u);
+  renderBars("hypoBars",data.libre.hourly,"episodes",true,"episodes");
+  $("dailyTable").innerHTML=data.libre.daily.map(r=>`<tr><td><b>${esc(r.date)}</b></td><td>${esc(fmt(r.mean))}</td><td>${esc(fmt(r.min))}</td><td>${esc(fmt(r.max))}</td><td>${esc(fmt(r.readings,0))}</td></tr>`).join("");
+  $("eventsTable").innerHTML=data.libre.episodes.length?data.libre.episodes.map(r=>`<tr><td>${esc(clockText(r.started))}</td><td>${esc(clockText(r.ended))}</td><td>${esc(fmt(r.lowest))} ${esc(u)}</td></tr>`).join(""):'<tr><td colspan="3">No low episodes began in this selected time period.</td></tr>';
+  $("terminalOut").textContent=clockText(data.report);$("answer").textContent="Ask about average or lowest BG, target range, low episodes, or a specific hourly average.";
+  requestAnimationFrame(drawTrend);
+}
+function renderPattern(p,u){
+  const ready=["review_only","review_only_unknown_edit"].includes(p.status)&&p.segments.length>0;
+  const periodSource=p.last_edit?`Explicit profile-edit marker: ${p.last_edit}; limited to latest ${p.recent_days} days`:`Automatic latest ${p.recent_days} days; actual profile-edit date not identified`;
+  $("patternPeriod").textContent=`${periodSource} · Sensor: ${clockText(p.glucose_start||"—")} to ${clockText(p.glucose_end||"—")}`;
+  $("patternMetrics").innerHTML=`<span>Recent glucose readings: <b>${fmt(p.glucose_readings,0)}</b></span><span>Calendar days: <b>${fmt(p.days_observed||0,0)}</b></span><span>Recent pump entries: <b>${fmt(p.recent_rate_entries||0,0)}</b></span><span>Candidate ranges: <b>${fmt(p.segments.length,0)}</b></span>`;
+  $("candidateBlock").hidden=!ready;
+  $("candidateSource").textContent=ready?`Source: ${p.profile_day}; most recent complete candidate day at or before LibreView end. ${p.excluded_rate_entries||0} interruption/nonrecurring rate rows excluded; ${p.suspension_events_on_day||0} explicit suspend/resume events on this day. Not confirmed programmed settings.`:"";
+  $("candidateTable").innerHTML=ready?p.segments.map(seg=>`<tr><td>${esc(clockText(seg.start))} – ${esc(clockText(seg.end))}</td><td>${esc(Number(seg.original_rate).toFixed(2))}</td></tr>`).join(""):"";
+  const candidateTotal=p.observed_daily_basal_u;
+  $("candidateTotal").innerHTML=ready?`<tr class="total-row"><td>Estimated 24-hour candidate basal total<span class="total-note">Rate × duration for each recorded interval; not actual insulin delivered.</span></td><td class="total-value">${candidateTotal==null?"Unavailable":esc(fmt(candidateTotal,3))+" U/day"}</td></tr>`:"";
+  $("exportCandidate").disabled=!ready;
+  $("patternTable").innerHTML=ready?p.segments.map(seg=>{
+    const tone=seg.action==="high"?"signal-up":seg.action==="low"?"signal-down":seg.action==="conflict"?"signal-conflict":"";
+    const hours=[...new Set([...seg.high_hours,...seg.low_hours])].join(", ");
+    return `<tr><td><b>${esc(clockText(seg.start))}–${esc(clockText(seg.end))}</b></td><td>${esc(fmt(seg.original_rate,3))}</td><td><b>${esc(fmt(seg.illustrative_rate,3))}</b></td><td class="${tone}">${seg.change>0?"+":""}${esc(fmt(seg.change,2))}</td><td><span class="${tone}">${esc(seg.reason)}</span>${hours?`<div class="table-sub">Hour(s): ${esc(hours)}</div>`:""}</td></tr>`;
+  }).join(""):'<tr><td colspan="5">No complete set of recorded rate ranges could be reconstructed from these CSV rows.</td></tr>';
+  const illustrativeTotal=p.illustrative_daily_basal_u;
+  const diff=p.illustrative_daily_difference_u;
+  $("illustrativeTotal").innerHTML=ready?`<tr class="total-row"><td colspan="3">Illustrative 24-hour total<span class="total-note">Integrated using segment duration; not an actual or recommended insulin dose.</span></td><td colspan="2" class="total-value illustrated">${illustrativeTotal==null?"Unavailable":esc(fmt(illustrativeTotal,3))+" U/day"}${diff==null?"":` <span class="total-note">Difference vs. candidate: ${diff>0?"+":""}${esc(fmt(diff,3))} U/day</span>`}</td></tr>`:"";
+  $("exportSchedule").disabled=!ready;
+}
+
+
+function renderMealTimeline(meals,unit){
+  if(!validExpandedMealTimeline(meals))throw Error(OUTDATED_SERVER_MESSAGE);
+  const limit=meals.threshold;
+  const category={
+    "below-230":`Median below ${esc(fmt(limit))} ${esc(unit)}`,
+    "above-230":`Median at/above ${esc(fmt(limit))} ${esc(unit)}`,
+    "low-observed":"Low median · follow your low-glucose plan",
+    "insufficient":"Insufficient historical readings"
+  };
+  // The Python backend analyzes 48 half-hour bins. Only the 24 hourly
+  // summaries are displayed as blocks; keep the detailed segments in cards.
+  const cells=meals.hourly_display.map(h=>{
+    const tooltip=`${clockTime(h.start)}–${clockTime(h.end)}: ${h.readings} readings; status ${h.status}`;
+    return `<span class="hourcell ${esc(h.status)}" title="${esc(tooltip)}" aria-label="${esc(tooltip)}"></span>`;
+  }).join("");
+  // Restore the original *floating* blue boxes. Leave a gap between adjacent
+  // meal/snack windows and break each box where the hourly summary is not
+  // below the threshold, rather than filling an entire row with touching boxes.
+  const outlines=[];
+  const labels=[];
+  for(const period of meals.periods){
+    labels.push(`<span class="period-label" style="left:${((period.start_hour+period.end_hour)/2)/24*100}%" title="${esc(period.meal)}: ${esc(clockTime(period.start))}–${esc(clockTime(period.end))}">${esc(period.short_label)}</span>`);
+    let startHour=null;
+    for(let hour=period.start_hour;hour<=period.end_hour;hour++){
+      const isBelow=hour<period.end_hour && meals.hourly_display[hour]?.status==='below-230';
+      if(isBelow && startHour===null)startHour=hour;
+      if(!isBelow && startHour!==null){
+        const width=(hour-startHour)/24*100;
+        const left=startHour/24*100;
+        const title=`${period.meal}: ${clockTime(String(startHour).padStart(2,'0')+":00")}–${clockTime(String(hour).padStart(2,'0')+":00")} (historical below-230 range)`;
+        outlines.push(`<div class="meal-highlight" style="left:calc(${left}% + 4px);width:calc(${width}% - 8px)" title="${esc(title)}"></div>`);
+        startHour=null;
+      }
+    }
+  }
+  const axes=[0,6,12,18,24].map(h=>`<span class="axis ${h===24?'end':h===0?'first':''}" style="left:${h/24*100}%">${esc(clockTime(String(h).padStart(2,'0')+":00"))}</span>`).join("");
+  const interruptions=meals.periods.flatMap(p=>p.ranges.filter(r=>r.status==='above-230').map(r=>({period:p.meal,...r})));
+  $("mealTrack").innerHTML=`<div class="daytrack-line">${cells}</div><div class="period-row">${outlines.join('')}${labels.join('')}</div>${axes}`;
+  $("attentionHours").innerHTML=interruptions.length?
+    `<b>Historical median at/above 230 mg/dL:</b><div>${interruptions.map(r=>`<span class="alert-tag">${esc(clockTime(r.start))}–${esc(clockTime(r.end))} · ${esc(r.period)}</span>`).join("")}</div><small>These are data markers, not meal restrictions. The pattern is not a live glucose reading.</small>`:
+    `<b>No half-hour bins had a median at/above 230 mg/dL with sufficient data.</b> This does not establish medically safe meal times.`;
+  const formattedRanges=(ranges)=>ranges.length?ranges.map(r=>`${esc(clockTime(r.start))}–${esc(clockTime(r.end))}`).join(" · "):"None observed";
+  $("mealCards").innerHTML=meals.periods.map(m=>{
+    return `<article class="meal-card"><div class="topline"><span>${esc(m.meal)}</span><span class="status">${esc(clockTime(m.start))}–${esc(clockTime(m.end))}</span></div>
+      <div class="segment-line"><span class="segment-dot below-230"></span><b>Below 230:</b> ${formattedRanges(m.below_230_ranges)}</div>
+      <div class="segment-line"><span class="segment-dot above-230"></span><b>At/above 230:</b> ${formattedRanges(m.above_230_ranges)}</div>
+      <div class="segment-line"><span class="segment-dot low-observed"></span><b>Low median:</b> ${formattedRanges(m.low_ranges)}</div>
+      ${m.missing_ranges.length?`<small>Insufficient data: ${formattedRanges(m.missing_ranges)}</small>`:""}</article>`;
+  }).join("");
+  $("mealNotice").textContent=meals.notice;
+}
+
+function explainModifications(){
+  if(!latest?.pattern)return;
+  const p=latest.pattern,u=latest.libre.unit;
+  $("modIntro").textContent=`Based on ${p.glucose_readings} glucose readings, GLUCOLAB compared glucose patterns with recorded pump rates on ${p.profile_day||'an unverified date'}. Multiple hours in the same rate segment count as ONE illustrative change. High and low signals together are marked as conflicting, rather than automatically resolved.`;
+  $("modStats").innerHTML=`<div><strong>${esc(fmt(p.segments_changed||0,0))}</strong>segments with hypothetical change</div><div><strong>${esc(fmt(p.segments_conflict||0,0))}</strong>conflicting segments</div><div><strong>${esc(fmt(p.days_observed||0,0))}</strong>days with glucose readings</div>`;
+  $("modSegments").innerHTML=p.segments.length?p.segments.map(seg=>{
+    const action=seg.action==="high"?"High-glucose pattern":seg.action==="low"?"Recurring low-glucose pattern":seg.action==="conflict"?"Conflicting high/low patterns":"No threshold trigger";
+    const affected=[...new Set([...seg.high_hours,...seg.low_hours])].sort();
+    const step=(seg.change>0?"+":"")+fmt(seg.change,2);
+    return `<article class="explain-card"><div><div class="range">${esc(clockText(seg.start))}–${esc(clockText(seg.end))}</div><p>Recorded ${esc(fmt(seg.original_rate,2))} U/h</p></div><div><div class="action ${esc(seg.action)}">${esc(action)} · ${esc(step)} U/h (simulation)</div><p>${esc(seg.reason)}. ${affected.length?`Relevant hour(s): ${esc(affected.join(', '))}.`:"No flagged hour in this segment."}</p><p>Illustrative comparison: ${esc(fmt(seg.illustrative_rate,2))} U/h — not a pump setting.</p></div></article>`;
+  }).join(""):`<p>No full recorded basal-rate pattern could be established. GLUCOLAB did not create a simulated schedule.</p>`;
+  const flagged=p.hourly_evidence.filter(h=>h.signal!=="none");
+  $("modHourly").innerHTML=flagged.length?flagged.map(h=>{
+    const words=h.signal==="high"?"Above-threshold pattern":h.signal==="low"?"Repeated low events":"High + low conflict";
+    const text=`Average ${fmt(h.average)} ${u} across ${h.days_with_readings} day(s). `+
+      `${h.high_dates.length?`Daily hourly mean >200 mg/dL on ${h.high_dates.join(', ')}. `:''}`+
+      `${h.overall_average_high?'Overall hourly mean reached the 200 mg/dL criterion. ':''}`+
+      `${h.low_consecutive_pairs.length?`Low-episode starts on consecutive dates: ${h.low_consecutive_pairs.map(x=>x.join(' and ')).join('; ')}.`:''}`;
+    return `<div class="evidence-row"><div class="when">${esc(clockText(h.hour))}</div><div class="details">${esc(text)}</div><div class="state">${esc(words)}</div></div>`;
+  }).join(""):`<p>No hours triggered the illustration's threshold rules.</p>`;
+  $("modDialog").showModal();
+}
+$("explainMods").addEventListener("click",explainModifications);
+$("closeExplain").addEventListener("click",()=>$("modDialog").close());
+$("modDialog").addEventListener("click",e=>{if(e.target===$("modDialog"))$("modDialog").close();});
+
+// Colors are descriptive display categories, NOT treatment thresholds.
+function hourlyBgColor(v,unit){
+  if(v==null||!Number.isFinite(Number(v)))return "";
+  // Convert mmol/L into approximately mg/dL for consistent breakpoints.
+  const mg=Number(v)*(unit==="mmol/L"?18.0182:1);
+  if(mg<54)return "bg-very-low";
+  if(mg<70)return "bg-low";
+  if(mg<100)return "bg-lower-target";
+  if(mg<=180)return "bg-upper-target";
+  if(mg<=250)return "bg-high";
+  return "bg-very-high";
+}
+function renderBars(id,rows,key,isHypo,unit){
+  const nums=rows.map(r=>r[key]==null?0:r[key]);const max=Math.max(...nums,0.0001);
+  $(id).innerHTML=rows.map(r=>{
+    const n=r[key];const pct=n==null?0:Math.max(0,n/max*100);
+    const bgClass=isHypo?"hypo":hourlyBgColor(n,unit);
+    const detail=n==null?"No readings":`${fmt(n,isHypo?0:2)} ${unit}`;
+    return `<div class="bar-line" title="${esc(clockTime(r.hour))}: ${esc(detail)}"><span>${esc(clockTime(r.hour))}</span><div class="bar-track"><div class="bar-fill ${bgClass}" style="width:${pct}%"></div></div><span class="bar-val">${esc(n==null?'—':fmt(n,isHypo?0:2))}</span></div>`;
+  }).join("");
+  if(!isHypo&&$("hourlyLegend")){
+    const labels=unit==="mmol/L"?
+      ["<3.0","3.0–3.8","3.9–5.5","5.6–10.0","10.1–13.9",">13.9"]:
+      ["<54","54–69","70–99","100–180","181–250",">250"];
+    const classes=["bg-very-low","bg-low","bg-lower-target","bg-upper-target","bg-high","bg-very-high"];
+    $("hourlyLegend").innerHTML=classes.map((c,i)=>`<span class="item"><span class="swatch ${c}" aria-hidden="true"></span>${esc(labels[i])}</span>`).join("");
+    $("hourlyLegend").setAttribute("title",`Hourly mean glucose bands (${unit}), shown for visual reference only`);
+  }
+}
+
+function drawTrend(){
+  // An AGP-style *aggregate day*, not the chronological glucose trace.
+  // The percentiles are calculated from observed LibreView readings in
+  // the same recent period as the rest of GLUCOLAB's report.
+  if(!latest || $("results").style.display==="none")return;
+  const canvas=$("trendCanvas"), rect=canvas.getBoundingClientRect();
+  if(!rect.width)return;
+  const width=rect.width, height=width<610?330:370, scale=Math.min(window.devicePixelRatio||1,2);
+  canvas.width=Math.round(width*scale);canvas.height=Math.round(height*scale);
+  const ctx=canvas.getContext("2d");ctx.scale(scale,scale);ctx.clearRect(0,0,width,height);
+  const profile=latest.libre.agp?.bins || [];
+  const low=latest.libre.low,high=latest.libre.high,unit=latest.libre.unit;
+  const left=width<430?44:55,right=width-(width<430?45:62),top=18,bottom=height-76;
+  const max95=Math.max(high, ...profile.filter(b=>b.p95!=null).map(b=>b.p95));
+  const step=unit==="mg/dL"?50:2;
+  const maxY=Math.ceil(Math.max(max95*1.06,high*1.65)/step)*step;
+  const minY=0;
+  const X=m=>left+(right-left)*m/1440;
+  const Y=v=>bottom-(v-minY)/(maxY-minY)*(bottom-top);
+  ctx.save();ctx.fillStyle="#fbfdfd";ctx.fillRect(left,top,right-left,bottom-top);
+  ctx.fillStyle="rgba(46,170,107,.065)";ctx.fillRect(left,Y(high),right-left,Y(low)-Y(high));
+
+  // Grid and target lines.
+  ctx.font="11px Segoe UI, Arial";ctx.fillStyle="#7d8da1";
+  for(let v=0;v<=maxY+0.001;v+=step){
+    const y=Y(v);ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(right,y);
+    ctx.setLineDash([3,5]);ctx.strokeStyle="#e3eaf2";ctx.lineWidth=1;ctx.stroke();ctx.setLineDash([]);
+    ctx.textAlign="right";ctx.fillText(String(Math.round(v*100)/100),left-9,y+4);
+  }
+  for(const [value,text] of [[low,String(low)],[high,String(high)]]){
+    const y=Y(value);ctx.beginPath();ctx.moveTo(left,y);ctx.lineTo(right,y);ctx.lineWidth=1.65;
+    ctx.strokeStyle="#4b9b65";ctx.stroke();
+    ctx.fillStyle="#317d51";ctx.textAlign="right";ctx.font="bold 11px Segoe UI, Arial";ctx.fillText(text,left-9,y+4);
+  }
+  for(let hr=0;hr<=24;hr+=(clockFormat==="12"&&width<580?6:3)){
+    const x=X(hr*60);
+    ctx.beginPath();ctx.moveTo(x,top);ctx.lineTo(x,bottom);ctx.lineWidth=1;
+    ctx.strokeStyle="#e8edf3";ctx.setLineDash([2,5]);ctx.stroke();ctx.setLineDash([]);
+    ctx.font="11px Segoe UI, Arial";ctx.fillStyle="#61768c";
+    ctx.textAlign=hr===0?"left":hr===24?"right":"center";
+    ctx.fillText(clockFormat==="12"?`${(hr%12)||12} ${hr%24<12?"AM":"PM"}`:`${String(hr%24).padStart(2,'0')}:00`,x,bottom+20);
+  }
+  // Draw only contiguous half-hour bins with enough observed days.
+  const runs=[];let run=[];
+  for(const b of profile){
+    if(b.p50==null){if(run.length){runs.push(run);run=[];}}
+    else run.push(b);
+  }
+  if(run.length)runs.push(run);
+  const midpoint=b=>b.minute+15;
+  function curve(rows,key){
+    for(let i=1;i<rows.length;i++){
+      const a=rows[i-1],b=rows[i],middle=(X(midpoint(a))+X(midpoint(b)))/2;
+      ctx.bezierCurveTo(middle,Y(a[key]),middle,Y(b[key]),X(midpoint(b)),Y(b[key]));
+    }
+  }
+  function bandPath(rows,highKey,lowKey){
+    if(rows.length<2)return false;
+    ctx.beginPath();ctx.moveTo(X(midpoint(rows[0])),Y(rows[0][highKey]));
+    curve(rows,highKey);
+    const reversed=rows.slice().reverse();
+    ctx.lineTo(X(midpoint(reversed[0])),Y(reversed[0][lowKey]));
+    curve(reversed,lowKey);ctx.closePath();return true;
+  }
+  // Clip each percentile band to the target, above-target and below-target regions.
+  // Green and amber mirror the reference visual without turning these data into
+  // a recommendation to change insulin delivery or eat at a certain time.
+  function paintedBand(upperKey,lowerKey,colors){
+    const clips=[
+      {y:top,h:Math.max(0,Y(high)-top),fill:colors.high},
+      {y:Y(high),h:Math.max(0,Y(low)-Y(high)),fill:colors.target},
+      {y:Y(low),h:Math.max(0,bottom-Y(low)),fill:colors.low},
+    ];
+    for(const clip of clips){
+      if(!clip.h)continue;
+      ctx.save();ctx.beginPath();ctx.rect(left,clip.y,right-left,clip.h);ctx.clip();
+      ctx.fillStyle=clip.fill;
+      for(const rows of runs)if(bandPath(rows,upperKey,lowerKey))ctx.fill();
+      ctx.restore();
+    }
+  }
+  paintedBand("p95","p05",{high:"rgba(251,179,69,.29)",target:"rgba(70,175,111,.20)",low:"rgba(225,75,91,.18)"});
+  paintedBand("p75","p25",{high:"rgba(250,168,25,.51)",target:"rgba(58,152,95,.39)",low:"rgba(223,75,99,.36)"});
+
+  // Sparse individual dots: observed data from the most recent report period,
+  // positioned by time of day rather than calendar date.
+  const points=latest.libre.trend || [];
+  const stride=Math.max(1,Math.ceil(points.length/1500));
+  ctx.save();ctx.beginPath();ctx.rect(left,top,right-left,bottom-top);ctx.clip();
+  for(let i=0;i<points.length;i+=stride){
+    const p=points[i],h=Number(p.time.slice(11,13)),m=Number(p.time.slice(14,16));
+    if(!Number.isFinite(h)||!Number.isFinite(m))continue;
+    ctx.beginPath();ctx.arc(X(h*60+m),Y(p.value),1.2,0,Math.PI*2);
+    ctx.fillStyle=p.value>high?"rgba(207,135,20,.24)":p.value<low?"rgba(196,70,81,.23)":"rgba(31,118,80,.19)";
+    ctx.fill();
+  }
+  ctx.restore();
+
+  // Smooth median plus subtle dotted outer percentile curves.
+  for(const [key,color,dash,thickness] of [
+    ["p05","rgba(63,118,96,.39)",[2,4],.9],
+    ["p95","rgba(165,118,56,.45)",[2,4],.9],
+    ["p50","#315f4b",[],3.1]
+  ]){
+    ctx.save();ctx.strokeStyle=color;ctx.lineWidth=thickness;ctx.setLineDash(dash);ctx.lineJoin="round";
+    for(const rows of runs){
+      ctx.beginPath();ctx.moveTo(X(midpoint(rows[0])),Y(rows[0][key]));curve(rows,key);ctx.stroke();
+    }
+    ctx.restore();
+  }
+  // Right-side percentile labels anchored to the last available segment.
+  const last=profile.filter(b=>b.p50!=null).at(-1);
+  if(last){
+    const list=[["95%",last.p95],["75%",last.p75],["50%",last.p50],["25%",last.p25],["5%",last.p05]];
+    let previous=-100;
+    const positions=list.map(([label,val])=>{
+      const at=Math.min(bottom-7,Math.max(top+8,Math.max(Y(val),previous+16)));
+      previous=at;return {label,value:val,at};
+    });
+    for(const p of positions){
+      const y0=Y(p.value);ctx.beginPath();ctx.moveTo(right+2,y0);ctx.lineTo(right+8,p.at);
+      ctx.strokeStyle="#9eb0ad";ctx.lineWidth=1;ctx.stroke();
+      ctx.textAlign="left";ctx.font=(p.label==="50%"?"bold ":"")+"11px Segoe UI, Arial";
+      ctx.fillStyle=p.label==="50%"?"#244d3d":"#627889";ctx.fillText(p.label,right+10,p.at+4);
+    }
+  }
+  const parts=[["Overnight",0,6],["Morning",6,12],["Afternoon",12,18],["Evening",18,24]];
+  for(const [name,a,b] of parts){
+    const x1=X(a*60),x2=X(b*60);
+    ctx.fillStyle="#f5f7fa";ctx.fillRect(x1,bottom+31,x2-x1,26);
+    ctx.strokeStyle="#dce5ee";ctx.strokeRect(x1,bottom+31,x2-x1,26);
+    ctx.textAlign="center";ctx.font="10px Segoe UI, Arial";ctx.fillStyle="#6b7e94";
+    ctx.fillText(name,(x1+x2)/2,bottom+48);
+  }
+  if(!profile.some(b=>b.p50!=null)){
+    ctx.textAlign="center";ctx.fillStyle="#5b6f87";ctx.font="13px Segoe UI, Arial";
+    ctx.fillText("Not enough readings across multiple days for a 24-hour percentile profile",(left+right)/2,top+56);
+  }
+  ctx.restore();
+}
+window.addEventListener("resize",()=>{if(latest)drawTrend();});
+function saveFile(name,contents,type){const link=document.createElement("a");const url=URL.createObjectURL(new Blob([contents],{type}));link.href=url;link.download=name;link.click();setTimeout(()=>URL.revokeObjectURL(url),1500);}
+function csvString(rows){if(!rows.length)return"";const keys=Object.keys(rows[0]);return [keys.join(","),...rows.map(row=>keys.map(k=>`"${String(row[k]??"").replaceAll('"','""')}"`).join(","))].join("\r\n");}
+$("exportJson").addEventListener("click",()=>{if(latest)saveFile("GLUCOLAB_report.json",JSON.stringify(latest,null,2),"application/json");});
+$("exportHourly").addEventListener("click",()=>{if(latest)saveFile("GLUCOLAB_hourly_glucose.csv",csvString(latest.libre.hourly),"text/csv");});
+$("exportEpisodes").addEventListener("click",()=>{if(latest)saveFile("GLUCOLAB_hypo_episodes.csv",csvString(latest.libre.episodes),"text/csv");});
+$("exportCandidate").addEventListener("click",()=>{
+  if(!latest||!latest.pattern.segments.length)return;
+  saveFile("GLUCOLAB_candidate_recorded_ranges_UNVERIFIED.csv",csvString(latest.pattern.segments.map(x=>({
+    start:x.start,end:x.end,recorded_rate_U_per_h:x.original_rate,source_date:latest.pattern.profile_day,
+    note:"UNVERIFIED recorded rate intervals; NOT programmed pump settings"
+  }))),"text/csv");
+});
+$("exportSchedule").addEventListener("click",()=>{
+  if(!latest||!latest.pattern.segments.length)return;
+  saveFile("GLUCOLAB_SIMULATION_NOT_FOR_PUMP.csv",csvString(latest.pattern.segments.map(x=>({
+    start:x.start,end:x.end,observed_rate_U_per_h:x.original_rate,simulated_step_U_per_h:x.change,illustrative_rate_U_per_h:x.illustrative_rate,action:x.action,reason:x.reason,high_hours:x.high_hours.join(" "),low_hours:x.low_hours.join(" ")
+  }))),"text/csv");
+});
+$("printReport").addEventListener("click",()=>window.print());
+$("copySummary").addEventListener("click",async()=>{if(!latest)return;try{await navigator.clipboard.writeText(latest.report);$("copySummary").textContent="Copied ✓";setTimeout(()=>$("copySummary").textContent="Copy output",1700);}catch(e){$("terminalOut").focus();showError("Your browser blocked clipboard access. Select and copy the formatted output manually.");}});
+$("questionForm").addEventListener("submit",e=>{
+  e.preventDefault();if(!latest)return;
+  const q=$("questionInput").value.toLowerCase().trim();const s=latest.libre.summary,p=latest.pump?.summary,u=latest.libre.unit;
+  const time=q.match(/(?:at|hour)\s*(\d{1,2})(?::(\d{2}))?\s*(am|pm)?/i);
+  let hour=time?Number(time[1]):null;
+  if(time?.[3]&&hour>=1&&hour<=12)hour=hour%12+(time[3]==="pm"?12:0);
+  let reply="";
+  if(hour!=null&&(hour<0||hour>23)){reply="Please enter an hour from 0 to 23.";}
+  else if(/basal|pump/.test(q)){
+    if(!latest.pump){reply="Pump-rate questions require sensor + pump mode and recognized dated basal-rate records.";}else{
+    if(hour!=null){const row=latest.pump.hourly[hour];reply=row.average==null?`No basal-rate entries were recorded for ${row.hour} in this selection.`:`At ${row.hour}, the mean recorded basal rate was ${fmt(row.average)} U/h from ${row.entries} entries.`;}
+    else reply=p.mean==null?"No basal-rate entries match this time period.":`The mean recorded basal rate was ${fmt(p.mean)} U/h across ${p.entries} entries; this is not delivered insulin.`;
+    }
+  }else if(/hypo|episode|low event/.test(q)){
+    if(hour!=null){const row=latest.libre.hourly[hour];reply=`${row.episodes} low episodes started during ${row.hour}–${String((hour+1)%24).padStart(2,'0')}:00 across the selected dates.`;}
+    else reply=`There were ${s.hypo_episodes} detected low episodes, with ${s.low_readings} readings below ${latest.libre.low} ${u}.`;
+  }else if(/lowest|minimum|min\b/.test(q)){reply=`Lowest glucose: ${fmt(s.lowest)} ${u}, at ${s.lowest_at}.`;}
+  else if(/highest|maximum|max\b/.test(q)){reply=`Highest glucose: ${fmt(s.highest)} ${u}, at ${s.highest_at}.`;}
+  else if(/range|target|tir/.test(q)){reply=`${fmt(s.in_range_pct,1)}% of observed readings were in ${latest.libre.low}–${latest.libre.high} ${u}. This is a reading-based percentage, not validated time-weighted TIR.`;}
+  else if(/average|mean|bg|glucose/.test(q)){
+    if(hour!=null){const row=latest.libre.hourly[hour];reply=row.average==null?`No glucose readings match hour ${row.hour}.`:`Average glucose during hour ${row.hour} was ${fmt(row.average)} ${u} from ${row.readings} readings.`;}
+    else reply=`The average glucose was ${fmt(s.mean)} ${u} from ${s.readings} selected readings.`;
+  }else{reply='I can answer questions about lowest/highest glucose, average BG (including by hour), target range, hypo episodes, and average basal rate. Try “average BG at 14:00”.';}
+  $("answer").textContent=clockText(reply);
+});
+
+// Download instructions reviewed against manufacturers' and data-platform providers' help pages.
+// Choosing a model determines the guide; supporting the website's file-extension upload
+// DOES NOT imply that every export from that model is readable by the backend.
+const ABBOTT_HELP='https://www.freestyle.abbott/en-us/support/faq/apps/downloading-glucose-data-from-the-freestyle-libre-3-app.html';
+const LIBRE_HUB='https://www.freestyle.abbott/en-us/how-to-set-up.html';
+const DEXCOM_HELP='https://www.dexcom.com/en-us/faqs/can-i-export-raw-data';
+const MEDTRONIC_HELP='https://www.medtronic-diabetes.com/en-IE/help-center/faqs/how-do-i-upload-my-device-data-carelink-personal';
+const MEDTRONIC_CARELINK_HELP='https://origin.medtronicdiabetes.com/customer-support/carelink-software-support/using-carelink-software';
+const EVERSENSE_HELP='https://www.eversensecgm.com/faq/?page=4';
+const OMNIPOD_HELP='https://www.omnipod.com/en-gb/current-podders/resources/omnipod-5/faqs/data-management';
+const GLOOKO_HELP='https://support.glooko.com/hc/en-gb/articles/4460340377875-How-can-I-export-my-diabetes-data-from-Glooko';
+const TANDEM_UPLOAD='https://www.tandemdiabetes.com/support-center/software-and-apps/tandem-source/article/uploading-tslimx2-data-to-tandem-source';
+const TANDEM_GUIDE='https://www.tandemdiabetes.com/docs/default-source/user-guide/user-guide-tandem-source-personal-mmoll-intl-aw1013216.pdf?sfvrsn=73553bd7_163';
+const ILET_GUIDE='https://www.betabionics.com/user-resources/';
+const YPSO_HELP='https://www.mylife-diabetescare.com/en/products/therapy-management/faq-software';
+const YPSO_TRANSITION='https://www.mylife-diabetescare.com/en/products/therapy-management/mylife-digital/mylife-cloud-phase-out';
+
+function libreDownloadGuide(name, variant){
+  return {name,platform:'Abbott LibreView',status:'Raw glucose CSV export documented',verified:true,
+    intro:`Download the actual timestamped readings for ${name} from LibreView, not a PDF summary.`,
+    steps:[
+      `Make sure your ${name} readings have synced to the Libre app / LibreView account, or upload a compatible reader first.`,
+      'Open <strong>LibreView.com</strong> and sign in to the account used with your sensor.',
+      'Open <strong>Glucose History</strong> and select <strong>Download Glucose Data</strong>.',
+      'Follow the account verification/download prompts and save the raw glucose export file.',
+      'Return to GLUCOLAB and upload the downloaded glucose file to the sensor section.'
+    ],
+    note:variant+' The raw LibreView glucose export is preferable to a screenshot or a report PDF. Data must include individual readings and timestamps.',
+    links:[['Abbott: Downloading glucose data',ABBOTT_HELP],['Abbott: Compatible Libre systems',LIBRE_HUB]]};
+}
+function dexcomDownloadGuide(name){
+  return {name,platform:'Dexcom Clarity',status:'Raw glucose CSV export documented',verified:true,
+    intro:`Use Dexcom Clarity to download dated glucose measurements from ${name}.`,
+    steps:[
+      `Sync your ${name} data with Dexcom Clarity (if you use a receiver, upload it to Clarity first).`,
+      'Sign in at <strong>clarity.dexcom.com</strong> with your Dexcom account.',
+      'Open a <strong>Reports</strong> page and choose the date range you want.',
+      'Click the <strong>Export</strong> icon to download the glucose data as <strong>CSV</strong>.',
+      'Upload the CSV file to the GLUCOLAB sensor section (not a Clarity PDF report).'
+    ],note:'Clarity supports both G6 and G7, but its exported CSV layout can vary. GLUCOLAB validates whether the file contains usable individual readings.',
+    links:[['Dexcom: Export raw data',DEXCOM_HELP],['Dexcom Clarity', 'https://clarity.dexcom.com/']]};
+}
+function medtronicSensorDownloadGuide(name,variant){
+  return {name,platform:'Medtronic CareLink Personal',status:'CareLink data route documented; export layout may vary',verified:false,
+    intro:`Find timestamped ${name} sensor records using the Medtronic system associated with this sensor.`,
+    steps:[
+      variant,
+      'Confirm the connected app or pump has uploaded data to your <strong>CareLink Personal</strong> account. In a compatible mobile app, keep Sync to CareLink enabled or use Upload Now if offered.',
+      'Sign in to CareLink Personal; check <strong>Recent Activity</strong> to verify that readings are present.',
+      'Open <strong>Reports</strong> and find <strong>Data Export (CSV)</strong> if that option is available for your system/account.',
+      'Download the file containing dated sensor-glucose values and select it in GLUCOLAB.'
+    ],note:'Medtronic supports multiple workflows. A PDF chart does not contain the raw readings required for a detailed glucose timeline. CareLink exports are schema-checked and not guaranteed to import.',
+    links:[['Medtronic: Syncing to CareLink',MEDTRONIC_HELP],['Medtronic: Using CareLink Personal',MEDTRONIC_CARELINK_HELP]]};
+}
+function medtronicPumpDownloadGuide(name,variant){
+  return {name,platform:'Medtronic CareLink Personal',status:'CareLink CSV export route documented',verified:true,
+    intro:`Get timestamped insulin-delivery events for your ${name} using CareLink Personal.`,
+    steps:[
+      variant,
+      'Sign in to <strong>CareLink Personal</strong> and verify your pump appears with recent data in <strong>Recent Activity</strong>.',
+      'Open <strong>Reports</strong>, select the date range, then look for <strong>Data Export (CSV)</strong> (availability varies by platform and region).',
+      'Download the CSV export, not just a printed report PDF.',
+      'Select the file in GLUCOLAB’s pump upload section. The analyzer will check for actual timestamped basal-rate events.'
+    ],note:'Recorded basal-delivery rates are not automatically the same as programmed pump settings. GLUCOLAB does not verify or prescribe pump programming.',
+    links:[['Medtronic: CareLink upload help',MEDTRONIC_HELP],['Medtronic: Reports and exports',MEDTRONIC_CARELINK_HELP]]};
+}
+function tandemDownloadGuide(name,variant){
+  return {name,platform:'Tandem Source',status:'Daily Timeline CSV export documented',verified:true,
+    intro:`Use Tandem Source to export your ${name} pump timeline as a CSV file.`,
+    steps:[
+      variant,
+      'Sign in at <strong>source.tandemdiabetes.com</strong> and confirm that your pump data has synced.',
+      'Open the <strong>Daily Timeline</strong> report and select the time period.',
+      'Click <strong>Export CSV</strong>. Tandem Source saves the file in your Downloads folder.',
+      'Upload the Daily Timeline CSV to GLUCOLAB. It will look for timestamped basal-rate records.'
+    ],note:'Select Export CSV on Daily Timeline, not Print/Save PDF. An export can contain delivered and programmed rate events; GLUCOLAB will not assume they are interchangeable.',
+    links:[['Tandem Source personal guide: Daily Timeline CSV',TANDEM_GUIDE],['Tandem: t:slim X2 upload steps',TANDEM_UPLOAD]]};
+}
+const DEVICE_DOWNLOAD_GUIDES={
+  'sensor-libre2':libreDownloadGuide('FreeStyle Libre 2','If you use a Libre 2 reader rather than the app, upload or sync the reader to LibreView first.'),
+  'sensor-libre2plus':libreDownloadGuide('FreeStyle Libre 2 Plus','Use the app or reader paired with your Libre 2 Plus sensor to sync its data.'),
+  'sensor-libre3':libreDownloadGuide('FreeStyle Libre 3','The Libre 3 app does not download raw readings directly; LibreView does.'),
+  'sensor-libre3plus':libreDownloadGuide('FreeStyle Libre 3 Plus','Use the compatible Libre app to sync Libre 3 Plus readings to LibreView.'),
+  'sensor-dexcomg6':dexcomDownloadGuide('Dexcom G6'),
+  'sensor-dexcomg7':dexcomDownloadGuide('Dexcom G7'),
+  'sensor-guardian4':medtronicSensorDownloadGuide('Guardian 4','If Guardian 4 is paired to a MiniMed pump, use that pump’s CareLink connection; if you use a separate Guardian app, follow that app’s CareLink sync path.'),
+  'sensor-simplera':medtronicSensorDownloadGuide('Simplera / Simplera Sync','Choose the right route: <strong>Simplera Sync</strong> paired with MiniMed 780G uses the pump/CareLink path. The standalone <strong>Simplera</strong> sensor can be used with an app/InPen ecosystem; check the related app for supported sharing. A raw CSV from the standalone path is not confirmed.'),
+  'sensor-eversense':{name:'Eversense 365',platform:'Eversense 365 App / DMS',status:'PDF reports available; raw timestamped CSV not verified',verified:false,
+    intro:'Eversense offers reports and data sharing, but its standard app report is not the same as a raw glucose export.',
+    steps:[
+      'Open your <strong>Eversense 365 App</strong> (not Eversense NOW, which is for followers).',
+      'Tap <strong>Menu → Reports</strong> and browse the available glucose reports.',
+      'Tap the email/share icon to send a report as <strong>PDF</strong>, if you want a summary.',
+      'For individual timestamped readings, check your Eversense DMS account or ask Eversense support whether a machine-readable export is available for your account.',
+      'Only upload a file to GLUCOLAB if it includes actual dated glucose rows. A graph-only PDF is insufficient.'
+    ],note:'Eversense confirms that its 365 app can email PDF reports; a verified raw-CSV export procedure was not found. Do not use summary charts as fabricated readings.',
+    links:[['Eversense: 365 app report instructions',EVERSENSE_HELP],['Eversense support','https://www.eversensecgm.com/']]},
+  'pump-minimed600':medtronicPumpDownloadGuide('MiniMed 600 Series','Connect a compatible 600 Series pump using the <strong>CareLink Uploader</strong> and a compatible upload method for your model; it may not support automatic phone synchronization.'),
+  'pump-minimed700':medtronicPumpDownloadGuide('MiniMed 700 Series','If your 700 Series pump supports the <strong>MiniMed Mobile</strong> app, confirm background syncing to CareLink is enabled; otherwise use the CareLink Uploader.'),
+  'pump-omnipod5':{name:'Omnipod 5',platform:'Insulet Provided Glooko',status:'Glooko raw CSV data export documented',verified:true,
+    intro:'Omnipod 5 shares its recorded pump data to Glooko through the cloud, not through a USB cable.',
+    steps:[
+      'Sign into the <strong>Omnipod 5</strong> account used by your Controller and link it to <strong>Glooko</strong> in the supported account settings.',
+      'Ensure the Controller has Wi‑Fi or cellular data and confirm Omnipod data appears in your personal <strong>Glooko</strong> account.',
+      'On a computer, sign in at <strong>my.glooko.com</strong>. Open <strong>Export to CSV</strong> in the header.',
+      'Select your date range and click <strong>Export</strong>. Glooko downloads a <strong>ZIP</strong> containing separate CSV files for insulin, glucose, and other events.',
+      'Extract the ZIP on your computer and choose the <strong>insulin / basal-rate CSV</strong> in GLUCOLAB, if it has dated U/h records.'
+    ],note:'Do not upload the ZIP as a single file. Omnipod 5 does not support direct USB upload. A Glooko CSV is valid source data but its column layout still needs to pass GLUCOLAB validation.',
+    links:[['Omnipod: How data reaches Glooko',OMNIPOD_HELP],['Glooko: Exact Export to CSV steps',GLOOKO_HELP]]},
+  'pump-tslim':tandemDownloadGuide('t:slim X2','Connect your t:slim X2 by USB and use <strong>Upload Pump → Start Upload</strong> in Tandem Source, or sync using the paired Tandem mobile app.'),
+  'pump-mobi':tandemDownloadGuide('Tandem Mobi','Pair Tandem Mobi to its mobile app and confirm the app is syncing data to Tandem Source. Mobi data reaches Tandem Source via the app.'),
+  'pump-ilet':{name:'iLet Bionic Pancreas',platform:'Beta Bionics iLet app / Bionic Circle',status:'Raw event CSV export not verified',verified:false,
+    intro:'The iLet companion app supports data sharing, but a user-accessible raw basal-event CSV export was not verified in official instructions.',
+    steps:[
+      'Connect your iLet device to the companion <strong>iLet mobile app</strong> as described in Beta Bionics’ official user guide.',
+      'Check that device data is syncing to the Beta Bionics account or Bionic Circle service available to you.',
+      'Review the reporting and sharing options documented by Beta Bionics for your app version.',
+      'For a timestamped insulin-delivery export, consult the <strong>Beta Bionics support team</strong>. Do not assume a report PDF contains every pump event.',
+      'If you receive a machine-readable table containing dated basal U/h records, GLUCOLAB can attempt to validate it; full compatibility is not confirmed.'
+    ],note:'No verified customer-facing CSV export instructions were found for the iLet, so GLUCOLAB cannot promise full analysis from its usual reports.',
+    links:[['Beta Bionics: iLet user resources',ILET_GUIDE],['Beta Bionics official website','https://www.betabionics.com/']]},
+  'pump-ypsopump':{name:'mylife YpsoPump',platform:'mylife App / mylife Software',status:'CSV / Excel logbook export documented; schema varies',verified:true,
+    intro:'The legacy mylife app and desktop software can export logbook data, but product and cloud services are changing.',
+    steps:[
+      'Synchronize your <strong>YpsoPump</strong> with your available <strong>mylife App</strong> or desktop <strong>mylife Software</strong>. Older software may require a dongle and one-time Bluetooth pairing.',
+      'In mylife Software, open the relevant <strong>Logbook</strong> or report screen.',
+      'Use the export/report control: the logbook can be exported to <strong>CSV or Excel</strong>; ordinary reports may be PDF or Word.',
+      'Save a file with individual dated insulin-delivery/basal-rate records, then choose it in GLUCOLAB.',
+      'If you use a newer <strong>CamAPS FX / Glooko</strong> workflow, follow the data-sharing/export instructions for that platform rather than the retired mylife tools.'
+    ],note:'Ypsomed has announced a phase-out of mylife software/cloud services, so availability depends on region and app version. A CSV/Excel export is not automatically a verified GLUCOLAB basal-rate file.',
+    links:[['Ypsomed: mylife Software export help',YPSO_HELP],['Ypsomed: Service transition',YPSO_TRANSITION]]}
+};
+const GLUCOLAB_BASE_TITLE=document.title;
+function renderDeviceGuideForUrl(guideOverride){
+  const requested=typeof guideOverride==='string'?guideOverride:new URLSearchParams(window.location.search).get('guide');
+  const dynamic=DEVICE_DOWNLOAD_GUIDES[requested];
+  for(const id of ['libreGuide','pumpGuide','deviceSpecificGuide'])$(id).hidden=true;
+  const legacy=requested==='libre'||requested==='pump';
+  if(!legacy&&!dynamic){$('methodGuide').hidden=true;document.body.classList.remove('method-view');document.title=GLUCOLAB_BASE_TITLE;return;}
+  document.body.classList.add('method-view');$('methodGuide').hidden=false;
+  if(legacy){
+    $(requested+'Guide').hidden=false;
+    document.title=(requested==='libre'?'LibreView':'Medtronic')+' download guide | GLUCOLAB';
+    window.scrollTo(0,0);return;
+  }
+  $('deviceSpecificGuide').hidden=false;
+  $('deviceGuideTitle').textContent='How to get data from '+dynamic.name;
+  $('deviceGuideIntro').textContent=dynamic.intro;
+  $('deviceGuideStatus').textContent=dynamic.status;
+  $('deviceGuideStatus').classList.toggle('limited',!dynamic.verified);
+  $('deviceGuideSteps').innerHTML=dynamic.steps.map(step=>'<li>'+step+'</li>').join('');
+  $('deviceGuideNote').textContent=dynamic.note;
+  $('deviceGuideSources').innerHTML='Official references: '+dynamic.links.map(([label,url])=>
+    '<a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer">'+esc(label)+'</a>').join(' · ')+
+    '<p>Providers may change their menus. File acceptance depends on actual rows, timestamps, units and column meanings; a file type alone does not ensure compatibility.</p>';
+  document.title=dynamic.name+' data download guide | GLUCOLAB';
+  window.scrollTo(0,0);
+}
+// Navigate without a page reload so the selected devices and any chosen file remain present.
+document.querySelectorAll('.method-link').forEach(link=>link.addEventListener('click',event=>{
+  const next=new URL(link.href,location.href);
+  if(next.origin!==location.origin)return;
+  event.preventDefault();history.pushState({guide:true},'',next.pathname+next.search);
+  renderDeviceGuideForUrl();
+}));
+document.querySelectorAll('#methodGuide .back').forEach(link=>link.addEventListener('click',event=>{
+  event.preventDefault();history.pushState({guide:false},'','/');renderDeviceGuideForUrl();
+}));
+window.addEventListener('popstate',renderDeviceGuideForUrl);
+renderDeviceGuideForUrl();
+</script>
+</body>
+</html>

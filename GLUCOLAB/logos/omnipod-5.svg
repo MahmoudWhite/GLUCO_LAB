@@ -1,0 +1,5 @@
+<svg class="local-device-logo emblem omnipod-mark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 52" role="img" aria-label="Omnipod-inspired orange pod mark" focusable="false">
+  <path d="M6 15C6 8 17 5 32 5c17 0 26 3 26 10v18c0 9-11 15-26 15S6 42 6 33V15Z" fill="#FFA21C"/>
+  <path d="M19 22c0-5 5-8 13-8s13 3 13 8v10c0 5-5 8-13 8s-13-3-13-8V22Z" fill="#fff"/>
+  <circle cx="32" cy="27" r="5.7" fill="#FFA21C"/>
+</svg>

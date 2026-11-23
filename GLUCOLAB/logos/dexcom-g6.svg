@@ -1,0 +1,5 @@
+<svg class="local-device-logo square dexcom-g6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72 72" role="img" aria-label="Dexcom G6 symbol" focusable="false">
+  <rect width="72" height="72" rx="11" fill="#43B43E"/>
+  <path d="M33 11h27v27c0 16-10.5 27-26 27S8 54 8 39c0-16 11-28 25-28Z" fill="#fff"/>
+  <circle cx="34" cy="38" r="17.3" fill="#43B43E"/>
+</svg>

@@ -1,0 +1,9 @@
+Logo update notes
+
+Omnipod: vector traced from the orange logo screenshot you provided.
+Eversense: clean vector redraw of the waveform and wordmark, not a manufacturer master SVG.
+YpsoPump: clean vector recreation of the mylife green badge and readable gray wordmark.
+Tandem: refined cyan square with a single white T.
+
+All logos are embedded directly in the local index.html so they do not need a network request.
+Medtronic, Libre, Dexcom, GLUCOLAB and the analysis code are unchanged.
